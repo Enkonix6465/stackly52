@@ -1,0 +1,1196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title data-i18n="about.title">Stackly Architecture - About Us</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" rel="stylesheet"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"/>
+
+    <style>
+      /* CSS variables for a consistent dark theme */
+      :root {
+      --bg: #0b0d12;
+      --surface: #0f1219;
+      --glass: rgba(255,255,255,0.08);
+      --text: #e9eefc;
+      --muted: #a6b1d0;
+      --brand: #16f929cc;
+      --brand-2: #16f929cc;
+      --accent: #bbe1fa;
+      --card: #101522;
+      --shadow: 0 10px 30px rgba(0,0,0,.35);
+      --hero-overlay-dark: linear-gradient(180deg, rgba(0, 0, 0, 0.6) 0%, rgba(0, 0, 0, 0) 100%);
+      --badge-bg: rgba(15,76,117,.15);
+      --badge-border: rgba(15,76,117,.35);
+      --badge-text: #cfe0ff;
+    }
+
+
+      /* Light theme overrides for a dual-theme design */
+       body.light {
+      --bg: #f0f4f9;
+      --surface: #ffffff;
+      --glass: rgba(0,0,0,0.05);
+      --text: #1d2c41;
+      --muted: #5e6d8a;
+      --brand: #16f929cc;
+      --brand-2: #16f929cc;
+      --accent: #1b262c;
+      --card: #ffffff;
+      --shadow: 0 10px 30px rgba(0, 0, 0, .1);
+      --hero-overlay-dark: linear-gradient(180deg, rgba(255, 255, 255, 0.6) 0%, rgba(255, 255, 255, 0) 100%);
+      --badge-bg: rgba(15,76,117,.05);
+      --badge-border: rgba(15,76,117,.2);
+      --badge-text: #0f4c75;
+    }
+      
+      body {
+        margin: 0;
+        font-family: "Inter", system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
+        background: linear-gradient(180deg, var(--bg) 0%, var(--surface) 100%);
+        color: var(--text);
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+        transition: background-color 0.3s ease, color 0.3s ease;
+      }
+      a { color: inherit; text-decoration: none; }
+      img { max-width: 100%; display: block; }
+      .container { width: min(1200px, 92%); margin-inline: auto; }
+
+      /* ---------- Header (sticky, glass) ---------- */
+      .header { background-color: var(--surface); padding: 1.25rem 0; position: sticky; top: 0; z-index: 1000; box-shadow: var(--shadow); transition: background-color 0.3s ease; }
+      .logo-img { height: 40px; width: auto; margin-right: 8px; }
+      .nav-container { display: flex; justify-content: space-between; align-items: center; }
+      .logo { font-size: 1.5rem; font-weight: 700; color: var(--brand); display: flex; align-items: center; }
+      .nav-right { display: flex; align-items: center; gap: 1.5rem; }
+      .nav { flex-grow: 1; display: flex; justify-content: flex-end; margin-right: 1rem; }
+      .nav-links { list-style: none; display: flex; gap: 1.5rem; margin: 0; padding: 0; align-items: center; }
+      .nav-links a { color: var(--muted); font-weight: 600; padding: 5px 0; transition: color .3s; position: relative; }
+      .nav-links a:hover, .nav-links a.active { color: var(--text); }
+
+      /* Dropdowns */
+      .dropdown-menu {
+        opacity: 0;
+        visibility: hidden;
+        transform: translateY(10px);
+        transition: opacity 0.3s ease, transform 0.3s ease, visibility 0.3s;
+        position: absolute;
+        top: 100%;
+        background: var(--card);
+        box-shadow: var(--shadow);
+        border-radius: 8px;
+        padding: 10px 0;
+        min-width: 150px;
+        list-style: none;
+      }
+      .nav-links li:hover > .dropdown-menu { opacity: 1; visibility: visible; transform: translateY(0); transition-delay: 0.2s; }
+      .dropdown-menu a { padding: 10px 15px; color: var(--text); display: block; transition: color 0.3s ease; }
+
+      .mobile-menu-toggle { display: none; font-size: 1.5rem; cursor: pointer; }
+      .theme-toggle { display: block; }
+
+      /* Language Selector Styles from home3.html */
+      .language-selector {
+        display: flex;
+        align-items: center;
+        background-color: var(--surface);
+        border: 1px solid var(--muted);
+        border-radius: 8px;
+        padding: 6px 10px;
+        gap: 8px;
+        color: var(--text);
+      }
+      .language-selector select {
+        background: transparent;
+        border: none;
+        outline: none;
+        color: var(--text);
+        font-family: inherit;
+        font-size: 1rem;
+        cursor: pointer;
+      }
+      .language-selector select option {
+        background-color: var(--surface);
+        color: var(--text);
+      }
+
+      @media (max-width: 780px) {
+        .dropdown-menu { position: static; background: var(--card); border: none; box-shadow: none; padding: 8px 0 0; margin-left: 16px; min-width: 140px; display: none; opacity: 1; visibility: visible; transform: none; }
+        .dropdown-menu li a { color: var(--text); padding: 10px 18px; display: block; font-weight: 500; }
+        .dropdown-menu li a:hover { background: var(--surface); color: var(--brand); }
+      } 
+
+      /* Profile dropdown */
+      .profile-container { position: relative; display: inline-block; }
+      .profile-icon { width: 40px; height: 40px; border-radius: 50%; background-color: var(--brand); display: flex; align-items: center; justify-content: center; color: white; font-weight: 700; cursor: pointer; font-size: 1rem; }
+      .profile-menu { display: none; position: absolute; top: 110%; right: 0; background: var(--card); box-shadow: var(--shadow); border-radius: 8px; overflow: hidden; transition: background-color 0.3s ease; z-index: 1000; padding: 5px 0; min-width: 150px; }
+      .profile-menu.active { display: block; }
+      .profile-menu a { display: block; padding: 10px 15px; color: var(--text); white-space: nowrap; transition: color 0.3s ease, background-color 0.3s ease; }
+      .profile-menu a:hover { background-color: var(--surface); }
+      /* RTL styles from home3.html */
+      body[dir="rtl"] .nav-links{ text-align: right; }
+      body[dir="rtl"] .nav{ justify-content: flex-start; }
+      body[dir="rtl"] .dropdown-menu li a{ text-align: right; }
+      body[dir="rtl"] .footer-content > div { text-align: right; }
+      body[dir="rtl"] .footer-content{ grid-template-columns: 1.4fr 1fr 1fr 2fr; }
+      body[dir="rtl"] .footer-bottom { text-align: center; }
+      body[dir="rtl"] .welcome-content { grid-template-columns: 1fr 1.1fr; }
+      body[dir="rtl"] .welcome-text { text-align: right; }
+      body[dir="rtl"] .welcome-features { text-align: right; }
+      body[dir="rtl"] .feature-item { direction: rtl; }
+      body[dir="rtl"] .feature-item i { margin-left: 10px; margin-right: 0; }
+      body[dir="rtl"] .faq-question { direction: rtl; }
+      body[dir="rtl"] .faq-answer { direction: rtl; }
+      body[dir="rtl"] .case-study-grid { text-align: right; }
+      body[dir="rtl"] .section-title { text-align: right; }
+      body[dir="rtl"] .testimonial-text { text-align: right; }
+      body[dir="rtl"] .clients-section .swiper-slide { text-align: right; }
+      body[dir="rtl"] .cta-content { text-align: right; }
+
+      /* ---------- Hero (video + gradient + CTA) ---------- */
+      .hero-section { position:relative; height: 86vh; min-height: 560px; overflow:hidden; border-bottom: 1px solid rgba(255,255,255,.06); }
+      .hero-bg-video { position:absolute; inset:0; width:100%; height:100%; object-fit:cover; filter: saturate(110%) contrast(105%); }
+      .hero-gradient { position:absolute; inset:0; background: var(--hero-overlay-dark); transition: background-color 0.3s ease; }
+      /* Animated gradient shimmer on top of overlay */
+      .hero-gradient::after{
+        content:"";
+        position:absolute; inset:0;
+        background: linear-gradient(120deg, rgba(255,210,140,0.12), rgba(224,167,94,0.1), rgba(160,82,45,0.12));
+        background-size: 200% 200%;
+        animation: gradientShift 14s ease infinite;
+        pointer-events: none;
+      }
+      .hero-content { position:relative; z-index:1; height:100%; display:grid; place-items:center; text-align:center; padding: 0 16px; will-change: transform; }
+      .hero-card { max-width: 900px; }
+      .eyebrow { display:inline-flex; gap:8px; align-items:center; padding:6px 10px; border-radius:999px; font-size:.82rem; color: var(--badge-text); background: var(--badge-bg); border:1px solid var(--badge-border); }
+      .hero-title { font-size: clamp(2rem, 5.2vw, 3.6rem); margin:16px 0 10px; line-height:1.05; letter-spacing:-.015em; }
+      .hero-title .cursor { display:inline-block; width:1px; background: currentColor; animation: blink 1.2s steps(1) infinite; transform: translateY(4px); height: 1em;}
+      .hero-sub { font-size: clamp(1rem, 1.8vw, 1.2rem); color: var(--text); margin: 0 0 24px; }
+      .hero-cta { display:inline-flex; gap:12px; }
+      .btn { position: relative; display:inline-flex; align-items:center; gap:10px; padding: 14px 18px; border-radius: 12px; font-weight:700; transition: transform 0.2s ease, box-shadow .2s ease; }
+      .btn-primary { background: linear-gradient(90deg, var(--brand), var(--brand-2)); color:#ffff; box-shadow: 0 8px 20px rgba(224,167,94,.35); overflow:hidden; }
+      .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 12px 26px rgba(224,167,94,.45); }
+      .btn-ghost { background: var(--glass); border:1px solid rgba(255,255,255,.14); color: var(--text); }
+
+      /* Welcome Section from user */
+      .welcome-image-section { padding: 64px 0; background: radial-gradient(1000px 400px at 10% -10%, rgba(224,167,94,.18), transparent), transparent; }
+      .welcome-content { display:grid; grid-template-columns: 1.1fr 1fr; gap: 36px; align-items:center; }
+      .welcome-text h2 { font-size: clamp(1.6rem, 2.6vw, 2.2rem); margin:0 0 12px; }
+      .welcome-text p { color: var(--muted); margin: 0 0 18px; }
+      .welcome-features { display:grid; gap:12px; }
+      .feature-item { display:flex; align-items:center; gap:10px; font-weight:600; color:var(--text); }
+      .feature-item i { color: var(--accent); }
+      .welcome-image img { border-radius: 16px; box-shadow: var(--shadow); }
+      @media (max-width: 900px) {
+        .about-section {
+          flex-direction: column;
+          text-align: center;
+        }
+        .about-images {
+          min-height: 400px;
+          margin-top: 40px;
+        }
+        .img1, .img2, .img3 {
+          position: static;
+          width: 100%;
+          height: auto;
+          margin-bottom: 15px;
+        }
+      }
+
+      /* New Section Styles */
+      .team-section { padding: 70px 0; background: var(--bg); border-top: 1px solid rgba(255,255,255,.06); }
+      .section-title { text-align:center; margin:0 0 34px; }
+      .section-title h2 { font-size: clamp(1.8rem, 3vw, 2.4rem); margin:0; }
+      .team-grid { display:grid; grid-template-columns:repeat(auto-fit, minmax(220px, 1fr)); gap: 24px; text-align:center; }
+      .team-card { background: var(--card); padding: 24px; border-radius: 16px; transition: transform .3s ease; box-shadow: var(--shadow); }
+      .team-card:hover { transform: translateY(-6px); }
+      .team-card img { width: 120px; height: 120px; border-radius: 50%; object-fit: cover; margin: 0 auto 12px; }
+      .team-card h3 { margin:0 0 4px; }
+      .team-card p { margin:0; color: var(--muted); }
+
+      .faq-section { padding: 70px 0; }
+      .faq-item { background: var(--card); border: 1px solid rgba(255,255,255,.06); border-radius: 12px; margin-bottom: 16px; overflow: hidden; }
+      .faq-question { padding: 20px 24px; cursor: pointer; display: flex; justify-content: space-between; align-items: center; font-weight: 600; font-size: 1.1rem; }
+      .faq-question i { transition: transform 0.3s ease; }
+      .faq-answer { padding: 0 24px; color: var(--muted); max-height: 0; overflow: hidden; transition: max-height 0.4s ease-out, padding 0.4s ease-out; }
+      .faq-item.active .faq-answer { max-height: 200px; padding: 10px 24px 20px; }
+      .faq-item.active .faq-question i { transform: rotate(180deg); }
+
+      /* Case studies section */
+      .case-studies-section { 
+        padding: 70px 0; 
+        background: var(--surface);
+        border-top: 1px solid rgba(255,255,255,.06); 
+        background: linear-gradient(180deg, var(--surface) 0%, var(--bg) 100%);
+      }
+      .case-study-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(400px, 1fr)); gap: 32px; }
+      .case-study-card { background: var(--card); border: 1px solid rgba(255,255,255,.06); border-radius: 16px; padding: 32px; box-shadow: var(--shadow); transition: transform .3s ease, box-shadow .3s ease; display: flex; flex-direction: column; text-align: center; will-change: transform; }
+      .case-study-card:hover { transform: translateY(-8px); box-shadow: 0 18px 40px rgba(0,0,0,.5); }
+      .case-study-icon { font-size: 3rem; color: var(--brand-2); margin-bottom: 16px; }
+      .case-study-content h3 { font-size: 1.8rem; margin-top: 0; margin-bottom: 8px; }
+      .case-study-content p { color: var(--muted); }
+      .case-study-metrics { display: grid; grid-template-columns: repeat(auto-fit, minmax(120px, 1fr)); gap: 16px; margin-top: 24px; }
+      .metric { text-align: center; padding: 12px; background: rgba(255,255,255,.05); border-radius: 8px; }
+      .metric-number { font-size: 1.8rem; font-weight: 700; color: var(--accent); }
+      .metric-label { font-size: 0.9rem; color: var(--muted); }
+
+      /* Featured */
+      .featured-section { padding: 70px 0; background: linear-gradient(180deg, #0c1018 0%, #0b0f17 100%); border-top: 1px solid rgba(255,255,255,.06); border-bottom: 1px solid rgba(255,255,255,.06); transition: background-color 0.3s ease; }
+      .cards { display:grid; grid-template-columns: repeat(3, 1fr); gap: 22px; }
+      .card { background: var(--card); border:1px solid rgba(255,255,255,.06); border-radius: 16px; overflow:hidden; box-shadow: var(--shadow); transition: transform .3s ease, box-shadow .3s ease, background-color 0.3s ease; will-change: transform; }
+      .card:hover { transform: translateY(-6px); box-shadow: 0 18px 40px rgba(0,0,0,.5); }
+      .card img { height: 220px; width: 100%; object-fit: cover; }
+      .card-body { padding: 18px 18px 16px; }
+      .card-body h3 { margin: 2px 0 6px; font-size: 1.2rem; }
+      .meta { display:flex; align-items:center; gap:10px; color: var(--muted); font-size:.95rem; margin-bottom: 10px; }
+      .badges { display:flex; flex-wrap:wrap; gap:8px; margin-top:12px; }
+      .badge { font-size:.8rem; font-weight:600; padding:4px 10px; border-radius:999px; background:rgba(255,255,255,.08); color:var(--text); }
+      .badge-category { background:var(--brand-2); color:#fff; }
+
+      /* Clients section */
+      .clients-section { padding: 70px 0; }
+      .client-logos { display:flex; flex-wrap:wrap; justify-content:center; gap:clamp(16px, 4vw, 36px); padding-top:20px; }
+      .client-logos img { max-height:36px; filter: grayscale(1) contrast(0.5) brightness(1.5); opacity:.8; transition: filter .3s ease; }
+      .client-logos img:hover { filter: grayscale(0) contrast(1) brightness(1); }
+
+      /* Testimonials */
+      .testimonials-section { padding: 70px 0; background: var(--surface); }
+      .testimonial-card { padding: 32px; background: var(--card); border-radius: 16px; box-shadow: var(--shadow); }
+      .testimonial-text { font-size: 1.1rem; line-height: 1.5; color: var(--muted); }
+      .testimonial-author { display:flex; align-items:center; gap:12px; margin-top:20px; }
+      .testimonial-author img { width: 50px; height: 50px; border-radius: 50%; }
+      .author-info h4 { margin:0; font-size: 1rem; }
+      .author-info p { margin:0; font-size: 0.9rem; color: var(--muted); }
+      .swiper-pagination-bullet { background: var(--muted) !important; opacity: 1 !important; }
+      .swiper-pagination-bullet-active { background: var(--brand) !important; }
+      .swiper-button-next, .swiper-button-prev { color: var(--muted) !important; }
+      
+      /* CTA */
+      .cta-section { padding: 70px 0; background: var(--bg); text-align:center; }
+      .cta-card { background: url('img/phone.jpg') center/cover no-repeat; border-radius: 20px; padding: 60px 24px; color: #fff; position: relative; overflow: hidden; }
+      .cta-card::after { content: ""; position: absolute; inset: 0; background: rgba(0,0,0,0.7); z-index: 1; }
+      .cta-content { position: relative; z-index: 2; }
+      .cta-content h2 { font-size: clamp(1.8rem, 3.5vw, 2.8rem); margin-bottom: 12px; }
+
+      /* Services Section */
+      .services-section { padding: 70px 0; background: var(--surface); }
+      .services-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 30px; }
+      .service-card { background: var(--card); padding: 32px; border-radius: 16px; border: 1px solid rgba(255,255,255,.06); box-shadow: var(--shadow); transition: transform .3s ease, box-shadow .3s ease; will-change: transform; text-align: center; }
+      .service-card:hover { transform: translateY(-8px); box-shadow: 0 18px 40px rgba(0,0,0,.5); }
+      .service-icon { font-size: 3rem; color: var(--brand-2); margin-bottom: 16px; }
+      .service-card h3 { font-size: 1.5rem; margin-top: 0; margin-bottom: 10px; }
+      .service-card p { color: var(--muted); margin-bottom: 20px; }
+      .service-card a { color: var(--brand); font-weight: 600; text-decoration: underline; transition: color .3s ease; }
+      .service-card a:hover { color: var(--brand-2); }
+
+      /* Project Gallery */
+      .gallery-section { padding: 70px 0; }
+      .gallery-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 16px; }
+      .gallery-item { position: relative; overflow: hidden; border-radius: 16px; box-shadow: var(--shadow); transition: transform .3s ease; }
+      .gallery-item img { display: block; width: 100%; height: 100%; object-fit: cover; transition: transform .5s ease; }
+      .gallery-item:hover img { transform: scale(1.05); }
+      .gallery-overlay { position: absolute; inset: 0; background: rgba(0,0,0,0.5); display: flex; align-items: flex-end; padding: 20px; opacity: 0; transition: opacity .3s ease; }
+      .gallery-item:hover .gallery-overlay { opacity: 1; }
+      .gallery-info { color: #fff; }
+      .gallery-info h4 { margin: 0; }
+      .gallery-info p { margin: 4px 0 0; font-size: 0.9rem; }
+
+
+      /* --- Footer Styles from home1.html --- */
+      .footer { background: var(--surface); border-top: 1px solid rgba(255,255,255,.06); transition: background-color 0.3s ease; }
+      .footer-content { display:grid; grid-template-columns: 2fr 1fr 1fr 1.4fr; gap: 20px; padding: 46px 0; }
+      .footer h3, .footer h4 { margin-top:0; }
+      .footer p, .footer li { color: var(--muted); transition: color 0.3s ease; }
+      .social-links { display:flex; gap:12px; margin-top:10px; }
+      .social-links a { width:38px; height:38px; display:grid; place-items:center; border-radius:10px; background: var(--glass); border:1px solid var(--glass); transition: background-color 0.3s ease; }
+      .footer ul { list-style:none; padding:0; margin:0; display:grid; gap:8px; }
+      .footer-bottom { border-top:1px solid rgba(255,255,255,.06); text-align:center; padding: 16px 0 22px; color: var(--muted); font-size:.95rem; }
+
+      /* General Utility */
+      .text-center { text-align: center; }
+
+      /* Responsive adjustments */
+      @media (max-width: 900px) {
+        .about-section {
+          flex-direction: column;
+          text-align: center;
+        }
+        .about-images {
+          min-height: 400px;
+          margin-top: 40px;
+        }
+        .img1, .img2, .img3 {
+          position: static;
+          width: 100%;
+          height: auto;
+          margin-bottom: 15px;
+        }
+        .footer-content {
+          display: block;
+          padding: 32px 0;
+        }
+        .footer-content > div {
+          margin-bottom: 24px;
+        }
+        .footer-content > div:last-child {
+          margin-bottom: 0;
+        }
+        .footer h4, .footer h3 {
+          margin-bottom: 12px;
+        }
+        .footer ul {
+          gap: 6px;
+        }
+        .footer-bottom {
+          font-size: 1rem;
+          padding: 12px 0 18px;
+        }
+      }
+      @media (max-width: 780px) {
+        .mobile-menu-toggle { display: block; }
+        .nav { display: none; position: absolute; left: 0; right: 0; top: 100%; background: var(--surface); box-shadow: var(--shadow); padding: 1rem 0; }
+        .nav.open { display: block; }
+        .nav-links { flex-direction: column; align-items: flex-start; padding: 10px 12px 16px; }
+      }
+      @media (max-width: 780px) {
+  .mobile-menu-toggle {
+    display: block;
+  }
+  .nav {
+    display: none;
+    position: absolute;
+    /* ... other styles to hide the nav */
+  }
+  .nav.open {
+    display: block;
+  }
+  .nav-links {
+    flex-direction: column;
+    /* ... other styles to stack nav links */
+  }
+}@media (max-width: 900px) {
+  .about-section {
+    flex-direction: column;
+    text-align: center;
+  }
+  .about-images {
+    min-height: 400px;
+    margin-top: 40px;
+  }
+  .img1, .img2, .img3 {
+    position: static;
+    width: 100%;
+    height: auto;
+    margin-bottom: 15px;
+  }
+  .footer-content {
+    display: block;
+    padding: 32px 0;
+  }
+  /* ... other styles for tablet */
+}
+.hero-section video {
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+}
+/* ========================
+   About Us Page Welcome Section
+   ======================== */
+
+.welcome-section {
+  padding: 80px 0;
+  background-color: var(--surface);
+  border-bottom: 1px solid var(--glass);
+}
+
+.welcome-content {
+  display: flex;
+  align-items: center;
+  gap: 40px;
+}
+
+.welcome-text {
+  flex: 1;
+  text-align: left;
+}
+
+.welcome-text h1 {
+  font-size: clamp(2rem, 5vw, 3rem);
+  font-weight: 800;
+  color: var(--text);
+  margin-bottom: 20px;
+}
+
+.welcome-text p {
+  font-size: clamp(1rem, 2vw, 1.1rem);
+  color: var(--muted);
+  line-height: 1.6;
+}
+
+.welcome-image {
+  flex: 1;
+  text-align: right;
+}
+
+.welcome-image img {
+  width: 100%;
+  max-width: 500px;
+  height: auto;
+  border-radius: 12px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+}
+
+/* ========================
+   Responsive Design
+   ======================== */
+
+@media (max-width: 992px) {
+  .welcome-content {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .welcome-text,
+  .welcome-image {
+    flex: none;
+    width: 100%;
+    text-align: center;
+  }
+
+  .welcome-image {
+    order: -1; /* Puts the image at the top on small screens */
+    margin-bottom: 30px;
+  }
+
+  .welcome-image img {
+    max-width: 100%;
+  }
+}
+
+@media (max-width: 768px) {
+  .welcome-section {
+    padding: 60px 0;
+  }
+}
+    </style>
+</head>
+<body>
+   <header class="header">
+        <div class="container nav-container">
+            <a href="home1.html" class="logo">
+                <img class="logo-img" src="img/cropped-image-removebg-preview-2.png" alt="Stackly Logo">
+            </a>
+            <nav class="nav" id="site-nav">
+                <ul class="nav-links">
+                    <li class="dropdown">
+                        <a href="home1.html" data-i18n="nav.home">Home <i class="fas fa-chevron-down"></i></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="home1.html" data-i18n="nav.home1">Home 1</a></li>
+                            <li><a href="home3.html" data-i18n="nav.home2">Home 2</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="About us.html" data-i18n="nav.about">About Us</a></li>
+                    <li class="dropdown">
+                        <a href="Services.html" data-i18n="nav.services">Services <i class="fas fa-chevron-down"></i></a>
+                        <ul class="dropdown-menu">
+                           <li><a href="Services.html" data-i18n="nav.allServices">All Services</a></li>
+              <li><a href="Buying & Selling.html" data-i18n="nav.Buying&Selling">Buying & Selling</a></li>
+            <li><a href="Property Management.html" data-i18n="nav.property-management">Property Management</a></li>
+            <li><a href="Valuation Services.html" data-i18n="nav.valuation-services">Valuation Services</a></li>
+            <li><a href="Market Analysis.html" data-i18n="nav.Marketing-Analysis">Market Analysis</a></li>
+            <li><a href="Investment Consulting.html" data-i18n="nav.Investment consulting">Investment Consulting</a></li>
+             <li><a href="Legal & estate.html" data-i18n="nav.Legal & Financial">Legal & Financial</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="Blog.html" data-i18n="nav.projects">Blog</a></li>
+                    <li><a href="contact.html" data-i18n="nav.contact">Contact Us</a></li>
+                    <li class="dropdown">
+                        <a href="login.html" data-i18n="nav.login">Login <i class="fas fa-chevron-down"></i></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="index.html" data-i18n="nav.signUpLogin">Sign Up/Login</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </nav>
+            <div class="nav-right">
+                <div class="profile-container" style="position: relative;">
+                  <button id="profile-btn" class="profile-icon">
+                    <span id="initials-display"></span>
+                  </button>
+                  <div class="profile-menu" id="profile-dropdown">
+                    <a href="index.html" id="logout-btn" data-i18n="nav.logout">Logout</a>
+                  </div>
+                </div>
+                <div class="theme-toggle">
+                  <button id="theme-toggle" class="btn btn-secondary">
+                    <i class="fas fa-moon"></i>
+                  </button>
+                </div>
+                <div class="language-selector">
+                  <i class="fas fa-globe"></i>
+                  <select id="language-select"></select>
+                </div>
+                <div class="mobile-menu-toggle" id="mobile-toggle">
+                  <i class="fas fa-bars"></i>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <section class="hero-section">
+            <div class="hero-bg-video">
+                <video autoplay loop muted playsinline>
+                    <source src="https://cdn.pixabay.com/video/2019/07/30/25624-351374238_large.mp4" type="video/mp4">
+                </video>
+            </div>
+            <div class="hero-gradient"></div>
+            <div class="container hero-content">
+                <div class="hero-card" data-aos="fade-up" data-aos-duration="1000">
+                    <span class="eyebrow" data-i18n="about.hero.eyebrow">
+                        <i class="fa-solid fa-building"></i> Our Story
+                    </span>
+                    <h1 class="hero-title" data-i18n="about.hero.heading">
+                        Designing a Better Future.
+                    </h1>
+                    <p class="hero-sub" data-i18n="about.hero.subheading">
+                        At Stackly, we are more than architects; we are visionaries dedicated to crafting spaces that inspire and endure.
+                    </p>
+                    <div class="hero-cta">
+                        <a href="Services.html" class="btn btn-primary" data-i18n="about.hero.primaryButton">
+                            <i class="fa-solid fa-seedling"></i> Our Philosophy
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+       <section class="welcome-image-section" id="about-philosophy">
+            <div class="container welcome-content">
+                <div class="welcome-text" data-aos="fade-right" data-aos-duration="1000">
+                    <span class="eyebrow" data-i18n="about.philosophy.eyebrow">Our Guiding Principles</span>
+                    <h2 data-i18n="about.philosophy.heading">Building Beyond Blueprints.</h2>
+                    <p data-i18n="about.philosophy.p1">Our philosophy is simple: to create architectural marvels that are not only aesthetically pleasing but also sustainable, functional, and deeply connected to the environment and the people who use them. We believe in a collaborative process, where every voice contributes to a shared vision.</p>
+                    <p data-i18n="about.philosophy.p2">We are committed to using innovative techniques and materials to ensure our projects are at the forefront of modern design.</p>
+                    <div class="welcome-features">
+                        <div class="feature-item"><i class="fas fa-check-circle"></i><span data-i18n="about.philosophy.feature1">Sustainable Design</span></div>
+                        <div class="feature-item"><i class="fas fa-check-circle"></i><span data-i18n="about.philosophy.feature2">Client-Centric Approach</span></div>
+                        <div class="feature-item"><i class="fas fa-check-circle"></i><span data-i18n="about.philosophy.feature3">Innovative Solutions</span></div>
+                    </div>
+                </div>
+                <div class="welcome-image" data-aos="fade-left" data-aos-duration="1000">
+                    <img src="https://i.pinimg.com/1200x/1f/88/6f/1f886f4db720c2359efc607db9e3864f.jpg" alt="Architectural rendering showing our philosophy in practice">
+                </div>
+            </div>
+        </section>
+        <section class="services-section">
+            <div class="container">
+                <div class="section-title">
+                    <span class="eyebrow" data-i18n="about.values.eyebrow">Our Core Principles</span>
+                    <h2 data-i18n="about.values.heading">Our Mission and Values</h2>
+                </div>
+                <div class="services-grid">
+                    <div class="service-card" data-aos="fade-up" data-aos-duration="600">
+                        <div class="service-icon"><i class="fa-solid fa-handshake"></i></div>
+                        <h3 data-i18n="about.values.card1.heading">Integrity</h3>
+                        <p data-i18n="about.values.card1.p">We operate with honesty, transparency, and the highest ethical standards in every project and interaction.</p>
+                    </div>
+                    <div class="service-card" data-aos="fade-up" data-aos-duration="800">
+                        <div class="service-icon"><i class="fa-solid fa-lightbulb"></i></div>
+                        <h3 data-i18n="about.values.card2.heading">Innovation</h3>
+                        <p data-i18n="about.values.card2.p">We constantly seek new technologies and creative solutions to push the boundaries of design and construction.</p>
+                    </div>
+                    <div class="service-card" data-aos="fade-up" data-aos-duration="1000">
+                        <div class="service-icon"><i class="fa-solid fa-earth-americas"></i></div>
+                        <h3 data-i18n="about.values.card3.heading">Sustainability</h3>
+                        <p data-i18n="about.values.card3.p">Our designs prioritize environmental responsibility, creating buildings that are both beautiful and kind to the planet.</p>
+                    </div>
+                </section>
+                <section class="case-studies-section" id="our-journey">
+                    <div class="container">
+                        <div class="section-title">
+                            <span class="eyebrow" data-i18n="about.journey.eyebrow">Milestones and Achievements</span>
+                            <h2 data-i18n="about.journey.heading">Our Journey to Excellence</h2>
+                        </div>
+                        <div class="case-study-grid">
+                            <div class="case-study-card" data-aos="fade-up" data-aos-duration="600">
+                                <div class="case-study-icon"><i class="fa-solid fa-mountain-sun"></i></div>
+                                <div class="case-study-content">
+                                    <h3 data-i18n="about.journey.milestone1.year">2010</h3>
+                                    <p data-i18n="about.journey.milestone1.description">Stackly was founded with a mission to merge innovative design with sustainable building practices.</p>
+                                </div>
+                            </div>
+                            <div class="case-study-card" data-aos="fade-up" data-aos-duration="800">
+                                <div class="case-study-icon"><i class="fa-solid fa-award"></i></div>
+                                <div class="case-study-content">
+                                    <h3 data-i18n="about.journey.milestone2.year">2015</h3>
+                                    <p data-i18n="about.journey.milestone2.description">Awarded "Firm of the Year" for our commitment to green architecture and community-focused projects.</p>
+                                </div>
+                            </div>
+                            <div class="case-study-card" data-aos="fade-up" data-aos-duration="1000">
+                                <div class="case-study-icon"><i class="fa-solid fa-building-circle-check"></i></div>
+                                <div class="case-study-content">
+                                    <h3 data-i18n="about.journey.milestone3.year">2020</h3>
+                                    <p data-i18n="about.journey.milestone3.description">Launched our Smart City initiatives, integrating cutting-edge technology into urban planning.</p>
+                                </div>
+                            </div>
+                            <div class="case-study-card" data-aos="fade-up" data-aos-duration="1200">
+                                <div class="case-study-icon"><i class="fa-solid fa-globe"></i></div>
+                                <div class="case-study-content">
+                                    <h3 data-i18n="about.journey.milestone4.year">2023</h3>
+                                    <p data-i18n="about.journey.milestone4.description">Expanded our global footprint, completing major international projects in Europe and Asia.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                <section class="testimonials-section">
+                    <div class="container">
+                        <div class="section-title">
+                            <span class="eyebrow" data-i18n="testimonials.eyebrow">What Our Clients Say</span>
+                            <h2 data-i18n="testimonials.heading">Trusted by Industry Leaders</h2>
+                        </div>
+                        <div class="swiper mySwiper">
+                            <div class="swiper-wrapper">
+                                <div class="swiper-slide">
+                                    <div class="testimonial-card">
+                                        <p class="testimonial-text" data-i18n="testimonials.quote1.text">"Stackly's team was exceptional. Their vision for our headquarters was beyond anything we imagined, and their attention to detail was flawless. The project was completed on time and within budget, and the final result has been a huge boost to our company's morale."</p>
+                                        <div class="testimonial-author">
+                                            <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="Client 1">
+                                            <div class="author-info">
+                                                <h4 data-i18n="testimonials.quote1.author">John Smith</h4>
+                                                <p data-i18n="testimonials.quote1.title">CEO, TechCorp</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="swiper-slide">
+                                    <div class="testimonial-card">
+                                        <p class="testimonial-text" data-i18n="testimonials.quote2.text">"We were looking for a partner who understood sustainable design, and Stackly delivered. They integrated eco-friendly materials and energy-efficient systems without compromising on aesthetics. We couldn't be happier with our new green home."</p>
+                                        <div class="testimonial-author">
+                                            <img src="https://randomuser.me/api/portraits/women/44.jpg" alt="Client 2">
+                                            <div class="author-info">
+                                                <h4 data-i18n="testimonials.quote2.author">Sarah Davis</h4>
+                                                <p data-i18n="testimonials.quote2.title">Homeowner</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="swiper-slide">
+                                    <div class="testimonial-card">
+                                        <p class="testimonial-text" data-i18n="testimonials.quote3.text">"The Stackly team transformed our vision into a stunning reality. Their professionalism and creative approach made the entire process seamless and enjoyable. We highly recommend them for any architectural project.\""</p>
+                                        <div class="testimonial-author">
+                                            <img src="https://randomuser.me/api/portraits/men/49.jpg" alt="Client 3">
+                                            <div class="author-info">
+                                                <h4 data-i18n="testimonials.quote3.author">Michael Lee</h4>
+                                                <p data-i18n="testimonials.quote3.title">Project Manager</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="swiper-pagination"></div>
+                            <div class="swiper-button-next"></div>
+                            <div class="swiper-button-prev"></div>
+                        </div>
+                    </div>
+                </section>
+        
+                <section class="cta-section">
+                  <div class="container">
+                    <div class="cta-card" data-aos="zoom-in" data-aos-duration="1000">
+                      <div class="cta-content">
+                        <h2 data-i18n="cta.heading">Ready to Build Your Vision?</h2>
+                        <p data-i18n="cta.subheading">Let's create something extraordinary together. Contact us today for a free consultation.</p>
+                        <a href="contact.html" class="btn btn-primary" data-i18n="cta.primaryButton"><i class="fa-solid fa-envelope"></i> Get a Free Quote</a>
+                      </div>
+                    </div>
+                  </div>
+                </section>
+            </main>
+        
+            <footer class="footer">
+                <div class="container">
+                    <div class="footer-content">
+                        <div class="footer-about">
+                    <img class="logo-img" src="img/cropped-image-removebg-preview-2.png" alt="Stackly Logo">
+                            <p data-i18n="footer.about.p">Crafting spaces that inspire and endure, with a commitment to innovative, sustainable, and client-centric design.</p>
+                            <div class="social-links">
+                                <a href="#"><i class="fab fa-facebook-f"></i></a>
+                                <a href="#"><i class="fab fa-twitter"></i></a>
+                                <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                                <a href="#"><i class="fab fa-instagram"></i></a>
+                            </div>
+                        </div>
+                        <div class="footer-links">
+                            <h4 data-i18n="footer.links.heading">Quick Links</h4>
+                            <ul>
+                                <li><a href="home1.html" data-i18n="footer.links.home">Home</a></li>
+                                <li><a href="About us.html" data-i18n="footer.links.about">About Us</a></li>
+                                <li><a href="Services.html" data-i18n="footer.links.services">Services</a></li>
+                                <li><a href="Blog.html" data-i18n="footer.links.blog">Blog</a></li>
+                                <li><a href="contact.html" data-i18n="footer.links.contact">Contact Us</a></li>
+                            </ul>
+                        </div>
+                        <div class="footer-services">
+                            <h4 data-i18n="footer.services.heading">Our Services</h4>
+                            <ul>
+                                  <li><a href="Buying & Selling.html" data-i18n="nav.Buying&Selling">Buying & Selling</a></li>
+            <li><a href="Property Management.html" data-i18n="nav.property-management">Property Management</a></li>
+            <li><a href="Valuation Services.html" data-i18n="nav.valuation-services">Valuation Services</a></li>
+            <li><a href="Market Analysis.html" data-i18n="nav.Marketing-Analysis">Market Analysis</a></li>
+            <li><a href="Investment Consulting.html" data-i18n="nav.Investment consulting">Investment Consulting</a></li>
+             <li><a href="Legal & estate.html" data-i18n="nav.Legal & Financial">Legal & Financial</a></li>
+                            </ul>
+                        </div>
+                        <div class="footer-contact">
+                            <h4 data-i18n="footer.contact.heading">Contact Info</h4>
+                            <p><strong data-i18n="footer.contact.address">Address:</strong> 123 Architecture Blvd, Cityville, USA</p>
+                            <p><strong data-i18n="footer.contact.phone">Phone:</strong> +1 (123) 456-7890</p>
+                            <p><strong data-i18n="footer.contact.email">Email:</strong> info@stackly.com</p>
+                        </div>
+                    </div>
+                    <div class="footer-bottom">
+                        <p data-i18n="footer.copyright">&copy; 2024 Stackly. All Rights Reserved.</p>
+                    </div>
+                </div>
+            </footer>
+        
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+            <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+        
+            <script>
+        
+                // Swiper for testimonials
+                const swiper = new Swiper(".mySwiper", {
+                    slidesPerView: 1,
+                    spaceBetween: 30,
+                    loop: true,
+                    pagination: {
+                        el: ".swiper-pagination",
+                        clickable: true,
+                    },
+                    navigation: {
+                        nextEl: ".swiper-button-next",
+                        prevEl: ".swiper-button-prev",
+                    },
+                });
+        
+                // AOS initialization
+                AOS.init({
+                    once: true,
+                    duration: 800
+                });
+        
+               // --- Scripts for header/footer and functionality from both files ---
+      const mobileToggle = document.getElementById('mobile-toggle');
+      const nav = document.getElementById('site-nav');
+      mobileToggle?.addEventListener('click', ()=> nav.classList.toggle('open'));
+
+      const profileBtn = document.getElementById('profile-btn');
+      const profileDropdown = document.getElementById('profile-dropdown');
+      const initialsDisplay = document.getElementById('initials-display');
+      const logoutBtn = document.getElementById('logout-btn');
+
+      function updateProfileButton() {
+        const userData = JSON.parse(localStorage.getItem('userData') || "{}");
+        if (userData && userData.firstName && userData.lastName) {
+          const initials = `${userData.firstName.charAt(0)}${userData.lastName.charAt(0)}`.toUpperCase();
+          initialsDisplay.textContent = initials;
+          profileBtn.style.display = 'flex';
+        } else {
+          profileBtn.style.display = 'none';
+        }
+      }
+
+      function toggleDropdown() { profileDropdown.classList.toggle('active'); }
+      function handleLogout() {
+        localStorage.removeItem('userData'); localStorage.removeItem('isLoggedIn');
+        const messageBox = document.createElement('div');
+        messageBox.innerHTML = 'Logged out successfully! <i class="fas fa-check-circle"></i>';
+        messageBox.style.cssText = `
+          position: fixed; top: 20px; right: 20px; background-color: var(--brand); color: white;
+          padding: 15px 25px; border-radius: 12px; box-shadow: 0 5px 15px rgba(0,0,0,.2);
+          z-index: 9999; display: flex; align-items: center; gap: 10px; animation: fadeOut 3s forwards;
+        `;
+        document.body.appendChild(messageBox);
+        const styleSheet = document.createElement("style");
+        styleSheet.innerText = `
+          @keyframes fadeOut { 0% { opacity: 1; transform: translateY(0);} 80% { opacity: 1; } 100% { opacity: 0; transform: translateY(-20px);} }
+        `;
+        document.head.appendChild(styleSheet);
+        setTimeout(() => { window.location.href = 'login.html'; }, 2000);
+      }
+
+      profileBtn?.addEventListener('click', (e) => { e.stopPropagation(); toggleDropdown(); });
+      logoutBtn?.addEventListener('click', handleLogout);
+      document.addEventListener('click', (e) => {
+        if (!profileBtn.contains(e.target) && !profileDropdown.contains(e.target)) profileDropdown.classList.remove('active');
+      });
+
+                // Theme toggle logic
+                const themeToggleBtn = document.getElementById('theme-toggle');
+                const body = document.body;
+        
+                themeToggleBtn.addEventListener('click', () => {
+                    body.classList.toggle('light');
+                    const isLightMode = body.classList.contains('light');
+                    localStorage.setItem('theme', isLightMode ? 'light' : 'dark');
+                    updateThemeIcon(isLightMode);
+                });
+        
+                function updateThemeIcon(isLightMode) {
+                  const icon = themeToggleBtn.querySelector('i');
+                  icon.classList.toggle('fa-moon', !isLightMode);
+                  icon.classList.toggle('fa-sun', isLightMode);
+                }
+        
+                const savedTheme = localStorage.getItem('theme');
+                if (savedTheme === 'light') {
+                    body.classList.add('light');
+                    updateThemeIcon(true);
+                } else {
+                    updateThemeIcon(false);
+                }
+        
+                // Accordion logic for FAQ
+                const faqItems = document.querySelectorAll('.faq-item');
+                faqItems.forEach(item => {
+                    const question = item.querySelector('.faq-question');
+                    question.addEventListener('click', () => {
+                        item.classList.toggle('active');
+                    });
+                });
+        
+        // Language switching logic
+        const languageSelect = document.getElementById('language-select');
+        const languages = {
+          en: 'English',
+          ar: 'العربية',
+          he: 'עברית'
+        };
+        const translations = {
+          en: {
+            "nav.home": "Home",
+            "nav.home1": "Home 1",
+            "nav.home2": "Home 2",
+            "nav.about": "About Us",
+            "nav.services": "Services",
+            "nav.allServices": "All Services",
+            "nav.architecturalDesign": "Architectural Design",
+            "nav.constructionManagement": "Construction Management",
+            "nav.interiorDesign": "Interior Design",
+            "nav.structuralEngineering": "Structural Engineering",
+            "nav.auditing": "Landscaping",
+            "nav.corporateFinance": "Project Planning",
+            "nav.projects": "Blog",
+            "nav.contact": "Contact Us",
+            "nav.login": "Login",
+            "nav.signUpLogin": "Sign Up/Login",
+            "nav.adminLogin": "Admin Login",
+            "nav.logout": "Logout",
+            "about.title": "Stackly Architecture - About Us",
+            "about.hero.eyebrow": "Our Story",
+            "about.hero.heading": "Designing a Better Future.",
+            "about.hero.subheading": "At Stackly, we are more than architects; we are visionaries dedicated to crafting spaces that inspire and endure.",
+            "about.hero.primaryButton": "Our Philosophy",
+            "about.philosophy.eyebrow": "Our Guiding Principles",
+            "about.philosophy.heading": "Building Beyond Blueprints.",
+            "about.philosophy.p1": "Our philosophy is simple: to create architectural marvels that are not only aesthetically pleasing but also sustainable, functional, and deeply connected to the environment and the people who use them. We believe in a collaborative process, where every voice contributes to a shared vision.",
+            "about.philosophy.p2": "We are committed to using innovative techniques and materials to ensure our projects are at the forefront of modern design.",
+            "about.philosophy.feature1": "Sustainable Design",
+            "about.philosophy.feature2": "Client-Centric Approach",
+            "about.philosophy.feature3": "Innovative Solutions",
+            "about.values.eyebrow": "Our Core Principles",
+            "about.values.heading": "Our Mission and Values",
+            "about.values.card1.heading": "Integrity",
+            "about.values.card1.p": "We operate with honesty, transparency, and the highest ethical standards in every project and interaction.",
+            "about.values.card2.heading": "Innovation",
+            "about.values.card2.p": "We constantly seek new technologies and creative solutions to push the boundaries of design and construction.",
+            "about.values.card3.heading": "Sustainability",
+            "about.values.card3.p": "Our designs prioritize environmental responsibility, creating buildings that are both beautiful and kind to the planet.",
+            "about.journey.eyebrow": "Milestones and Achievements",
+            "about.journey.heading": "Our Journey to Excellence",
+            "about.journey.milestone1.year": "2010",
+            "about.journey.milestone1.description": "Stackly was founded with a mission to merge innovative design with sustainable building practices.",
+            "about.journey.milestone2.year": "2015",
+            "about.journey.milestone2.description": "Awarded \"Firm of the Year\" for our commitment to green architecture and community-focused projects.",
+            "about.journey.milestone3.year": "2020",
+            "about.journey.milestone3.description": "Launched our Smart City initiatives, integrating cutting-edge technology into urban planning.",
+            "about.journey.milestone4.year": "2023",
+            "about.journey.milestone4.description": "Expanded our global footprint, completing major international projects in Europe and Asia.",
+            "testimonials.eyebrow": "What Our Clients Say",
+            "testimonials.heading": "Trusted by Industry Leaders",
+            "testimonials.quote1.text": "\"Stackly's team was exceptional. Their vision for our headquarters was beyond anything we imagined, and their attention to detail was flawless. The project was completed on time and within budget, and the final result has been a huge boost to our company's morale.\"",
+            "testimonials.quote1.author": "John Smith",
+            "testimonials.quote1.title": "CEO, TechCorp",
+            "testimonials.quote2.text": "\"We were looking for a partner who understood sustainable design, and Stackly delivered. They integrated eco-friendly materials and energy-efficient systems without compromising on aesthetics. We couldn't be happier with our new green home.\"",
+            "testimonials.quote2.author": "Sarah Davis",
+            "testimonials.quote2.title": "Homeowner",
+            "testimonials.quote3.text": "\"The Stackly team transformed our vision into a stunning reality. Their professionalism and creative approach made the entire process seamless and enjoyable. We highly recommend them for any architectural project.\"",
+            "testimonials.quote3.author": "Michael Lee",
+            "testimonials.quote3.title": "Project Manager",
+            "cta.heading": "Ready to Build Your Vision?",
+            "cta.subheading": "Let's create something extraordinary together. Contact us today for a free consultation.",
+            "cta.primaryButton": "Get a Free Quote",
+            "footer.about.heading": "Stackly Architecture",
+            "footer.about.p": "Crafting spaces that inspire and endure, with a commitment to innovative, sustainable, and client-centric design.",
+            "footer.links.heading": "Quick Links",
+            "footer.links.home": "Home",
+            "footer.links.about": "About Us",
+            "footer.links.services": "Services",
+            "footer.links.blog": "Blog",
+            "footer.links.contact": "Contact Us",
+            "footer.services.heading": "Our Services",
+            "footer.services.design": "Architectural Design",
+            "footer.services.management": "Construction Management",
+            "footer.services.interior": "Interior Design",
+            "footer.services.engineering": "Structural Engineering",
+            "footer.contact.heading": "Contact Info",
+            "footer.contact.address": "Address:",
+            "footer.contact.phone": "Phone:",
+            "footer.contact.email": "Email:",
+            "footer.copyright": "© 2024 Stackly. All Rights Reserved.",
+            // New welcome section content
+            "about.about_us.heading": "About Us",
+            "about.about_us.subheading": "Amazing Experience & Quality!",
+            "about.about_us.p1": "Remain lively hardly needed at do by. Two you fat downs fanny three. Travelling inquietude she increasing off impossible the.",
+            "about.about_us.p2": "Cottage be noisier looking to we promise on. Betrayed any may returned now dashwood formerly.",
+            "about.about_us.signature": "Jamie-Leigh Whittington",
+            "about.about_us.button": "Explore More"
+          },
+          ar: {
+            "nav.home": "الرئيسية",
+            "nav.home1": "الرئيسية 1",
+            "nav.home2": "الرئيسية 2",
+            "nav.about": "من نحن",
+            "nav.services": "الخدمات",
+            "nav.allServices": "جميع الخدمات",
+            "nav.architecturalDesign": "التصميم المعماري",
+            "nav.constructionManagement": "إدارة الإنشاءات",
+            "nav.interiorDesign": "التصميم الداخلي",
+            "nav.structuralEngineering": "الهندسة الإنشائية",
+            "nav.auditing": "تنسيق الحدائق",
+            "nav.corporateFinance": "تخطيط المشاريع",
+            "nav.projects": "المدونة",
+            "nav.contact": "اتصل بنا",
+            "nav.login": "تسجيل الدخول",
+            "nav.signUpLogin": "تسجيل / دخول",
+            "nav.adminLogin": "دخول المدير",
+            "nav.logout": "تسجيل الخروج",
+            "about.title": "Stackly للعمارة - من نحن",
+            "about.hero.eyebrow": "قصتنا",
+            "about.hero.heading": "نصمم مستقبلاً أفضل.",
+            "about.hero.subheading": "في Stackly، نحن أكثر من مجرد مهندسين معماريين؛ نحن أصحاب رؤى مكرسون لصياغة مساحات تلهم وتدوم.",
+            "about.hero.primaryButton": "فلسفتنا",
+            "about.philosophy.eyebrow": "مبادئنا التوجيهية",
+            "about.philosophy.heading": "بناء يتجاوز المخططات.",
+            "about.philosophy.p1": "فلسفتنا بسيطة: إنشاء روائع معمارية ليست فقط جذابة من الناحية الجمالية ولكن أيضًا مستدامة، وعملية، ومرتبطة بعمق بالبيئة والأشخاص الذين يستخدمونها. نحن نؤمن بعملية تعاونية، حيث يساهم كل صوت في رؤية مشتركة.",
+            "about.philosophy.p2": "نحن ملتزمون باستخدام تقنيات ومواد مبتكرة لضمان أن تكون مشاريعنا في طليعة التصميم الحديث.",
+            "about.philosophy.feature1": "تصميم مستدام",
+            "about.philosophy.feature2": "نهج يركز على العميل",
+            "about.philosophy.feature3": "حلول مبتكرة",
+            "about.values.eyebrow": "مبادئنا الأساسية",
+            "about.values.heading": "رسالتنا وقيمنا",
+            "about.values.card1.heading": "النزاهة",
+            "about.values.card1.p": "نعمل بصدق، وشفافية، وبأعلى المعايير الأخلاقية في كل مشروع وتفاعل.",
+            "about.values.card2.heading": "الابتكار",
+            "about.values.card2.p": "نسعى باستمرار للحصول على تقنيات جديدة وحلول إبداعية لدفع حدود التصميم والبناء.",
+            "about.values.card3.heading": "الاستدامة",
+            "about.values.card3.p": "تصميماتنا تعطي الأولوية للمسؤولية البيئية، مما يخلق مبانٍ جميلة ولطيفة على الكوكب.",
+            "about.journey.eyebrow": "الإنجازات والمحطات الرئيسية",
+            "about.journey.heading": "رحلتنا نحو التميز",
+            "about.journey.milestone1.year": "2010",
+            "about.journey.milestone1.description": "تأسست Stackly بهدف دمج التصميم المبتكر مع ممارسات البناء المستدامة.",
+            "about.journey.milestone2.year": "2015",
+            "about.journey.milestone2.description": "حصلنا على جائزة \"أفضل شركة للعام\" لالتزامنا بالعمارة الخضراء والمشاريع التي تركز على المجتمع.",
+            "about.journey.milestone3.year": "2020",
+            "about.journey.milestone3.description": "أطلقنا مبادراتنا للمدن الذكية، ودمجنا التكنولوجيا المتطورة في التخطيط الحضري.",
+            "about.journey.milestone4.year": "2023",
+            "about.journey.milestone4.description": "وسعنا بصمتنا العالمية، وأنجزنا مشاريع دولية كبرى في أوروبا وآسيا.",
+            "testimonials.eyebrow": "ماذا يقول عملاؤنا",
+            "testimonials.heading": "موثوق بنا من قبل قادة الصناعة",
+            "testimonials.quote1.text": "\"فريق Stackly كان استثنائياً. رؤيتهم لمقرنا الرئيسي كانت تفوق أي شيء تخيلناه، واهتمامهم بالتفاصيل كان لا تشوبه شائبة. تم الانتهاء من المشروع في الوقت المحدد وفي حدود الميزانية، وكانت النتيجة النهائية دفعة كبيرة لمعنويات شركتنا.\"",
+            "testimonials.quote1.author": "جون سميث",
+            "testimonials.quote1.title": "الرئيس التنفيذي، TechCorp",
+            "testimonials.quote2.text": "\"كنا نبحث عن شريك يفهم التصميم المستدام، وقد قدمت Stacklyذلك. لقد قاموا بدمج مواد صديقة للبيئة وأنظمة موفرة للطاقة دون المساس بالجماليات. لا يمكننا أن نكون أكثر سعادة بمنزلنا الأخضر الجديد.\"",
+            "testimonials.quote2.author": "سارة ديفيس",
+            "testimonials.quote2.title": "مالكة منزل",
+            "testimonials.quote3.text": "\"حول فريق Stackly رؤيتنا إلى حقيقة مذهلة. احترافيتهم ونهجهم الإبداعي جعل العملية بأكملها سلسة وممتعة. نوصي بهم بشدة لأي مشروع معماري.\"",
+            "testimonials.quote3.author": "مايكل لي",
+            "testimonials.quote3.title": "مدير مشروع",
+            "cta.heading": "جاهز לבנות את החזון שלך?",
+            "cta.subheading": "בואו ניצור משהו יוצא דופן ביחד. צרו איתנו קשר עוד היום לייעוץ חינם.",
+            "cta.primaryButton": "קבל הצעת מחיר חינם",
+            "footer.about.heading": "Stackly אדריכלות",
+            "footer.about.p": "יצירת חללים שמעוררים השראה ונשארים לאורך זמן, עם מחויבות לעיצוב חדשני, בר-קיימא וממוקד לקוח.",
+            "footer.links.heading": "קישורים מהירים",
+            "footer.links.home": "בית",
+            "footer.links.about": "אודותינו",
+            "footer.links.services": "שירותים",
+            "footer.links.blog": "בלוג",
+            "footer.links.contact": "צור קשר",
+            "footer.services.heading": "השירותים שלנו",
+            "footer.services.design": "עיצוב אדריכלי",
+            "footer.services.management": "ניהול בנייה",
+            "footer.services.interior": "עיצוב פנים",
+            "footer.services.engineering": "הנדסת מבנים",
+            "footer.contact.heading": "פרטי התקשרות",
+            "footer.contact.address": "כתובת:",
+            "footer.contact.phone": "טלפון:",
+            "footer.contact.email": "דוא\"ל:",
+            "footer.copyright": "© 2024 Stackly. כל הזכויות שמורות.",
+             // New welcome section content
+            "about.about_us.heading": "من نحن",
+            "about.about_us.subheading": "تجربة وجودة مذهلة!",
+            "about.about_us.p1": "ابقَ حيوياً بالكاد تحتاج إلى القيام به. اثنان منكم سمينون وثلاثة. السفر في القلق وهي تزداد من المستحيل.",
+            "about.about_us.p2": "كوخ يكون أكثر ضجيجًا ننظر إليه نحن نعد به. خيانة أي يمكن أن تعود الآن داشوود سابقا.",
+            "about.about_us.signature": "جيمي-لي ويتنجتون",
+            "about.about_us.button": "استكشف المزيد"
+          },
+          he: {
+            "nav.home": "בית",
+            "nav.home1": "בית 1",
+            "nav.home2": "בית 2",
+            "nav.about": "אודותינו",
+            "nav.services": "שירותים",
+            "nav.allServices": "כל השירותים",
+            "nav.architecturalDesign": "עיצוב אדריכלי",
+            "nav.constructionManagement": "ניהול בנייה",
+            "nav.interiorDesign": "עיצוב פנים",
+            "nav.structuralEngineering": "הנדסת מבנים",
+            "nav.auditing": "עיצוב נוף",
+            "nav.corporateFinance": "תכנון פרויקטים",
+            "nav.projects": "בלוג",
+            "nav.contact": "צור קשר",
+            "nav.login": "התחברות",
+            "nav.signUpLogin": "הרשמה/התחברות",
+            "nav.adminLogin": "התחברות מנהל",
+            "nav.logout": "התנתק",
+            "about.title": "Stackly אדריכלות - אודותינו",
+            "about.hero.eyebrow": "הסיפור שלנו",
+            "about.hero.heading": "מעצבים עתיד טוב יותר.",
+            "about.hero.subheading": "ב-Stackly, אנחנו יותר מאדריכלים; אנחנו בעלי חזון המוקדשים ליצירת חללים שמעוררים השראה ונשארים לאורך זמן.",
+            "about.hero.primaryButton": "הפילוסופיה שלנו",
+            "about.philosophy.eyebrow": "העקרונות המנחים שלנו",
+            "about.philosophy.heading": "בנייה מעבר לשרטוטים.",
+            "about.philosophy.p1": "הפילוסופיה שלנו פשוטה: ליצור פלאים אדריכליים שהם לא רק נעימים מבחינה אסתטית אלא גם בני קיימא, פונקציונליים ומחוברים עמוקות לסביבה ולאנשים שמשתמשים בהם. אנו מאמינים בתהליך שיתופי, שבו כל קול תורם לחזון משותף.",
+            "about.philosophy.p2": "אנו מחויבים להשתמש בטכניקות וחומרים חדשניים כדי להבטיח שהפרויקטים שלנו נמצאים בחזית העיצוב המודרני.",
+            "about.philosophy.feature1": "עיצוב בר-קיימא",
+            "about.philosophy.feature2": "גישה ממוקדת לקוח",
+            "about.philosophy.feature3": "פתרונות חדשניים",
+            "about.values.eyebrow": "עקרונות הליבה שלנו",
+            "about.values.heading": "הייעוד והערכים שלנו",
+            "about.values.card1.heading": "יושרה",
+            "about.values.card1.p": "אנו פועלים ביושר, שקיפות ובסטנדרטים אתיים הגבוהים ביותר בכל פרויקט ואינטראקציה.",
+            "about.values.card2.heading": "חדשנות",
+            "about.values.card2.p": "אנו מחפשים כל הזמן טכנולוגיות חדשות ופתרונות יצירתיים כדי לדחוף את גבולות העיצוב והבנייה.",
+            "about.values.card3.heading": "קיימות",
+            "about.values.card3.p": "העיצובים שלנו נותנים עדיפות לאחריות סביבתית, ויוצרים מבנים שהם יפים וידידותיים לכדור הארץ.",
+            "about.journey.eyebrow": "אבני דרך והישגים",
+            "about.journey.heading": "המסע שלנו למצוינות",
+            "about.journey.milestone1.year": "2010",
+            "about.journey.milestone1.description": "Stackly נוסדה במטרה למזג עיצוב חדשני עם שיטות בנייה בנות קיימא.",
+            "about.journey.milestone2.year": "2015",
+            "about.journey.milestone2.description": "זכינו בפרס \"חברת השנה\" על המחויבות שלנו לאדריכלות ירוקה ופרויקטים ממוקדי קהילה.",
+            "about.journey.milestone3.year": "2020",
+            "about.journey.milestone3.description": "השקנו את יוזמות הערים החכמות שלנו, המשלבות טכנולוגיה מתקדמת בתכנון עירוני.",
+            "about.journey.milestone4.year": "2023",
+            "about.journey.milestone4.description": "הרחבנו את טביעת הרגל הגלובלית שלנו, והשלמנו פרויקטים בינלאומיים גדולים באירופה ובאסיה.",
+            "testimonials.eyebrow": "מה אומרים הלקוחות שלנו",
+            "testimonials.heading": "בטחון של מנהיגי תעשייה",
+            "testimonials.quote1.text": "\"הצוות של Stackly היה יוצא דופן. החזון שלהם למטה שלנו היה מעבר לכל מה שדמיינו, ותשומת הלב שלהם לפרטים הייתה ללא רבב. הפרויקט הושלם בזמן ובמסגרת התקציב, והתוצאה הסופית הייתה דחיפה ענקית למורל החברה שלנו.\"",
+            "testimonials.quote1.author": "ג'ון סמית",
+            "testimonials.quote1.title": "מנכ\"ל, TechCorp",
+            "testimonials.quote2.text": "\"חיפשנו שותף שיבין עיצוב בר-קיימא, ו-Stackly סיפקו. הם שילבו חומרים ידידותיים לסביבה ומערכות חסכוניות באנרגיה מבלי להתפשר על האסתטיקה. אנחנו לא יכולים להיות יותר מאושרים עם הבית הירוק החדש שלנו.\"",
+            "testimonials.quote2.author": "שרה דייויס",
+            "testimonials.quote2.title": "בעלת בית",
+            "testimonials.quote3.text": "\"צוות Stackly הפך את החזון שלנו למציאות מדהימה. המקצועיות והגישה היצירתית שלהם הפכו את כל התהליך לחלק ומהנה. אנו ממליצים עליהם בחום לכל פרויקט אדריכלי.\"",
+            "testimonials.quote3.author": "מייקל לי",
+            "testimonials.quote3.title": "מנהל פרויקט",
+            "cta.heading": "מוכנים לבנות את החזון שלכם?",
+            "cta.subheading": "בואו ניצור משהו יוצא דופן ביחד. צרו איתנו קשר עוד היום לייעוץ חינם.",
+            "cta.primaryButton": "קבל הצעת מחיר חינם",
+            "footer.about.heading": "Stackly אדריכלות",
+            "footer.about.p": "יצירת חללים שמעוררים השראה ונשארים לאורך זמן, עם מחויבות לעיצוב חדשני, בר-קיימא וממוקד לקוח.",
+            "footer.links.heading": "קישורים מהירים",
+            "footer.links.home": "בית",
+            "footer.links.about": "אודותינו",
+            "footer.links.services": "שירותים",
+            "footer.links.blog": "בלוג",
+            "footer.links.contact": "צור קשר",
+            "footer.services.heading": "השירותים שלנו",
+            "footer.services.design": "עיצוב אדריכלי",
+            "footer.services.management": "ניהול בנייה",
+            "footer.services.interior": "עיצוב פנים",
+            "footer.services.engineering": "הנדסת מבנים",
+            "footer.contact.heading": "פרטי התקשרות",
+            "footer.contact.address": "כתובת:",
+            "footer.contact.phone": "טלפון:",
+            "footer.contact.email": "דוא\"ל:",
+            "footer.copyright": "© 2024 Stackly. כל הזכויות שמורות.",
+             // New welcome section content
+            "about.about_us.heading": "אודותינו",
+            "about.about_us.subheading": "חוויה ואיכות מדהימות!",
+            "about.about_us.p1": "הישאר נמרץ בקושי נדרש לעשות זאת. שניים מכם שומן מטה פאני שלוש. נסיעות חסרות מנוחה היא מגדילה את הבלתי אפשרי.",
+            "about.about_us.p2": "קוטג' להיות רועש יותר נראה לנו שאנו מבטיחים. נבגדה כל אחד עשוי לחזור עכשיו דאשווד בעבר.",
+            "about.about_us.signature": "ג'יימי-לי וויטינגטון",
+            "about.about_us.button": "חקור עוד"
+          }
+        };
+        
+        const currentLang = localStorage.getItem('lang') || 'en';
+        
+        function updateContent(lang) {
+          document.querySelectorAll('[data-i18n]').forEach(element => {
+            const key = element.dataset.i18n;
+            if (translations[lang] && translations[lang][key]) {
+              element.textContent = translations[lang][key];
+            }
+          });
+          document.querySelectorAll('[data-i18n-placeholder]').forEach(element => {
+            const key = element.dataset.i18n-placeholder;
+            if (translations[lang] && translations[lang][key]) {
+              element.placeholder = translations[lang][key];
+            }
+          });
+          document.documentElement.setAttribute('lang', lang);
+          if (lang === 'ar' || lang === 'he') {
+            document.documentElement.setAttribute('dir', 'rtl');
+          } else {
+            document.documentElement.removeAttribute('dir');
+          }
+          localStorage.setItem('lang', lang);
+        }
+        
+        if (languageSelect) {
+          for (const [code, name] of Object.entries(languages)) {
+            const option = document.createElement('option');
+            option.value = code;
+            option.textContent = name;
+            languageSelect.appendChild(option);
+          }
+          languageSelect.value = currentLang;
+          languageSelect.addEventListener('change', (event) => {
+            updateContent(event.target.value);
+          });
+        }
+        
+        document.addEventListener('DOMContentLoaded', () => {
+          updateProfileButton();
+          updateContent(currentLang);
+        });
+        
+            </script>
+        
+            <script src="https://kit.fontawesome.com/264a7810b4.js" crossorigin="anonymous"></script>
+        </body>
+        </html>

@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Stackly - Login</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; font-family: "Inter", sans-serif; }
+
+    body {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: url('img/signuuo.jpg') no-repeat center center/cover;
+    }
+
+    .container {
+      display: flex;
+      width: 900px;
+      max-width: 95%;
+      background: rgba(255, 255, 255, 0.05);
+      backdrop-filter: blur(12px);
+      border-radius: 16px;
+      overflow: hidden;
+      box-shadow: 0 8px 25px rgba(0,0,0,0.4);
+      animation: fadeIn 1.2s ease-in-out;
+    }
+
+    .welcome {
+      flex: 1;
+      color: #fff;
+      padding: 60px;
+      background: rgba(0,0,0,0.5);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      animation: slideInLeft 1s ease;
+    }
+    .welcome h1 { font-size: 2.5rem; margin-bottom: 15px; }
+    .welcome p { font-size: 1rem; line-height: 1.6; color: #ddd; }
+
+    .login-box {
+      flex: 1;
+      padding: 60px 40px;
+      background: rgba(255, 255, 255, 0.15);
+      backdrop-filter: blur(20px);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      animation: slideInRight 1s ease;
+      color: #fff;
+    }
+    .login-box h2 {
+      margin-bottom: 30px;
+      font-size: 2rem;
+      text-align: center;
+    }
+    .login-box input {
+      width: 100%;
+      padding: 14px;
+      margin: 10px 0;
+      border: none;
+      border-radius: 8px;
+      background: rgba(255,255,255,0.2);
+      color: #fff;
+      font-size: 1rem;
+      outline: none;
+      transition: 0.3s;
+    }
+    .login-box input:focus { background: rgba(255,255,255,0.3); transform: scale(1.02); }
+
+    .login-box button {
+      width: 100%;
+      padding: 14px;
+      margin-top: 20px;
+      border: none;
+      border-radius: 8px;
+      background: linear-gradient(90deg, #16f929cc, #16f929cc);
+      color: #fff;
+      font-weight: 600;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: all 0.3s ease-in-out;
+    }
+    .login-box button:hover { transform: scale(1.05); box-shadow: 0 0 15px rgba(0,123,255,0.6); }
+    .login-box button:active { transform: scale(0.95); }
+
+    .login-box p { margin-top: 15px; text-align: center; }
+    .login-box a { color: #16f929cc; text-decoration: none; }
+
+    .error { color: #ff6b6b; text-align: center; margin-top: 10px; }
+
+    /* New CSS for the logo */
+    .login-logo {
+      width: 150px; /* Adjust size as needed */
+      height: auto;
+      margin: 0 auto 20px; /* Center the logo and add space below */
+      display: block;
+    }
+
+    @keyframes fadeIn { from {opacity:0; transform: translateY(30px);} to {opacity:1; transform: translateY(0);} }
+    @keyframes slideInLeft { from {transform: translateX(-50px); opacity: 0;} to {transform: translateX(0); opacity:1;} }
+    @keyframes slideInRight { from {transform: translateX(50px); opacity: 0;} to {transform: translateX(0); opacity:1;} }
+
+    @media(max-width: 768px) {
+      .container { flex-direction: column; }
+      .welcome { display: none; }
+      .login-box { padding: 40px 20px; }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="welcome">
+      <h1>Welcome Back!</h1>
+      <p>Log in to continue your journey with Stackly. Manage your account and explore more features.</p>
+    </div>
+
+    <div class="login-box">
+      <img src="img/cropped-image-removebg-preview-2.png" alt="Stackly Logo" class="login-logo">
+      
+      <h2>Sign In</h2>
+      <input type="email" id="email" placeholder="Email *" required>
+      <input type="password" id="password" placeholder="Password *" required>
+      <button onclick="login()">Login</button>
+      <p class="error" id="error-msg"></p>
+      <p>Don’t have an account? <a href="index.html">Sign Up</a></p>
+              <p><a href="forgot-password.html">Forgot Password?</a></p>
+
+    </div>
+  </div>
+
+  <script>
+    function login() {
+      const email = document.getElementById("email").value.trim();
+      const pass = document.getElementById("password").value.trim();
+      const errorMsg = document.getElementById("error-msg");
+      
+      // Admin login logic
+      if (email === "admin@enkonix.in" && pass === "admin123") {
+        window.location.href = "Admin.html";
+        return;
+      }
+
+      let users = JSON.parse(localStorage.getItem("allUsers") || "[]");
+      const user = users.find(u => u.email === email && u.password === pass);
+
+      if (!user) {
+        errorMsg.textContent = "Invalid email or password!";
+        return;
+      }
+
+      // Update status + logs for regular user
+      user.status = "active";
+      let logs = JSON.parse(localStorage.getItem("logs") || "[]");
+      logs.push(`${user.firstName} ${user.lastName} logged in`);
+      localStorage.setItem("logs", JSON.stringify(logs));
+      localStorage.setItem("allUsers", JSON.stringify(users));
+
+      // Store session for regular user
+      localStorage.setItem("userData", JSON.stringify(user));
+      localStorage.setItem("isLoggedIn", "true");
+
+      window.location.href = "home1.html";
+    }
+  </script>
+</body>
+</html>
