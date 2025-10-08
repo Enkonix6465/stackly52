@@ -8,7 +8,16 @@ const translations = {
     heroDesc: "Stay informed with the latest property market trends, investment opportunities, and expert insights in luxury real estate. Your guide to making smarter property decisions.",
     featured: "Featured Property Articles",
     categories: "Explore by Property Types",
-    categoriesDesc1: "Our property insights are carefully categorized to help you find information that matches your investment goals—whether it's Luxury Penthouses, Mountain Retreats, Urban Residences, or Beachfront Properties.",
+    categoriesDesc1: "Our property                     <Link 
+                      to={feature.link}
+                      className="font-semibold hover:underline"
+                      style={{
+                        color: 'rgba(72, 111, 136, 0.8)',
+                        ...(dir === 'rtl' ? { direction: 'rtl', textAlign: 'right', display: 'block' } : {})
+                      }}
+                    >
+                      {featureTranslations[language].readMore}
+                    </Link>re carefully categorized to help you find information that matches your investment goals—whether it's Luxury Penthouses, Mountain Retreats, Urban Residences, or Beachfront Properties.",
     categoriesDesc2: "Browse through our property categories and discover investment opportunities crafted for every lifestyle. Whether you're seeking a luxury urban home, a peaceful countryside escape, or a profitable rental property, our real estate expertise offers market analysis, investment guidance, and properties you'll love. Experience luxury, location, and lasting value—all in one place.",
     serviceComparison: "Property Services Comparison",
     myths: "Real Estate Myths & Facts",
@@ -63,9 +72,9 @@ const translations = {
 };
 import blogHero from "../assets/blog.mp4";
 import { Brain, Code, BarChart3 } from "lucide-react";
-import feature1 from "../assets/feature1.webp";
-import feature2 from "../assets/feature2.jpg";
-import feature3 from "../assets/feature3.png";
+import feature1 from "../assets/f1.jpg";
+import feature2 from "../assets/f2.jpg";
+import feature3 from "../assets/f3.jpg";
 import { Link } from "react-router-dom";
 
 // Property categories instead of food categories
@@ -508,11 +517,12 @@ export default function BlogHero() {
       </section>
 
       {/* Featured Articles Section */}
-      <section className={`py-16 ${theme === 'dark' ? 'bg-[#222]' : 'bg-red-50'}`}>
+      <section className={`py-16 ${theme === 'dark' ? 'bg-[#222]' : 'bg-gray-50'}`}>
         <div className="max-w-7xl mx-auto px-6">
           {/* Heading */}
           <h2 
-            className="text-4xl md:text-5xl font-bold text-center mb-12 text-red-500"
+            className="text-4xl md:text-5xl font-bold text-center mb-12"
+            style={{color: 'rgba(72, 111, 136, 0.8)'}}
             data-aos="fade-up"
             data-aos-duration="1000"
           >
@@ -549,8 +559,11 @@ export default function BlogHero() {
                     </p>
                     <Link
                       to={feature.link}
-                      className="text-red-500 font-semibold hover:underline"
-                      style={dir === 'rtl' ? { direction: 'rtl', textAlign: 'right', display: 'block' } : {}}
+                      className="font-semibold hover:underline"
+                      style={{
+                        color: 'rgba(72, 111, 136, 0.4)',
+                        ...(dir === 'rtl' ? { direction: 'rtl', textAlign: 'right', display: 'block' } : {})
+                      }}
                     >
                       {featureTranslations[language].readMore}
                     </Link>
@@ -571,7 +584,8 @@ export default function BlogHero() {
             data-aos-duration="1000"
           >
             <h2 
-              className="text-4xl md:text-5xl font-bold mb-6 text-red-500"
+              className="text-4xl md:text-5xl font-bold mb-6"
+              style={{color: 'rgba(72, 111, 136, 0.8)'}}
               data-aos="fade-up"
               data-aos-delay="200"
             >
@@ -621,11 +635,12 @@ export default function BlogHero() {
       </section>
 
       {/* Property Services Comparison Section */}
-      <section className={`py-16 ${theme === 'dark' ? 'bg-[#222]' : 'bg-red-50'}`}>
+      <section className={`py-16 ${theme === 'dark' ? 'bg-[#222]' : 'bg-gray-50'}`}>
       <div className="max-w-7xl mx-auto px-6">
         {/* Heading */}
         <h2 
-          className="text-4xl md:text-5xl font-bold text-center mb-12 text-red-500"
+          className="text-4xl md:text-5xl font-bold text-center mb-12"
+          style={{color: 'rgba(72, 111, 136, 0.8)'}}
           data-aos="fade-up"
           data-aos-duration="1000"
         >
@@ -678,7 +693,8 @@ export default function BlogHero() {
     <div className="max-w-6xl mx-auto px-6">
       {/* Heading */}
       <h2 
-        className="text-4xl md:text-5xl font-bold text-center mb-12 text-red-500"
+        className="text-4xl md:text-5xl font-bold text-center mb-12"
+        style={{color: 'rgba(72, 111, 136, 0.8)'}}
         data-aos="fade-up"
         data-aos-duration="1000"
       >
@@ -695,7 +711,7 @@ export default function BlogHero() {
             data-aos-delay={200 + idx * 200}
           >
             <div className="flex gap-2">
-              <h3 className="text-red-600 font-bold">{language === 'ar' ? 'خرافة:' : language === 'he' ? 'מיתוס:' : 'Myth:'}</h3>
+              <h3 className="font-bold" style={{color: 'rgba(72, 111, 136, 0.8)'}}>{language === 'ar' ? 'خرافة:' : language === 'he' ? 'מיתוס:' : 'Myth:'}</h3>
               <p className={theme === 'dark' ? 'text-white' : 'text-black'}>{item.myth}</p>
             </div>
             <div className="flex gap-2">
@@ -709,10 +725,13 @@ export default function BlogHero() {
   </section>
 
     {/* Property Investment Tips Section */}
-    <div className={`py-10 ${theme === 'dark' ? 'bg-[#000]' : 'bg-red-50'}`}>
+    <div className={`py-10 ${theme === 'dark' ? 'bg-[#000]' : 'bg-gray-50'}`}>
       <h2 
-        className={`text-4xl md:text-5xl font-bold text-center mb-8 text-red-500`} 
-        style={{ ...(dir === 'rtl' ? { direction: 'rtl' } : {}) }}
+        className={`text-4xl md:text-5xl font-bold text-center mb-8`} 
+        style={{ 
+          color: 'rgba(72, 111, 136, 0.8)',
+          ...(dir === 'rtl' ? { direction: 'rtl' } : {}) 
+        }}
         data-aos="fade-up"
         data-aos-duration="1000"
       >

@@ -1,7 +1,7 @@
 import React from "react";
-import feature1 from "../assets/feature1.webp";
-import feature2 from "../assets/feature2.jpg";
-import feature3 from "../assets/feature3.png";
+import feature1 from "../assets/f1.jpg";
+import feature2 from "../assets/f2.jpg";
+import feature3 from "../assets/f3.jpg";
 import { useParams, Link } from "react-router-dom";
 
 // Translation object for Real Estate BlogDetail page

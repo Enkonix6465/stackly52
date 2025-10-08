@@ -10,16 +10,16 @@ import faqImage from "../assets/faq.jpg";
 // Translation object for Real Estate Contact page
 const translations = {
   en: {
-    heroTitle: "Find Your Dream <span class='text-red-500'>Property</span> Today",
+    heroTitle: "Find Your Dream <span style='color: rgba(72, 111, 136, 0.8)'>Property</span> Today",
     heroDesc: "Building <span class='text-white font-semibold'>dreams</span>, creating <span class='text-white font-semibold'>homes</span> — your perfect property awaits.",
     supportHeading: "Meet Our Real Estate Team",
     cards: [
       { title: "Visit Our Office", text: "100 Real Estate Ave, Prime City" },
-      { title: "Email Us", text: "info@stacklyrealty.com" },
+      { title: "Email Us", text: "stackly.com" },
       { title: "Sales Hotline", text: "(555) REALTY-1" },
     ],
     getInTouch: "Schedule Consultation",
-    needHelp: "Looking for property? <span class='text-red-500'>Let's find your perfect home</span>",
+    needHelp: "Looking for property? <span style='color: rgba(72, 111, 136, 0.8)'>Let's find your perfect home</span>",
     firstName: "First Name",
     lastName: "Last Name",
     email: "Email",
@@ -31,7 +31,7 @@ const translations = {
     location: "Our Office Location",
     howToReach: "Visit Our Real Estate Office",
     faqSmall: "Property Questions & Answers",
-    faqTitle: "Got <span class='text-red-500'>Property Questions?</span> We Have Expert Answers",
+    faqTitle: "Got <span style='color: rgba(72, 111, 136, 0.8)'>Property Questions?</span> We Have Expert Answers",
     stayUpdated: "Stay Updated on Market Trends",
     newsletterDesc: "Subscribe to receive the latest property listings, market insights, and exclusive investment opportunities.",
     subscribe: "Get Market Updates",
@@ -46,7 +46,7 @@ const translations = {
     ],
   },
   ar: {
-    heroTitle: "اعثر على <span class='text-red-500'>عقارك المثالي</span> اليوم",
+    heroTitle: "اعثر على <span style='color: rgba(72, 111, 136, 0.8)'>عقارك المثالي</span> اليوم",
     heroDesc: "نبني <span class='text-white font-semibold'>الأحلام</span>، وننشئ <span class='text-white font-semibold'>المنازل</span> — عقارك المثالي في انتظارك.",
     supportHeading: "فريق العقارات لدينا",
     cards: [
@@ -55,7 +55,7 @@ const translations = {
       { title: "خط المبيعات", text: "(555) عقارات-1" },
     ],
     getInTouch: "احجز استشارة",
-    needHelp: "تبحث عن عقار؟ <span class='text-red-500'>دعنا نجد لك المنزل المثالي</span>",
+    needHelp: "تبحث عن عقار؟ <span style='color: rgba(72, 111, 136, 0.8)'>دعنا نجد لك المنزل المثالي</span>",
     firstName: "الاسم الأول",
     lastName: "اسم العائلة",
     email: "البريد الإلكتروني",
@@ -67,7 +67,7 @@ const translations = {
     location: "موقع مكتبنا",
     howToReach: "زر مكتب العقارات لدينا",
     faqSmall: "أسئلة وأجوبة العقارات",
-    faqTitle: "لديك <span class='text-red-500'>أسئلة عقارية؟</span> لدينا إجابات الخبراء",
+    faqTitle: "لديك <span style='color: rgba(72, 111, 136, 0.8)'>أسئلة عقارية؟</span> لدينا إجابات الخبراء",
     stayUpdated: "ابق مطلعاً على اتجاهات السوق",
     newsletterDesc: "اشترك لتلقي أحدث قوائم العقارات ورؤى السوق وفرص الاستثمار الحصرية.",
     subscribe: "احصل على تحديثات السوق",
@@ -82,7 +82,7 @@ const translations = {
     ],
   },
   he: {
-    heroTitle: "מצא את הנכס <span class='text-red-500'>החלומי</span> שלך היום",
+    heroTitle: "מצא את הנכס <span style='color: rgba(72, 111, 136, 0.8)'>החלומי</span> שלך היום",
     heroDesc: "בונים <span class='text-white font-semibold'>חלומות</span>, יוצרים <span class='text-white font-semibold'>בתים</span> — מומחי הנדל\"ן שלנו יעזרו לך להשיג הכל.",
     supportHeading: "מכתב הנדל\"ן שלנו",
     cards: [
@@ -91,7 +91,7 @@ const translations = {
       { title: "קו מכירות", text: "(555) נדלן-1" },
     ],
     getInTouch: "דבר עם יועץ נדל\"ן",
-    needHelp: "מחפש נכס? <span class='text-red-500'>בוא נמצא אותו יחד</span>",
+    needHelp: "מחפש נכס? <span style='color: rgba(72, 111, 136, 0.8)'>בוא נמצא אותו יחד</span>",
     firstName: "שם פרטי",
     lastName: "שם משפחה",
     email: "אימייל",
@@ -103,7 +103,7 @@ const translations = {
     location: "מיקום המכתב שלנו",
     howToReach: "בקר במכתב הנדל\"ן שלנו",
     faqSmall: "שאלות ותשובות נדל\"ן",
-    faqTitle: "יש <span class='text-red-500'>שאלות נדל\"ן?</span> יש לנו תשובות מומחים",
+    faqTitle: "יש <span style='color: rgba(72, 111, 136, 0.8)'>שאלות נדל\"ן?</span> יש לנו תשובות מומחים",
     stayUpdated: "הישאר מעודכן בטרנדים של השוק",
     newsletterDesc: "הירשם לקבלת רשימות הנכסים העדכניות, תובנות שוק והזדמנויות השקעה בלעדיות.",
     subscribe: "קבל עדכוני שוק",
@@ -227,11 +227,14 @@ export default function ContactHero() {
       </section>
 
       {/* Contact Cards Section */}
-      <section className={`py-16 ${theme === 'dark' ? 'bg-[#222]' : 'bg-red-50'}`}> 
+      <section className={`py-16 ${theme === 'dark' ? 'bg-[#222]' : 'bg-gray-50'}`}> 
       <div className="max-w-6xl mx-auto px-6">
         {/* Section Heading */}
-  <h2 className={`text-4xl md:text-5xl font-extrabold text-center mb-12 text-red-500`}
-          style={dir === 'rtl' ? { direction: 'rtl' } : {}}
+  <h2 className={`text-4xl md:text-5xl font-extrabold text-center mb-12`}
+          style={{
+            color: 'rgba(72, 111, 136, 0.8)',
+            ...(dir === 'rtl' ? { direction: 'rtl' } : {})
+          }}
           data-aos="fade-up">
           {translations[language].supportHeading}
         </h2>
@@ -256,7 +259,7 @@ export default function ContactHero() {
                 />
                 <h3 
                   className="text-xl font-bold mb-2" 
-                  style={{ color: 'red-500' }}
+                  style={{ color: 'rgba(72, 111, 136, 0.8)' }}
                   data-aos="fade-up"
                   data-aos-delay={600 + index * 200}
                 >
@@ -282,8 +285,11 @@ export default function ContactHero() {
       <div className="max-w-4xl mx-auto px-6">
          
         {/* Main Heading */}
-  <h2 className={`text-4xl md:text-5xl font-extrabold mb-10 text-red-500`}
-          style={dir === 'rtl' ? { direction: 'rtl' } : {}}
+  <h2 className={`text-4xl md:text-5xl font-extrabold mb-10`}
+          style={{
+            color: 'rgba(72, 111, 136, 0.8)',
+            ...(dir === 'rtl' ? { direction: 'rtl' } : {})
+          }}
           dangerouslySetInnerHTML={{ __html: translations[language].needHelp }}
           data-aos="fade-up" />
 
@@ -304,8 +310,11 @@ export default function ContactHero() {
                 id="firstName"
                 type="text"
                 placeholder={translations[language].firstName}
-                className={`border rounded-lg px-4 py-3 w-full focus:outline-none focus:ring-2 focus:ring-red-500 ${theme === 'dark' ? 'border-gray-700 bg-[#181818] text-white' : 'border-gray-200 bg-white text-black'}`}
-                style={dir === 'rtl' ? { direction: 'rtl' } : {}}
+                className={`border rounded-lg px-4 py-3 w-full focus:outline-none focus:ring-2 ${theme === 'dark' ? 'border-gray-700 bg-[#181818] text-white' : 'border-gray-200 bg-white text-black'}`}
+                style={{
+                  ...(dir === 'rtl' ? { direction: 'rtl' } : {}),
+                  '--tw-ring-color': 'rgba(72, 111, 136, 0.8)'
+                }}
               />
             </div>
             <div>
@@ -314,8 +323,11 @@ export default function ContactHero() {
                 id="lastName"
                 type="text"
                 placeholder={translations[language].lastName}
-                className={`border rounded-lg px-4 py-3 w-full focus:outline-none focus:ring-2 focus:ring-red-500 ${theme === 'dark' ? 'border-gray-700 bg-[#181818] text-white' : 'border-gray-200 bg-white text-black'}`}
-                style={dir === 'rtl' ? { direction: 'rtl' } : {}}
+                className={`border rounded-lg px-4 py-3 w-full focus:outline-none focus:ring-2 ${theme === 'dark' ? 'border-gray-700 bg-[#181818] text-white' : 'border-gray-200 bg-white text-black'}`}
+                style={{
+                  ...(dir === 'rtl' ? { direction: 'rtl' } : {}),
+                  '--tw-ring-color': 'rgba(72, 111, 136, 0.8)'
+                }}
               />
             </div>
           </div>
@@ -325,8 +337,11 @@ export default function ContactHero() {
               id="email"
               type="email"
               placeholder={translations[language].email}
-              className={`border rounded-lg px-4 py-3 w-full focus:outline-none focus:ring-2 focus:ring-red-500 ${theme === 'dark' ? 'border-gray-700 bg-[#181818] text-white' : 'border-gray-200 bg-white text-black'}`}
-              style={dir === 'rtl' ? { direction: 'rtl' } : {}}
+              className={`border rounded-lg px-4 py-3 w-full focus:outline-none focus:ring-2 ${theme === 'dark' ? 'border-gray-700 bg-[#181818] text-white' : 'border-gray-200 bg-white text-black'}`}
+              style={{
+                ...(dir === 'rtl' ? { direction: 'rtl' } : {}),
+                '--tw-ring-color': 'rgba(72, 111, 136, 0.8)'
+              }}
             />
           </div>
           <div>
@@ -335,8 +350,11 @@ export default function ContactHero() {
               id="phone"
               type="tel"
               placeholder={translations[language].phone}
-              className={`border rounded-lg px-4 py-3 w-full focus:outline-none focus:ring-2 focus:ring-red-500 ${theme === 'dark' ? 'border-gray-700 bg-[#181818] text-white' : 'border-gray-200 bg-white text-black'}`}
-              style={dir === 'rtl' ? { direction: 'rtl' } : {}}
+              className={`border rounded-lg px-4 py-3 w-full focus:outline-none focus:ring-2 ${theme === 'dark' ? 'border-gray-700 bg-[#181818] text-white' : 'border-gray-200 bg-white text-black'}`}
+              style={{
+                ...(dir === 'rtl' ? { direction: 'rtl' } : {}),
+                '--tw-ring-color': 'rgba(72, 111, 136, 0.8)'
+              }}
             />
           </div>
           <div>
@@ -345,13 +363,21 @@ export default function ContactHero() {
               id="message"
               rows="5"
               placeholder={translations[language].message}
-              className={`border rounded-lg px-4 py-3 w-full focus:outline-none focus:ring-2 focus:ring-red-500 ${theme === 'dark' ? 'border-gray-700 bg-[#181818] text-white' : 'border-gray-200 bg-white text-black'}`}
-              style={dir === 'rtl' ? { direction: 'rtl' } : {}}
+              className={`border rounded-lg px-4 py-3 w-full focus:outline-none focus:ring-2 ${theme === 'dark' ? 'border-gray-700 bg-[#181818] text-white' : 'border-gray-200 bg-white text-black'}`}
+              style={{
+                ...(dir === 'rtl' ? { direction: 'rtl' } : {}),
+                '--tw-ring-color': 'rgba(72, 111, 136, 0.8)'
+              }}
             ></textarea>
           </div>
           <button
             type="submit"
-            className="w-full bg-red-500 text-white font-semibold py-3 rounded-lg hover:bg-red-600 transition"
+            className="w-full text-white font-semibold py-3 rounded-lg transition"
+            style={{
+              backgroundColor: 'rgba(72, 111, 136, 0.8)',
+            }}
+            onMouseEnter={(e) => e.target.style.backgroundColor = 'rgba(72, 111, 136, 1)'}
+            onMouseLeave={(e) => e.target.style.backgroundColor = 'rgba(72, 111, 136, 0.8)'}
             disabled={formSubmitted}
           >
             {formSubmitted ? translations[language].submitted : translations[language].send}
@@ -364,13 +390,16 @@ export default function ContactHero() {
     </section>
 
 
-      <section className={`py-20 ${theme === 'dark' ? 'bg-[#222]' : 'bg-red-50'}`}>
+      <section className={`py-20 ${theme === 'dark' ? 'bg-[#222]' : 'bg-gray-50'}`}>
       <div className="max-w-6xl mx-auto px-6">
          
 
         {/* Main heading */}
-  <h2 className={`text-4xl md:text-5xl font-extrabold mb-10 text-red-500`}
-          style={dir === 'rtl' ? { direction: 'rtl' } : {}}
+  <h2 className={`text-4xl md:text-5xl font-extrabold mb-10`}
+          style={{
+            color: 'rgba(72, 111, 136, 0.8)',
+            ...(dir === 'rtl' ? { direction: 'rtl' } : {})
+          }}
           data-aos="fade-up">
           {translations[language].howToReach}
         </h2>
@@ -402,8 +431,11 @@ export default function ContactHero() {
         {/* Left: Image and Heading */}
         <div>
            
-          <h2 className={`text-4xl md:text-5xl font-extrabold mb-8 text-red-500`}
-            style={dir === 'rtl' ? { direction: 'rtl' } : {}}
+          <h2 className={`text-4xl md:text-5xl font-extrabold mb-8`}
+            style={{
+              color: 'rgba(72, 111, 136, 0.8)',
+              ...(dir === 'rtl' ? { direction: 'rtl' } : {})
+            }}
             dangerouslySetInnerHTML={{ __html: translations[language].faqTitle }}
             data-aos="slide-right" />
           <img 
@@ -432,7 +464,7 @@ export default function ContactHero() {
                 <span className={`font-semibold text-lg ${theme === 'dark' ? 'text-white' : 'text-gray-900'}`}>
                   {faq.q}
                 </span>
-                <span className="text-red-500 text-2xl">
+                <span className="text-2xl" style={{color: 'rgba(72, 111, 136, 0.8)'}}>
                   {openIndex === index ? "−" : "+"}
                 </span>
               </button>
@@ -448,11 +480,14 @@ export default function ContactHero() {
     </section>
 
 
-      <section className={`py-20 ${theme === 'dark' ? 'bg-[#222]' : 'bg-red-50'}`}>
+      <section className={`py-20 ${theme === 'dark' ? 'bg-[#222]' : 'bg-gray-50'}`}>
       <div className="max-w-4xl mx-auto text-center px-6">
         {/* Heading */}
-  <h2 className={`text-4xl md:text-5xl font-extrabold mb-4 text-red-500`}
-          style={dir === 'rtl' ? { direction: 'rtl' } : {}}
+  <h2 className={`text-4xl md:text-5xl font-extrabold mb-4`}
+          style={{
+            color: 'rgba(72, 111, 136, 0.8)',
+            ...(dir === 'rtl' ? { direction: 'rtl' } : {})
+          }}
           data-aos="fade-up">
           {translations[language].stayUpdated}
         </h2>
@@ -476,13 +511,22 @@ export default function ContactHero() {
           <input
             type="email"
             placeholder={translations[language].email}
-            className={`flex-1 px-6 py-4 rounded-xl border w-full sm:w-auto focus:outline-none focus:border-red-500 ${theme === 'dark' ? 'border-gray-700 bg-[#181818] text-white' : 'border-gray-300 text-gray-800 bg-white'}`}
+            className={`flex-1 px-6 py-4 rounded-xl border w-full sm:w-auto focus:outline-none ${theme === 'dark' ? 'border-gray-700 bg-[#181818] text-white' : 'border-gray-300 text-gray-800 bg-white'}`}
             disabled={newsletterSubmitted}
-            style={dir === 'rtl' ? { direction: 'rtl' } : {}}
+            style={{
+              ...(dir === 'rtl' ? { direction: 'rtl' } : {}),
+              '--tw-border-color': 'rgba(72, 111, 136, 0.8)'
+            }}
+            onFocus={(e) => e.target.style.borderColor = 'rgba(72, 111, 136, 0.8)'}
           />
           <button
             type="submit"
-            className="bg-red-500 text-white px-8 py-4 rounded-xl font-semibold hover:bg-[#00] transition duration-300 w-full sm:w-auto"
+            className="text-white px-8 py-4 rounded-xl font-semibold transition duration-300 w-full sm:w-auto"
+            style={{
+              backgroundColor: 'rgba(72, 111, 136, 0.8)',
+            }}
+            onMouseEnter={(e) => e.target.style.backgroundColor = 'rgba(72, 111, 136, 1)'}
+            onMouseLeave={(e) => e.target.style.backgroundColor = 'rgba(72, 111, 136, 0.8)'}
             disabled={newsletterSubmitted}
           >
             {newsletterSubmitted ? translations[language].subscribed : translations[language].subscribe}

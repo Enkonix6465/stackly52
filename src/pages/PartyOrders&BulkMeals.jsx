@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from "react";
 import AOS from 'aos';
 import 'aos/dist/aos.css';
-import partyVideo from "../assets/party.mp4";
-import party1 from "../assets/party1.jpg";
-import party2 from "../assets/party2.webp";
-import party3 from "../assets/party3.avif";
+import partyVideo from "../assets/s4.mp4";
+import party1 from "../assets/s4.jpg";
+import party2 from "../assets/coast.jpg";
+import party3 from "../assets/deals.png";
 
 import { FaArrowLeft, FaArrowRight } from "react-icons/fa";
 
@@ -197,7 +197,7 @@ const PartyOrdersHero = () => {
 
   // Section background classes
   const sectionBg = theme === 'dark' ? 'bg-black text-white' : 'bg-white text-black';
-  const sectionAltBg = theme === 'dark' ? 'bg-gray-900 text-white' : 'bg-red-50 text-black';
+  const sectionAltBg = theme === 'dark' ? 'bg-gray-900 text-white' : 'bg-gray-50 text-black';
   const cardBg = theme === 'dark' ? 'bg-gray-800 text-white' : 'bg-gray-100 text-black';
   const pricingBg = theme === 'dark' ? 'bg-gray-900 text-white' : 'bg-white text-black';
 
@@ -263,8 +263,11 @@ const PartyOrdersHero = () => {
             data-aos-duration="1000"
           >
             <h2 
-              className="text-4xl font-bold text-red-500 mb-6" 
-              style={dir === 'rtl' ? {textAlign:'right'} : {}}
+              className="text-4xl font-bold mb-6" 
+              style={{
+                color: 'rgba(72, 111, 136, 0.8)',
+                ...(dir === 'rtl' ? {textAlign:'right'} : {})
+              }}
               data-aos="fade-up"
               data-aos-delay="200"
             >
@@ -288,8 +291,11 @@ const PartyOrdersHero = () => {
       {/* Pricing Section */}
   <section className={`py-20 px-6 ${pricingBg} text-center`} id="pricing">
         <h2 
-          className="text-4xl font-bold text-red-500 mb-4" 
-          style={dir === 'rtl' ? {textAlign:'right'} : {}}
+          className="text-4xl font-bold mb-4" 
+          style={{
+            color: 'rgba(72, 111, 136, 0.8)',
+            ...(dir === 'rtl' ? {textAlign:'right'} : {})
+          }}
           data-aos="fade-up"
           data-aos-duration="1000"
         >
@@ -309,8 +315,11 @@ const PartyOrdersHero = () => {
             <div
               key={idx}
               className={`flex flex-col items-center rounded-2xl p-8 shadow-lg border 
-                ${plan.highlighted ? (theme === 'dark' ? 'bg-red-700 text-white scale-105' : 'bg-red-500 text-white scale-105') : (theme === 'dark' ? 'bg-gray-800 text-white' : 'bg-white text-gray-800')}`}
-              style={dir === 'rtl' ? {textAlign:'right'} : {}}
+                ${plan.highlighted ? 'text-white scale-105' : (theme === 'dark' ? 'bg-gray-800 text-white' : 'bg-white text-gray-800')}`}
+              style={{
+                ...(plan.highlighted ? {backgroundColor: 'rgba(72, 111, 136, 0.8)'} : {}),
+                ...(dir === 'rtl' ? {textAlign:'right'} : {})
+              }}
               data-aos="fade-up"
               data-aos-delay={400 + idx * 200}
             >
@@ -326,8 +335,12 @@ const PartyOrdersHero = () => {
               <button
                 className={`px-6 py-3 rounded-full font-semibold transition 
                   ${plan.highlighted 
-                    ? "bg-white text-red-500 hover:bg-gray-100" 
-                    : "bg-red-500 text-white hover:bg-red-600"}`}
+                    ? "bg-white hover:bg-gray-100" 
+                    : "text-white hover:opacity-80"}`}
+                style={plan.highlighted 
+                  ? {color: 'rgba(72, 111, 136, 0.8)'} 
+                  : {backgroundColor: 'rgba(72, 111, 136, 0.8)'}
+                }
               >
                 {language === 'ar' ? 'عرض العقارات' : language === 'he' ? 'צפו בנכסים' : 'View Properties'}
               </button>
@@ -361,7 +374,7 @@ const PartyOrdersHero = () => {
                 "{testimonial.text}"
               </p>
               <h3 className="text-xl font-semibold">{testimonial.name}</h3>
-              <p className="text-red-500 text-sm">{testimonial.role}</p>
+              <p className="text-sm" style={{color: 'rgba(72, 111, 136, 0.8)'}}>{testimonial.role}</p>
             </div>
             <div 
               className="flex justify-center md:justify-start gap-4 mt-6"
@@ -370,13 +383,15 @@ const PartyOrdersHero = () => {
             >
               <button
                 onClick={prevTestimonial}
-                className="p-3 rounded-full bg-red-500 text-white hover:bg-red-600 transition"
+                className="p-3 rounded-full text-white hover:opacity-80 transition"
+                style={{backgroundColor: 'rgba(72, 111, 136, 0.8)'}}
               >
                 <FaArrowLeft />
               </button>
               <button
                 onClick={nextTestimonial}
-                className="p-3 rounded-full bg-red-500 text-white hover:bg-red-600 transition"
+                className="p-3 rounded-full text-white hover:opacity-80 transition"
+                style={{backgroundColor: 'rgba(72, 111, 136, 0.8)'}}
               >
                 <FaArrowRight />
               </button>
@@ -399,8 +414,11 @@ const PartyOrdersHero = () => {
       {/* Amenities & Benefits Section */}
   <section className={`py-20 px-6 ${pricingBg} text-center`}>
         <h2 
-          className="text-4xl font-bold text-red-500 mb-4" 
-          style={dir === 'rtl' ? {textAlign:'right'} : {}}
+          className="text-4xl font-bold mb-4" 
+          style={{
+            color: 'rgba(72, 111, 136, 0.8)',
+            ...(dir === 'rtl' ? {textAlign:'right'} : {})
+          }}
           data-aos="fade-up"
           data-aos-duration="1000"
         >
@@ -423,7 +441,7 @@ const PartyOrdersHero = () => {
               data-aos="fade-up"
               data-aos-delay={400 + index * 200}
             >
-              <h3 className="text-xl font-semibold mb-4 text-red-400">{amenity.title}</h3>
+              <h3 className="text-xl font-semibold mb-4" style={{color: 'rgba(72, 111, 136, 0.8)'}}>{amenity.title}</h3>
               <p className="text-sm text-center leading-relaxed">{amenity.description}</p>
             </div>
           ))}
@@ -437,7 +455,7 @@ const PartyOrdersHero = () => {
           alt="Coastal retreat view"
           className="absolute inset-0 w-full h-full object-cover z-0"
         />
-        <div className="absolute inset-0 bg-red-500/70 z-0"></div>
+        <div className="absolute inset-0 z-0" style={{backgroundColor: 'rgba(72, 111, 136, 0.8)'}}></div>
 
         <div className="relative z-10 flex flex-col items-center justify-center text-center max-w-3xl mx-auto">
           <h2 

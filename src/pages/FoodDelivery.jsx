@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
-import foodhero from "../assets/foodhero.mp4";
-import serviceImg from "../assets/food1.webp"; // Replace with your service image
-import food from "../assets/food2.webp"; // <-- Import your image
-import food3 from "../assets/food3.jpg"; // Replace with your call to action image
+import foodhero from "../assets/s1.mp4";
+import serviceImg from "../assets/s1.jpg"; // Replace with your service image
+import food from "../assets/f1.jpg"; // <-- Import your image
+import food3 from "../assets/deals.png"; // Replace with your call to action image
 import AOS from "aos";
 import "aos/dist/aos.css";
 
@@ -261,7 +261,7 @@ const FoodDeliveryHero = () => {
   const sectionAltBg = theme === 'dark' ? 'bg-gray-800 text-white' : 'bg-white';
 
   // Background for pricing section
-  const pricingBg = theme === 'dark' ? 'bg-gray-900 text-white' : 'bg-red-50';
+  const pricingBg = theme === 'dark' ? 'bg-gray-900 text-white' : 'bg-gray-50';
 
   // Default background for testimonial cards
   const cardBg = theme === 'dark' ? 'bg-gray-900' : 'bg-gray-100';
@@ -323,8 +323,11 @@ const FoodDeliveryHero = () => {
             data-aos-duration="1000"
           >
             <h2 
-              className="mb-6 text-4xl font-bold text-red-500" 
-              style={dir === 'rtl' ? { textAlign: 'right' } : {}}
+              className="mb-6 text-4xl font-bold" 
+              style={{
+                color: 'rgba(72, 111, 136, 0.8)',
+                ...(dir === 'rtl' ? { textAlign: 'right' } : {})
+              }}
               data-aos="fade-up"
               data-aos-delay="200"
             >
@@ -348,8 +351,11 @@ const FoodDeliveryHero = () => {
       {/* How It Works Section */}
   <section className={`py-20 px-6 ${pricingBg} text-center`} id="how-it-works">
         <h2 
-          className="mb-4 text-4xl font-bold text-red-500" 
-          style={dir === 'rtl' ? { textAlign: 'right' } : {}}
+          className="mb-4 text-4xl font-bold" 
+          style={{
+            color: 'rgba(72, 111, 136, 0.8)',
+            ...(dir === 'rtl' ? { textAlign: 'right' } : {})
+          }}
           data-aos="fade-up"
           data-aos-duration="1000"
         >
@@ -372,7 +378,7 @@ const FoodDeliveryHero = () => {
               data-aos-delay={`${(index + 1) * 200}`}
             >
               <div className="text-center">
-                <h3 className="mb-4 text-xl font-bold text-red-500 dark:text-red-400">{step.title}</h3>
+                <h3 className="mb-4 text-xl font-bold" style={{color: 'rgba(72, 111, 136, 0.8)'}}>{step.title}</h3>
                 <p className="text-gray-700 dark:text-gray-300 leading-relaxed">{step.description}</p>
               </div>
             </div>
@@ -404,15 +410,27 @@ const FoodDeliveryHero = () => {
                 "{testimonial.text}"
               </p>
               <h3 className="text-xl font-semibold">{testimonial.name}</h3>
-              <p className="text-sm text-red-500">{testimonial.role}</p>
+              <p className="text-sm" style={{color: 'rgba(72, 111, 136, 0.8)'}}>{testimonial.role}</p>
             </div>
             <div 
               className="flex justify-center gap-4 mt-6 md:justify-start"
               data-aos="fade-up"
               data-aos-delay="600"
             >
-              <button onClick={prevTestimonial} className="p-3 text-white transition bg-red-500 rounded-full hover:bg-red-600"><FaArrowLeft /></button>
-              <button onClick={nextTestimonial} className="p-3 text-white transition bg-red-500 rounded-full hover:bg-red-600"><FaArrowRight /></button>
+              <button 
+                onClick={prevTestimonial} 
+                className="p-3 text-white transition rounded-full hover:opacity-80"
+                style={{backgroundColor: 'rgba(72, 111, 136, 0.8)'}}
+              >
+                <FaArrowLeft />
+              </button>
+              <button 
+                onClick={nextTestimonial} 
+                className="p-3 text-white transition rounded-full hover:opacity-80"
+                style={{backgroundColor: 'rgba(72, 111, 136, 0.8)'}}
+              >
+                <FaArrowRight />
+              </button>
             </div>
           </div>
           <div 
@@ -428,8 +446,11 @@ const FoodDeliveryHero = () => {
       {/* Pricing Section */}
   <section className={`py-20 px-6 ${pricingBg} text-center`} id="pricing">
         <h2 
-          className="mb-4 text-4xl font-bold text-red-500" 
-          style={dir === 'rtl' ? { textAlign: 'right' } : {}}
+          className="mb-4 text-4xl font-bold" 
+          style={{
+            color: 'rgba(72, 111, 136, 0.8)',
+            ...(dir === 'rtl' ? { textAlign: 'right' } : {})
+          }}
           data-aos="fade-up"
           data-aos-duration="1000"
         >
@@ -450,10 +471,13 @@ const FoodDeliveryHero = () => {
               className={
                 `flex flex-col items-center rounded-2xl p-8 shadow-lg border ` +
                 (plan.highlighted
-                  ? 'bg-red-500 dark:bg-red-700 text-white scale-105'
+                  ? 'text-white scale-105'
                   : 'bg-white dark:bg-gray-800 text-gray-800 dark:text-white')
               }
-              style={dir === 'rtl' ? { textAlign: 'right' } : {}}
+              style={{
+                ...(plan.highlighted ? {backgroundColor: 'rgba(72, 111, 136, 0.8)'} : {}),
+                ...(dir === 'rtl' ? { textAlign: 'right' } : {})
+              }}
               data-aos="fade-up"
               data-aos-delay={`${(index + 1) * 200}`}
             >
@@ -469,8 +493,12 @@ const FoodDeliveryHero = () => {
               <button
                 className={
                   plan.highlighted
-                    ? "px-6 py-3 rounded-full font-semibold transition bg-white text-red-500 hover:bg-gray-100 dark:hover:bg-gray-200"
-                    : "px-6 py-3 rounded-full font-semibold transition bg-red-500 dark:bg-red-700 text-white hover:bg-red-600 dark:hover:bg-red-800"
+                    ? "px-6 py-3 rounded-full font-semibold transition bg-white hover:bg-gray-100 dark:hover:bg-gray-200"
+                    : "px-6 py-3 rounded-full font-semibold transition text-white hover:opacity-80"
+                }
+                style={plan.highlighted 
+                  ? {color: 'rgba(72, 111, 136, 0.8)'} 
+                  : {backgroundColor: 'rgba(72, 111, 136, 0.8)'}
                 }
               >
                 {language === 'ar' ? 'ابدأ الآن' : language === 'he' ? 'התחל עכשיו' : 'Get Started'}
@@ -484,7 +512,7 @@ const FoodDeliveryHero = () => {
       {/* Call to Action Section */}
       <section className="relative px-6 py-24 text-white md:px-20">
         <img src={food3} alt="Delicious food" className="absolute inset-0 z-0 object-cover w-full h-full" />
-        <div className="absolute inset-0 z-0 bg-red-500/70"></div>
+        <div className="absolute inset-0 z-0" style={{backgroundColor: 'rgba(72, 111, 136, 0.8)'}}></div>
         <div className="relative z-10 flex flex-col items-center justify-center max-w-3xl mx-auto text-center">
           <h2 
             className="mb-6 text-5xl font-extrabold" 
