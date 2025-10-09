@@ -8,16 +8,7 @@ const translations = {
     heroDesc: "Stay informed with the latest property market trends, investment opportunities, and expert insights in luxury real estate. Your guide to making smarter property decisions.",
     featured: "Featured Property Articles",
     categories: "Explore by Property Types",
-    categoriesDesc1: "Our property                     <Link 
-                      to={feature.link}
-                      className="font-semibold hover:underline"
-                      style={{
-                        color: 'rgba(72, 111, 136, 0.8)',
-                        ...(dir === 'rtl' ? { direction: 'rtl', textAlign: 'right', display: 'block' } : {})
-                      }}
-                    >
-                      {featureTranslations[language].readMore}
-                    </Link>re carefully categorized to help you find information that matches your investment goals—whether it's Luxury Penthouses, Mountain Retreats, Urban Residences, or Beachfront Properties.",
+    categoriesDesc1: "Our property insights are carefully categorized to help you find information that matches your investment goals—whether it's Luxury Penthouses, Mountain Retreats, Urban Residences, or Beachfront Properties.",
     categoriesDesc2: "Browse through our property categories and discover investment opportunities crafted for every lifestyle. Whether you're seeking a luxury urban home, a peaceful countryside escape, or a profitable rental property, our real estate expertise offers market analysis, investment guidance, and properties you'll love. Experience luxury, location, and lasting value—all in one place.",
     serviceComparison: "Property Services Comparison",
     myths: "Real Estate Myths & Facts",

@@ -51,7 +51,7 @@ const translations = {
     supportHeading: "فريق العقارات لدينا",
     cards: [
       { title: "زر مكتبنا", text: "100 شارع العقارات، المدينة الرئيسية" },
-      { title: "راسلنا عبر البريد", text: "info@stacklyrealty.com" },
+      { title: "راسلنا عبر البريد", text: "stackly.com" },
       { title: "خط المبيعات", text: "(555) عقارات-1" },
     ],
     getInTouch: "احجز استشارة",
@@ -87,7 +87,7 @@ const translations = {
     supportHeading: "מכתב הנדל\"ן שלנו",
     cards: [
       { title: "מכתב נדל\"ן", text: "100 שדרות הנדל\"ן, העיר הראשית" },
-      { title: "מייל לנו", text: "info@stacklyrealty.com" },
+      { title: "מייל לנו", text: "stackly.com" },
       { title: "קו מכירות", text: "(555) נדלן-1" },
     ],
     getInTouch: "דבר עם יועץ נדל\"ן",

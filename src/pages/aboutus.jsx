@@ -32,9 +32,9 @@ const translations = {
     principle3: "Client-Centric Service",
     principle3Desc: "We treat our clients, partners, and community with respect and dedication, fostering long-term relationships built on trust and exceptional service.",
     ctaTitle: "Ready to Find Your Perfect Property?",
-    ctaDesc: "Experience premium real estate service, expert market guidance, and personalized property solutions. Schedule a consultation for tailored service or browse our extensive property listings. We're here to help you achieve your property goals—every step of the way!",
-    reserveBtn: "Schedule Consultation",
-    orderBtn: "Browse Properties",
+    ctaDesc: "Experience premium real estate service, expert market guidance, and personalized property solutions. Schedule a consultation for tailored service or browse our extensive property listings. We're here to help you achieve your property goals every step of the way!",
+    reserveBtn: "Start Now",
+    orderBtn: "Browse Properties"
   },
   Arabic: {
     about: "من نحن",
@@ -384,7 +384,7 @@ export default function AboutUs() {
             {t.ctaDesc}
           </p>
           <div 
-            className="flex flex-row sm:flex-row gap-4"
+            className="flex justify-center"
             data-aos="zoom-in"
             data-aos-delay="400"
             data-aos-duration="800"
@@ -397,13 +397,6 @@ export default function AboutUs() {
               onMouseLeave={(e) => e.target.style.backgroundColor = 'rgb(72, 111, 136)'}
             >
               {t.reserveBtn}
-            </button>
-            <button
-              onClick={() => navigate('/contactus')}
-              className={`px-10 py-4 rounded-full font-semibold text-lg shadow-lg transition border ${theme === 'dark' ? 'bg-[#181818] hover:bg-[#222]' : 'bg-white hover:bg-gray-100'}`}
-              style={{color: 'rgb(72, 111, 136)', borderColor: 'rgb(72, 111, 136)'}}
-            >
-              {t.orderBtn}
             </button>
           </div>
         </div>

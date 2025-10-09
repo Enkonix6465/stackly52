@@ -60,10 +60,10 @@ const translations = {
       "Neighborhood insights",
     ],
     insightsBtn: "View Market Reports",
-    ctaTitle: "Schedule a Consultation or Browse Properties!",
+    ctaTitle: "Ready to Find Your Dream Property?",
     ctaDesc: "Experience premium real estate service, exclusive listings, and expert guidance. Book a consultation for personalized service or browse our extensive property portfolio. We're here to help you find your perfect property—every step of the way!",
-    reserveBtn: "Schedule Consultation",
-    orderBtn: "Browse Properties"
+    reserveBtn: "Get Started Today",
+    orderBtn: "Explore Listings"
   },
   Arabic: {
     heroTitle: "حلول عقارية متميزة",
@@ -105,10 +105,10 @@ const translations = {
       "رؤى الأحياء",
     ],
     insightsBtn: "عرض تقارير السوق",
-    ctaTitle: "احجز استشارة أو تصفح العقارات!",
+    ctaTitle: "مستعد للعثور على عقار أحلامك؟",
     ctaDesc: "اختبر خدمة عقارية متميزة وقوائم حصرية وإرشاد متخصص. احجز استشارة للخدمة الشخصية أو تصفح محفظة العقارات الواسعة لدينا. نحن هنا لمساعدتك في العثور على العقار المثالي—في كل خطوة!",
-    reserveBtn: "احجز استشارة",
-    orderBtn: "تصفح العقارات",
+    reserveBtn: "ابدأ اليوم",
+    orderBtn: "استكشف القوائم",
   },
   Hebrew: {
     heroTitle: "פתרונות נדל\"ן מובילים",
@@ -150,10 +150,10 @@ const translations = {
       "תובנות שכונות",
     ],
     insightsBtn: "צפה בדוחות שוק",
-    ctaTitle: "תזמן יעוץ או עיין בנכסים!",
+    ctaTitle: "מוכן למצוא את נכס החלומות שלך?",
     ctaDesc: "חווה שירות נדל\"ן מובחר, רשימות בלעדיות והדרכה מקצועית. הזמן יעוץ לשירות אישי או עיין בתיק הנכסים הנרחב שלנו. אנחנו כאן כדי לעזור לך למצוא את הנכס המושלם—בכל שלב!",
-    reserveBtn: "תזמן יעוץ",
-    orderBtn: "עיין בנכסים",
+    reserveBtn: "התחל היום",
+    orderBtn: "גלה נכסים",
   },
 };
 
@@ -627,7 +627,7 @@ export default function Home2() {
             {t.ctaDesc}
           </p>
           <div 
-            className="flex flex-row sm:flex-row gap-4"
+            className="flex justify-center"
             data-aos="zoom-in"
             data-aos-delay="400"
             data-aos-duration="800"
@@ -640,13 +640,6 @@ export default function Home2() {
               onMouseLeave={(e) => e.target.style.backgroundColor = 'rgb(72, 111, 136)'}
             >
               {t.reserveBtn}
-            </button>
-            <button 
-              onClick={() => navigate('/contactus')} 
-              className={`px-10 py-4 rounded-full font-semibold text-lg shadow-lg transition border ${theme === 'dark' ? 'bg-[#181818] hover:bg-[#222]' : 'bg-white hover:bg-gray-100'}`}
-              style={{color: 'rgb(72, 111, 136)', borderColor: 'rgb(72, 111, 136)'}}
-            >
-              {t.orderBtn}
             </button>
           </div>
         </div>

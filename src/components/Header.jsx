@@ -215,36 +215,6 @@ const Header = () => {
 
           {/* Right side - Navigation and Icons */}
           <div className="hidden min-[480px]:flex items-center space-x-8">
-            {/* Language Dropdown */}
-            <div
-              className="relative"
-              onMouseEnter={() => {
-                if (languageDropdownTimeout.current) clearTimeout(languageDropdownTimeout.current);
-                setIsLanguageDropdownOpen(true);
-              }}
-              onMouseLeave={() => {
-                languageDropdownTimeout.current = setTimeout(() => setIsLanguageDropdownOpen(false), 200);
-              }}
-            >
-              <button
-                className={`flex items-center px-3 py-2 rounded-md border ${theme === 'dark' ? 'text-white border-gray-700 bg-gray-800 hover:bg-gray-700' : 'text-black border-gray-300 bg-white hover:bg-gray-100'} transition-colors duration-200`}
-                aria-haspopup="true"
-                aria-expanded={isLanguageDropdownOpen}
-                onClick={() => setIsLanguageDropdownOpen((v) => !v)}
-              >
-                <span className="mr-1">{selectedLanguage}</span>
-                <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
-                </svg>
-              </button>
-              {isLanguageDropdownOpen && (
-                <div className={`absolute top-full left-0 mt-2 w-32 rounded-md shadow-lg border py-2 z-50 ${theme === 'dark' ? 'bg-[#1E2A38] border-[#141B25]' : 'bg-white border-gray-200'}`}>
-                  <button className={`block w-full text-left px-4 py-2 ${theme === 'dark' ? 'text-white hover:bg-[#22304a]' : 'text-gray-800 hover:bg-gray-100'}`} onClick={() => handleLanguageChange('English')}>English</button>
-                  <button className={`block w-full text-left px-4 py-2 ${theme === 'dark' ? 'text-white hover:bg-[#22304a]' : 'text-gray-800 hover:bg-gray-100'}`} onClick={() => handleLanguageChange('Arabic')}>Arabic</button>
-                  <button className={`block w-full text-left px-4 py-2 ${theme === 'dark' ? 'text-white hover:bg-[#22304a]' : 'text-gray-800 hover:bg-gray-100'}`} onClick={() => handleLanguageChange('Hebrew')}>Hebrew</button>
-                </div>
-              )}
-            </div>
             {/* Home Dropdown */}
 
             <div
@@ -364,6 +334,59 @@ const Header = () => {
                 </svg>
               )}
             </button>
+            {/* Language Dropdown */}
+            <div
+              className="relative"
+              onMouseEnter={() => {
+                if (languageDropdownTimeout.current) clearTimeout(languageDropdownTimeout.current);
+                setIsLanguageDropdownOpen(true);
+              }}
+              onMouseLeave={() => {
+                languageDropdownTimeout.current = setTimeout(() => setIsLanguageDropdownOpen(false), 200);
+              }}
+            >
+              <button
+                className={`w-10 h-10 rounded-full border flex items-center justify-center transition-colors duration-200 ${theme === 'dark' ? 'bg-gray-800 border-gray-700 hover:bg-gray-700 text-white' : 'bg-white border-gray-300 hover:bg-gray-100 text-gray-600'}`}
+                aria-haspopup="true"
+                aria-expanded={isLanguageDropdownOpen}
+                onClick={() => setIsLanguageDropdownOpen((v) => !v)}
+              >
+                {/* Globe Icon */}
+                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <circle cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="2" />
+                  <path d="M2 12h20M12 2a15.3 15.3 0 010 20M12 2a15.3 15.3 0 000 20" stroke="currentColor" strokeWidth="2" />
+                </svg>
+              </button>
+              {isLanguageDropdownOpen && (
+                <div 
+                  className={`absolute top-full right-0 mt-2 w-36 rounded-md shadow-xl border py-1 z-[9999] ${theme === 'dark' ? 'bg-[#1E2A38] border-[#141B25]' : 'bg-white border-gray-200'}`}
+                  style={{ 
+                    position: 'absolute',
+                    zIndex: 9999,
+                    boxShadow: '0 10px 25px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05)'
+                  }}
+                >
+                  <button 
+                    className={`block w-full text-left px-4 py-3 text-sm font-medium transition-colors ${theme === 'dark' ? 'text-white hover:bg-[#22304a]' : 'text-gray-800 hover:bg-gray-100'}`} 
+                    onClick={() => handleLanguageChange('English')}
+                  >
+                    🇺🇸 English
+                  </button>
+                  <button 
+                    className={`block w-full text-left px-4 py-3 text-sm font-medium transition-colors ${theme === 'dark' ? 'text-white hover:bg-[#22304a]' : 'text-gray-800 hover:bg-gray-100'}`} 
+                    onClick={() => handleLanguageChange('Arabic')}
+                  >
+                    🇸🇦 العربية
+                  </button>
+                  <button 
+                    className={`block w-full text-left px-4 py-3 text-sm font-medium transition-colors ${theme === 'dark' ? 'text-white hover:bg-[#22304a]' : 'text-gray-800 hover:bg-gray-100'}`} 
+                    onClick={() => handleLanguageChange('Hebrew')}
+                  >
+                    🇮🇱 עברית
+                  </button>
+                </div>
+              )}
+            </div>
 
             {/* Avatar with Logout Dropdown */}
              <div className="relative">
@@ -429,6 +452,8 @@ const Header = () => {
                 );
               })()}
             </div>
+
+            
           </div>
 
           {/* Mobile icons - Only visible on very small screens */}
@@ -451,10 +476,16 @@ const Header = () => {
                 )}
               </button>
               {isLanguageDropdownOpen && (
-                <div className="absolute left-1/2 top-full -translate-x-1/2 mt-2 w-28 bg-white rounded-md shadow-lg border border-gray-200 py-2 z-50">
-                  <button className="block w-full text-left px-4 py-2 text-gray-800 hover:bg-gray-100" onClick={() => handleLanguageChange('English')}>English</button>
-                  <button className="block w-full text-left px-4 py-2 text-gray-800 hover:bg-gray-100" onClick={() => handleLanguageChange('Arabic')}>Arabic</button>
-                  <button className="block w-full text-left px-4 py-2 text-gray-800 hover:bg-gray-100" onClick={() => handleLanguageChange('Hebrew')}>Hebrew</button>
+                <div 
+                  className="absolute left-1/2 top-full -translate-x-1/2 mt-2 w-36 bg-white rounded-md shadow-xl border border-gray-200 py-1 z-[9999]"
+                  style={{ 
+                    zIndex: 9999,
+                    boxShadow: '0 10px 25px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05)'
+                  }}
+                >
+                  <button className="block w-full text-left px-4 py-3 text-sm font-medium text-gray-800 hover:bg-gray-100 transition-colors" onClick={() => handleLanguageChange('English')}>🇺🇸 English</button>
+                  <button className="block w-full text-left px-4 py-3 text-sm font-medium text-gray-800 hover:bg-gray-100 transition-colors" onClick={() => handleLanguageChange('Arabic')}>🇸🇦 العربية</button>
+                  <button className="block w-full text-left px-4 py-3 text-sm font-medium text-gray-800 hover:bg-gray-100 transition-colors" onClick={() => handleLanguageChange('Hebrew')}>🇮🇱 עברית</button>
                 </div>
               )}
             </div>
