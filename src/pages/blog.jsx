@@ -603,7 +603,7 @@ export default function BlogHero() {
           {/* Right Cards Grid */}
           <div 
             className="grid  sm:grid-cols-2 gap-6"
-            data-aos="slide-left"
+            data-aos="slide-right"
             data-aos-duration="1000"
           >
             {categories.map((cat, index) => {

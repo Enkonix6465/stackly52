@@ -184,7 +184,7 @@ const translations = {
 // ...plans now in translations
 
 
-const FoodDeliveryHero = () => {
+const ModernFamilyLiving = () => {
   // Sync language with global selection in Header
   const [language, setLanguage] = useState(() => {
     if (typeof window !== 'undefined') {
@@ -319,7 +319,7 @@ const FoodDeliveryHero = () => {
           {/* Right Content - balanced height */}
           <div 
             className="w-full md:w-1/2 flex flex-col items-start justify-center min-h-[340px] h-full md:pl-8 text-justify"
-            data-aos="slide-left"
+            data-aos="slide-right"
             data-aos-duration="1000"
           >
             <h2 
@@ -435,7 +435,7 @@ const FoodDeliveryHero = () => {
           </div>
           <div 
             className="flex justify-center"
-            data-aos="slide-left"
+            data-aos="slide-right"
             data-aos-duration="1000"
           >
             <img src={food} alt="Delicious food" className="rounded-2xl shadow-lg w-full max-w-md h-[350px] w-[500px] object-cover" />
@@ -546,4 +546,4 @@ const FoodDeliveryHero = () => {
   );
 };
 
-export default FoodDeliveryHero;
+export default ModernFamilyLiving;

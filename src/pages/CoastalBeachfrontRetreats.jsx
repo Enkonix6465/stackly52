@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from "react";
 import AOS from 'aos';
 import 'aos/dist/aos.css';
-import mealVideo from "../assets/s5.mp4";
-import meal1 from "../assets/s5.jpg";
-import meal2 from "../assets/f3.jpg";
-import meal3 from "../assets/deals.png";
+import partyVideo from "../assets/s4.mp4";
+import party1 from "../assets/s4.jpg";
+import party2 from "../assets/coast.jpg";
+import party3 from "../assets/deals.png";
 
 import { FaArrowLeft, FaArrowRight } from "react-icons/fa";
 
@@ -12,30 +12,30 @@ import { FaArrowLeft, FaArrowRight } from "react-icons/fa";
 // Translation object for all text
 const translations = {
   en: {
-    heroTitle: "Skyline Penthouse Collection",
-    heroDesc: "Luxury penthouses with breathtaking city views — where elegance meets modern living.",
-    aboutTitle: "Why Choose Our Penthouse Collection?",
+    heroTitle: "Coastal & Beachfront Retreats",
+    heroDesc: "Escape to pristine coastal havens — stunning oceanfront properties with panoramic views, private beaches, and world-class amenities.",
+    aboutTitle: "Why Choose Our Coastal Properties?",
     about: [
-      "Experience unparalleled luxury in our exclusive penthouse collection featuring panoramic city views.",
-      "Each penthouse is meticulously designed with premium finishes, state-of-the-art amenities, and spacious layouts.",
-      "Whether you're seeking a primary residence, investment property, or luxury retreat, our penthouses offer the ultimate in sophisticated living.",
-      "Flexible viewing schedules, customizable interior options, and dedicated concierge services."
+      "Experience the tranquility of oceanfront living where every sunrise and sunset creates unforgettable memories from your private retreat.",
+      "Our beachfront properties feature direct beach access, panoramic ocean views, and luxury amenities designed for the ultimate coastal lifestyle.",
+      "From intimate beach cottages to grand oceanfront estates, each property offers unique charm with modern comforts and breathtaking natural beauty.",
+      "Whether seeking a peaceful getaway, investment opportunity, or permanent residence, our coastal properties provide an unparalleled seaside living experience."
     ],
-    pricingTitle: "Penthouse Plans",
-    pricingDesc: "Choose the penthouse that matches your luxury lifestyle.",
+    pricingTitle: "Coastal Collections",
+    pricingDesc: "Exclusive beachfront properties to suit every coastal living dream.",
     plans: [
-      { name: "Urban Vista", price: "$2.5M", period: "", features: ["2-bed penthouse", "Private terrace", "City skyline views"], highlighted: false },
-      { name: "Metropolitan Heights", price: "$4.2M", period: "", features: ["3-bed penthouse", "Rooftop garden", "Premium finishes"], highlighted: true },
-      { name: "Platinum Sky", price: "$6.8M", period: "", features: ["4-bed penthouse", "Private elevator", "360° panoramic views"], highlighted: false },
+      { name: "Beach Cottages", price: "$850K", period: "starting", features: ["Direct beach access", "Ocean view deck", "Private parking"], highlighted: false },
+      { name: "Oceanfront Villas", price: "$2.2M", period: "starting", features: ["Panoramic ocean views", "Private beach area", "Luxury amenities"], highlighted: true },
+      { name: "Seaside Estates", price: "$4.8M", period: "starting", features: ["Expansive beachfront", "Multiple ocean-facing suites", "Private dock & concierge"], highlighted: false },
     ],
     testimonials: [
-      { name: "Ava Mitchell", role: "Real Estate Investor", text: "The penthouse exceeded all expectations — stunning views and impeccable design make it a perfect investment." },
-      { name: "Liam Walker", role: "Tech Executive", text: "Living in this penthouse is like being on top of the world — the perfect blend of luxury and convenience!" },
-      { name: "Isabella Green", role: "Interior Designer", text: "The architectural details and premium finishes in this penthouse are absolutely breathtaking." },
-      { name: "Noah Davis", role: "Investment Banker", text: "Prime location, exceptional quality, and incredible value — this penthouse is a rare find!" },
-      { name: "Mia Johnson", role: "Luxury Property Owner", text: "I've owned multiple properties, but this penthouse collection stands in a class of its own!" },
+      { name: "Charlotte Morrison", role: "Beach House Owner", text: "Waking up to ocean views every morning is pure magic — our coastal retreat is everything we dreamed of!" },
+      { name: "Benjamin Wells", role: "Vacation Home Investor", text: "The beachfront location and luxury amenities make this property a perfect investment and personal escape." },
+      { name: "Isabella Chen", role: "Coastal Resident", text: "Living steps from the beach with panoramic ocean views has transformed our lifestyle completely." },
+      { name: "Harrison Blake", role: "Resort Developer", text: "The quality and location of these coastal properties are exceptional — perfect for luxury hospitality ventures." },
+      { name: "Savannah Rivers", role: "Retreat Owner", text: "Our seaside estate has become the perfect sanctuary for family gatherings and peaceful getaways." },
     ],
-    testimonialsTitle: "What Residents Say",
+    testimonialsTitle: "What Property Owners Say",
     amenitiesTitle: "Amenities & Benefits",
     amenitiesDesc: "Discover the exceptional amenities and benefits that make our properties perfect for modern family living.",
     amenities: [
@@ -44,35 +44,35 @@ const translations = {
       { title: "Prime Location Benefits", description: "Close proximity to top-rated schools, shopping centers, and major transportation hubs." },
       { title: "Energy Efficiency", description: "Eco-friendly features including solar panels, efficient appliances, and sustainable materials." },
     ],
-    ctaTitle: "Ready to Live Above the City?",
-    ctaDesc: "Secure your penthouse today and experience luxury living at its finest.",
-    ctaBtn: "View Penthouses",
+    ctaTitle: "Ready for Coastal Living?",
+    ctaDesc: "Discover your perfect beachfront retreat now and embrace the serenity of oceanfront living with luxury amenities.",
+    ctaBtn: "View Properties",
   },
   ar: {
-    heroTitle: "مجموعة البنتهاوس سكاي لاين",
-    heroDesc: "شقق فاخرة مع إطلالات خلابة على المدينة — حيث تلتقي الأناقة بالحياة العصرية.",
-    aboutTitle: "لماذا تختار مجموعة البنتهاوس لدينا؟",
+    heroTitle: "ملاذات ساحلية وشاطئية",
+    heroDesc: "اهرب إلى ملاذات ساحلية بكر — عقارات مذهلة على الواجهة البحرية مع إطلالات بانورامية وشواطئ خاصة ومرافق عالمية المستوى.",
+    aboutTitle: "لماذا تختار عقاراتنا الساحلية؟",
     about: [
-      "استمتع برفاهية لا مثيل لها في مجموعة البنتهاوس الحصرية مع إطلالات بانورامية على المدينة.",
-      "كل بنتهاوس مصمم بعناية فائقة مع تشطيبات فاخرة ووسائل راحة حديثة وتخطيط واسع.",
-      "سواء كنت تبحث عن مسكن أساسي أو استثمار عقاري أو ملاذ فاخر، توفر شققنا أقصى درجات الحياة الراقية.",
-      "جداول مشاهدة مرنة وخيارات تصميم داخلي قابلة للتخصيص وخدمات كونسيرج مخصصة."
+      "استمتع بهدوء المعيشة على الواجهة البحرية حيث كل شروق وغروب شمس يخلق ذكريات لا تُنسى من ملاذك الخاص.",
+      "تتميز عقاراتنا على الشاطئ بوصول مباشر للشاطئ وإطلالات بانورامية على المحيط ووسائل راحة فاخرة مصممة لأسلوب الحياة الساحلية المثالي.",
+      "من أكواخ الشاطئ الحميمة إلى العقارات الكبيرة على الواجهة البحرية، يوفر كل عقار سحراً فريداً مع وسائل الراحة الحديثة والجمال الطبيعي الخلاب.",
+      "سواء كنت تبحث عن هروب هادئ أو فرصة استثمارية أو إقامة دائمة، توفر عقاراتنا الساحلية تجربة معيشة بحرية لا مثيل لها."
     ],
-    pricingTitle: "خطط البنتهاوس",
-    pricingDesc: "اختر البنتهاوس الذي يناسب أسلوب حياتك الفاخر.",
+    pricingTitle: "المجموعات الساحلية",
+    pricingDesc: "عقارات حصرية على الشاطئ لتناسب كل حلم معيشة ساحلية.",
     plans: [
-      { name: "إطلالة حضرية", price: "2.5 مليون $", period: "", features: ["بنتهاوس غرفتين", "تراس خاص", "إطلالة على أفق المدينة"], highlighted: false },
-      { name: "مرتفعات العاصمة", price: "4.2 مليون $", period: "", features: ["بنتهاوس 3 غرف", "حديقة على السطح", "تشطيبات فاخرة"], highlighted: true },
-      { name: "بلاتينيوم سكاي", price: "6.8 مليون $", period: "", features: ["بنتهاوس 4 غرف", "مصعد خاص", "إطلالة بانورامية 360°"], highlighted: false },
+      { name: "أكواخ الشاطئ", price: "$850K", period: "ابتداءً من", features: ["وصول مباشر للشاطئ", "سطح بإطلالة على المحيط", "موقف خاص"], highlighted: false },
+      { name: "فيلات على الواجهة البحرية", price: "$2.2M", period: "ابتداءً من", features: ["إطلالات بانورامية على المحيط", "منطقة شاطئ خاصة", "مرافق فاخرة"], highlighted: true },
+      { name: "عقارات ساحلية", price: "$4.8M", period: "ابتداءً من", features: ["واجهة بحرية واسعة", "أجنحة متعددة مطلة على المحيط", "رصيف خاص وخدمة كونسيرج"], highlighted: false },
     ],
     testimonials: [
-      { name: "آفا ميتشل", role: "مستثمرة عقارية", text: "البنتهاوس فاق كل التوقعات — إطلالات مذهلة وتصميم لا تشوبه شائبة يجعله استثمارًا مثاليًا." },
-      { name: "ليام ووكر", role: "مدير تنفيذي تقني", text: "العيش في هذا البنتهاوس كأنك في قمة العالم — مزيج مثالي من الفخامة والراحة!" },
-      { name: "إيزابيلا جرين", role: "مصممة داخلية", text: "التفاصيل المعمارية والتشطيبات الفاخرة في هذا البنتهاوس مذهلة حقًا." },
-      { name: "نواه ديفيس", role: "مصرفي استثماري", text: "موقع ممتاز وجودة استثنائية وقيمة لا تصدق — هذا البنتهاوس اكتشاف نادر!" },
-      { name: "ميا جونسون", role: "مالكة عقارات فاخرة", text: "لقد امتلكت عدة عقارات، لكن مجموعة البنتهاوس هذه تقف في فئة خاصة بها!" },
+      { name: "شارلوت موريسون", role: "مالكة منزل شاطئي", text: "الاستيقاظ على إطلالات المحيط كل صباح هو سحر خالص — ملاذنا الساحلي هو كل ما حلمنا به!" },
+      { name: "بنجامين ويلز", role: "مستثمر منزل إجازات", text: "الموقع على الشاطئ والمرافق الفاخرة تجعل من هذا العقار استثماراً مثالياً وهروباً شخصياً." },
+      { name: "إيزابيلا تشين", role: "ساكنة ساحلية", text: "العيش على بُعد خطوات من الشاطئ مع إطلالات بانورامية على المحيط غيّر أسلوب حياتنا تماماً." },
+      { name: "هاريسون بليك", role: "مطور منتجعات", text: "جودة وموقع هذه العقارات الساحلية استثنائية — مثالية لمشاريع الضيافة الفاخرة." },
+      { name: "سافانا ريفرز", role: "مالكة ملاذ", text: "عقارنا الساحلي أصبح الملاذ المثالي للتجمعات العائلية والهروب الهادئ." },
     ],
-    testimonialsTitle: "ماذا يقول السكان",
+    testimonialsTitle: "ماذا يقول مالكو العقارات",
     amenitiesTitle: "المرافق والفوائد",
     amenitiesDesc: "اكتشف المرافق والفوائد الاستثنائية التي تجعل عقاراتنا مثالية للحياة العائلية العصرية.",
     amenities: [
@@ -81,35 +81,35 @@ const translations = {
       { title: "فوائد الموقع المتميز", description: "قرب من المدارس المصنفة عالياً ومراكز التسوق ومحاور النقل الرئيسية." },
       { title: "كفاءة الطاقة", description: "ميزات صديقة للبيئة تشمل الألواح الشمسية والأجهزة الفعالة والمواد المستدامة." },
     ],
-    ctaTitle: "جاهز للعيش فوق المدينة؟",
-    ctaDesc: "احجز البنتهاوس الخاص بك اليوم واستمتع بالحياة الفاخرة في أبهى صورها.",
-    ctaBtn: "اعرض البنتهاوس",
+    ctaTitle: "جاهز للمعيشة الساحلية؟",
+    ctaDesc: "اكتشف ملاذك المثالي على الشاطئ الآن واحتضن هدوء المعيشة على الواجهة البحرية مع المرافق الفاخرة.",
+    ctaBtn: "عرض العقارات",
   },
   he: {
-    heroTitle: "קולקציית פנטהאוס סקיילין",
-    heroDesc: "פנטהאוסים יוקרתיים עם נוף עוצר נשימה של העיר — שבו אלגנטיות פוגשת חיים מודרניים.",
-    aboutTitle: "למה לבחור בקולקציית הפנטהאוס שלנו?",
+    heroTitle: "נופש חופי ואתרי נופש על חוף הים",
+    heroDesc: "ברחו למקלטים חופיים בתוליים — נכסים מדהימים על קו החוף עם נוף פנורמי, חופים פרטיים ושירותים ברמה עולמית.",
+    aboutTitle: "למה לבחור בנכסים החופיים שלנו?",
     about: [
-      "חוו יוקרה ללא תחרות בקולקציית הפנטהאוס הבלעדית שלנו עם נופים פנורמיים של העיר.",
-      "כל פנטהאוס מעוצב בקפידה עם גימורים איכותיים, שירותים חדישים ופריסות מרווחות.",
-      "בין אם אתם מחפשים מקום מגורים ראשי, נכס השקעה או מקום מפלט יוקרתי, הפנטהאוסים שלנו מציעים את המקסימום בחיים מתוחכמים.",
-      "לוחות צפיה גמישים, אפשרויות עיצוב פנים מותאמות אישית ושירותי קונסיירז' מסורים."
+      "חוו את השלווה של חיים על קו החוף שבהם כל זריחה ושקיעה יוצרות זיכרונות בלתי נשכחים מהמקלט הפרטי שלכם.",
+      "הנכסים שלנו על חוף הים כוללים גישה ישירה לחוף, נוף פנורמי של האוקיינוס ושירותי יוקרה המיועדים לאורח החיים החופי האולטימטיבי.",
+      "מבקתות חוף אינטימיות ועד אחוזות גדולות על קו החוף, כל נכס מציע קסם ייחודי עם נוחות מודרנית ויופי טבעי עוצר נשימה.",
+      "בין אם אתם מחפשים מקום מנוחה שקט, הזדמנות השקעה או מקום מגורים קבוע, הנכסים החופיים שלנו מספקים חוויית חיים חופית ללא תחרות."
     ],
-    pricingTitle: "תוכניות פנטהאוס",
-    pricingDesc: "בחרו את הפנטהאוס שמתאים לאורח החיים היוקרתי שלכם.",
+    pricingTitle: "אוספים חופיים",
+    pricingDesc: "נכסים בלעדיים על חוף הים שמתאימים לכל חלום חיים חופיים.",
     plans: [
-      { name: "נוף עירוני", price: "$2.5M", period: "", features: ["פנטהאוס 2 חדרים", "מרפסת פרטית", "נוף קו הרקיע של העיר"], highlighted: false },
-      { name: "גבהים מטרופוליטניים", price: "$4.2M", period: "", features: ["פנטהאוס 3 חדרים", "גן גג", "גימורים פרימיום"], highlighted: true },
-      { name: "פלטינום סקיי", price: "$6.8M", period: "", features: ["פנטהאוס 4 חדרים", "מעלית פרטית", "נוף פנורמי 360°"], highlighted: false },
+      { name: "בקתות חוף", price: "$850K", period: "החל מ", features: ["גישה ישירה לחוף", "מרפסת עם נוף אוקיינוס", "חניה פרטית"], highlighted: false },
+      { name: "וילות על קו החוף", price: "$2.2M", period: "החל מ", features: ["נוף פנורמי של האוקיינוס", "אזור חוף פרטי", "שירותי יוקרה"], highlighted: true },
+      { name: "אחוזות חופיות", price: "$4.8M", period: "החל מ", features: ["קו חוף נרחב", "מספר חדרים מול האוקיינוס", "רציף פרטי וקונסיירז'"], highlighted: false },
     ],
     testimonials: [
-      { name: "אווה מיטשל", role: "משקיעת נדל\"ן", text: "הפנטהאוס עבר את כל הציפיות — נופים מדהימים ועיצוב ללא דופי הופכים אותו להשקעה מושלמת." },
-      { name: "ליאם ווקר", role: "מנהל טכנולוגיה", text: "לחיות בפנטהאוס הזה זה כמו להיות בראש העולם — שילוב מושלם של יוקרה ונוחות!" },
-      { name: "איזבלה גרין", role: "מעצבת פנים", text: "הפרטים האדריכליים והגימורים הפרימיום בפנטהאוס הזה פשוט עוצרי נשימה." },
-      { name: "נואה דייוויס", role: "בנקאי השקעות", text: "מיקום מעולה, איכות יוצאת דופן וערך מדהים — הפנטהאוס הזה הוא ממצא נדיר!" },
-      { name: "מיה ג'ונסון", role: "בעלת נכסי יוקרה", text: "הייתי בעלת נכסים מרובים, אבל קולקציית הפנטהאוס הזו עומדת בקטגוריה משלה!" },
+      { name: "שרלוט מוריסון", role: "בעלת בית חוף", text: "להתעורר לנוף של האוקיינוס כל בוקר זה קסם טהור — המקלט החופי שלנו הוא כל מה שחלמנו עליו!" },
+      { name: "בנג'מין ולס", role: "משקיע בית נופש", text: "המיקום על חוף הים והשירותים היוקרתיים הופכים את הנכס הזה להשקעה מושלמת ומקום מפלט אישי." },
+      { name: "איזבלה צ'ן", role: "תושבת חופית", text: "לחיות במרחק צעדים מהחוף עם נוף פנורמי של האוקיינוס שינה לחלוטין את אורח החיים שלנו." },
+      { name: "האריסון בלייק", role: "מפתח אתרי נופש", text: "האיכות והמיקום של הנכסים החופיים האלה יוצאי דופן — מושלמים למיזמי אירוח יוקרתיים." },
+      { name: "סוואנה ריברס", role: "בעלת מקלט", text: "האחוזה החופית שלנו הפכה למקלט המושלם למפגשים משפחתיים ולמקומות מנוחה שקטים." },
     ],
-    testimonialsTitle: "מה התושבים אומרים",
+    testimonialsTitle: "מה אומרים בעלי הנכסים",
     amenitiesTitle: "שירותים ויתרונות",
     amenitiesDesc: "גלו את השירותים והיתרונות יוצאי הדופן שהופכים את הנכסים שלנו למושלמים לחיי משפחה מודרניים.",
     amenities: [
@@ -118,13 +118,13 @@ const translations = {
       { title: "יתרונות מיקום מעולה", description: "קרבה לבתי ספר מובילים, מרכזי קניות וצמתי תחבורה מרכזיים." },
       { title: "יעילות אנרגטית", description: "תכונות ידידותיות לסביבה כולל פאנלים סולאריים, מכשירים יעילים וחומרים בני קיימא." },
     ],
-    ctaTitle: "מוכנים לחיות מעל העיר?",
-    ctaDesc: "הבטיחו את הפנטהאוס שלכם היום וחוו חיים יוקרתיים בשיאם.",
-    ctaBtn: "צפו בפנטהאוסים",
+    ctaTitle: "מוכנים לחיים חופיים?",
+    ctaDesc: "גלו את המקלט המושלם שלכם על חוף הים עכשיו וחבקו את השלווה של חיים על קו החוף עם שירותי יוקרה.",
+    ctaBtn: "צפו בנכסים",
   },
 };
 
-const SubscriptionMealsHero = () => {
+const CoastalBeachfrontRetreats = () => {
   // Language and theme state synced with Header
   const [language, setLanguage] = useState('en');
   const [theme, setTheme] = useState('light');
@@ -216,7 +216,7 @@ const SubscriptionMealsHero = () => {
   <section className="relative w-full h-[85vh] overflow-hidden">
         <video
           className="absolute top-0 left-0 w-full h-full object-cover"
-          src={mealVideo}
+          src={partyVideo}
           autoPlay
           loop
           muted
@@ -252,14 +252,14 @@ const SubscriptionMealsHero = () => {
             data-aos-duration="1000"
           >
             <img
-              src={meal1}
-              alt="Subscription meal"
+              src={party1}
+              alt="Coastal property"
               className="w-full md:max-w-full md:h-[340px] max-w-md h-full object-cover rounded-2xl shadow-lg"
             />
           </div>
           <div 
             className="w-full md:w-1/2 flex flex-col items-start justify-center min-h-[340px] h-full md:pl-8 text-justify"
-            data-aos="slide-left"
+            data-aos="slide-right"
             data-aos-duration="1000"
           >
             <h2 
@@ -342,7 +342,7 @@ const SubscriptionMealsHero = () => {
                   : {backgroundColor: 'rgba(72, 111, 136, 0.8)'}
                 }
               >
-                {translations[language].ctaBtn}
+                {language === 'ar' ? 'عرض العقارات' : language === 'he' ? 'צפו בנכסים' : 'View Properties'}
               </button>
             </div>
           ))}
@@ -399,12 +399,12 @@ const SubscriptionMealsHero = () => {
           </div>
           <div 
             className="flex justify-center"
-            data-aos="slide-left"
+            data-aos="slide-right"
             data-aos-duration="1000"
           >
             <img
-              src={meal2}
-              alt="Healthy meal plan"
+              src={party2}
+              alt="Beachfront property"
               className="rounded-2xl shadow-lg w-full max-w-md h-[350px] w-[500px] object-cover"
             />
           </div>
@@ -451,8 +451,8 @@ const SubscriptionMealsHero = () => {
       {/* Call to Action Section */}
       <section className="relative py-24 px-6 md:px-20 text-white">
         <img
-          src={meal3}
-          alt="Meal delivery setup"
+          src={party3}
+          alt="Coastal retreat view"
           className="absolute inset-0 w-full h-full object-cover z-0"
         />
         <div className="absolute inset-0 z-0" style={{backgroundColor: 'rgba(72, 111, 136, 0.8)'}}></div>
@@ -490,4 +490,4 @@ const SubscriptionMealsHero = () => {
   );
 };
 
-export default SubscriptionMealsHero;
+export default CoastalBeachfrontRetreats;

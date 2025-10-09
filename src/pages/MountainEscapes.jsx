@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from "react";
-import cateringVideo from "../assets/s2.mp4";
-import catering1 from "../assets/f3.jpg";
-import catering2 from "../assets/s2.jpg";
-import catering3 from "../assets/deals.png";
-import AOS from "aos";
-import "aos/dist/aos.css";
+import AOS from 'aos';
+import 'aos/dist/aos.css';
+import takeVideo from "../assets/s6.mp4";
+import take1 from "../assets/s6.jpg";
+import take2 from "../assets/f4.jpg";
+import take3 from "../assets/deals.png";
 
 import { FaArrowLeft, FaArrowRight } from "react-icons/fa";
 
@@ -12,31 +12,29 @@ import { FaArrowLeft, FaArrowRight } from "react-icons/fa";
 // Translation object for all text
 const translations = {
   en: {
-    heroTitle: "Luxury Urban Residences",
-    heroDesc: "Experience sophisticated city living with premium amenities, breathtaking views, and unparalleled convenience — right in the heart of the urban landscape!",
-    aboutTitle: "About Our Luxury Residences",
+    heroTitle: "Mountain & Countryside Escapes",
+    heroDesc: "Serene retreats, breathtaking nature — discover your perfect mountain getaway today.",
+    aboutTitle: "Why Choose Our Mountain & Countryside Properties?",
     about: [
-      "We specialize in creating exceptional urban living experiences with luxury high-rise apartments, penthouses, and exclusive condominiums in prime city locations.",
-      "From elegant studio apartments to expansive multi-bedroom penthouses, our properties are designed to match your lifestyle, preferences, and sophisticated taste.",
-      "Using only premium materials, cutting-edge technology, and world-class amenities, we ensure that every residence offers unparalleled comfort and prestige.",
-      "Our dedicated concierge team handles everything — property management, maintenance, exclusive services, and resident relations — so you can focus on enjoying urban luxury.",
-      "Choose from our curated selection of luxury residences or work with our team to find a completely customized living solution designed exclusively for your needs."
+      "Escape to tranquil mountain retreats and countryside havens where nature meets luxury. Experience peace and serenity away from city life.",
+      "Perfect for weekend getaways, permanent residences, or investment properties. Enjoy pristine landscapes and fresh mountain air on your own schedule.",
+      "With exclusive locations and premium amenities, you'll always find the perfect retreat to reconnect with nature."
     ],
-    pricingTitle: "Residence Tiers",
-    pricingDesc: "Whether you seek urban convenience or ultimate luxury, we have a residence tier to match your sophisticated lifestyle.",
+    pricingTitle: "Property Options",
+    pricingDesc: "Choose the mountain retreat that fits your dreams and budget.",
     plans: [
-      { name: "Urban Elite", price: "$899K", period: "starting", features: ["1-2 bedrooms", "City view apartments", "Premium building amenities"], highlighted: false },
-      { name: "Metropolitan Luxury", price: "$1.5M", period: "starting", features: ["2-3 bedrooms", "Panoramic views", "Concierge & valet services"], highlighted: true },
-      { name: "Penthouse Collection", price: "$3.2M", period: "starting", features: ["3+ bedrooms", "Private terraces", "Exclusive penthouse amenities & services"], highlighted: false },
+      { name: "Mountain Cabin", price: "$450K", period: "", features: ["2-bed rustic cabin", "Fireplace & deck", "Hiking trail access"], highlighted: false },
+      { name: "Alpine Lodge", price: "$750K", period: "", features: ["3-bed luxury lodge", "Mountain views", "Premium finishes"], highlighted: true },
+      { name: "Estate Retreat", price: "$1.2M", period: "", features: ["5-bed estate home", "Private acreage", "Ultimate privacy"], highlighted: false },
     ],
     testimonials: [
-      { name: "Jennifer Clark", role: "Investment Banker", text: "Living here is exceptional — stunning views, impeccable service, and unmatched luxury in the heart of the city!" },
-      { name: "Robert King", role: "Tech Executive", text: "The penthouse exceeded all expectations. World-class amenities and professional concierge services." },
-      { name: "Linda Perez", role: "Art Director", text: "The urban lifestyle here is perfect! Premium finishes, smart home technology, and incredible city access." },
-      { name: "Chris Allen", role: "Real Estate Developer", text: "Outstanding property management and attention to detail. The building sets the standard for luxury urban living." },
-      { name: "Sophia Brown", role: "Fashion Designer", text: "Elegant design, exceptional amenities, and a vibrant community — this is sophisticated city living at its finest!" },
+      { name: "Olivia Carter", role: "Nature Lover", text: "Our mountain cabin exceeded expectations — peaceful mornings and stunning sunsets every day!" },
+      { name: "James Allen", role: "City Escapist", text: "The perfect retreat from city stress. Fresh air, hiking trails, and complete tranquility." },
+      { name: "Sophia Evans", role: "Family Vacationer", text: "Mountain escapes create lasting family memories. Nature, adventure, and luxury combined perfectly." },
+      { name: "Ethan Lewis", role: "Weekend Warrior", text: "Affordable mountain getaway! Great investment and perfect weekend retreat from urban life." },
+      { name: "Amelia Scott", role: "Property Owner", text: "Reliable mountain property management and breathtaking natural beauty every season!" },
     ],
-    testimonialsTitle: "What Residents Say",
+    testimonialsTitle: "What Property Owners Say",
     amenitiesTitle: "Amenities & Benefits",
     amenitiesDesc: "Discover the exceptional amenities and benefits that make our properties perfect for modern family living.",
     amenities: [
@@ -45,36 +43,34 @@ const translations = {
       { title: "Prime Location Benefits", description: "Close proximity to top-rated schools, shopping centers, and major transportation hubs." },
       { title: "Energy Efficiency", description: "Eco-friendly features including solar panels, efficient appliances, and sustainable materials." },
     ],
-    ctaTitle: "Ready to Experience Luxury?",
-    ctaDesc: "Discover sophisticated urban living where every detail is designed for your comfort and prestige. Inquire about our luxury residences today!",
-    ctaBtn: "Inquire Now",
+    ctaTitle: "Ready for Mountain Living?",
+    ctaDesc: "Secure your mountain retreat now and escape to nature when it's perfect for you.",
+    ctaBtn: "View Properties",
   },
   ar: {
-    heroTitle: "المساكن الحضرية الفاخرة",
-    heroDesc: "اختبر الحياة الحضرية المتطورة مع وسائل الراحة المتميزة، الإطلالات الخلابة، والراحة المنقطعة النظير — في قلب المشهد الحضري!",
-    aboutTitle: "عن مساكننا الفاخرة",
+    heroTitle: "ملاذات الجبال والريف",
+    heroDesc: "ملاذات هادئة وطبيعة خلابة — اكتشف ملاذك الجبلي المثالي اليوم.",
+    aboutTitle: "لماذا تختار عقارات الجبال والريف لدينا؟",
     about: [
-      "نحن متخصصون في خلق تجارب طعام لا تُنسى لحفلات الزفاف، الفعاليات، الحفلات الخاصة، والاحتفالات من جميع الأحجام.",
-      "من عشاء فاخر إلى بوفيهات متنوعة، يصمم طهاتنا قوائم تناسب ذوقك وموضوعك وميزانيتك.",
-      "باستخدام مكونات طازجة وفاخرة فقط، نضمن أن كل طبق مليء بالنكهة ومقدم بشكل جميل.",
-      "فريقنا المحترف يتولى كل شيء — من التخطيط للقائمة، التوصيل، التجهيز، والخدمة — حتى تركز على الاستمتاع بمناسبتك.",
-      "اختر من باقات التموين المرنة أو اطلب قائمة مخصصة بالكامل لمناسبتك الخاصة."
+      "اهرب إلى ملاذات جبلية هادئة وواحات ريفية حيث تلتقي الطبيعة بالفخامة. استمتع بالسلام والهدوء بعيدًا عن حياة المدينة.",
+      "مثالي للإجازات الأسبوعية أو الإقامة الدائمة أو العقارات الاستثمارية. استمتع بالمناظر الطبيعية البكر والهواء الجبلي النقي في وقتك.",
+      "مع مواقع حصرية ووسائل راحة فاخرة، ستجد دائمًا الملاذ المثالي للتواصل مع الطبيعة."
     ],
-    pricingTitle: "باقاتنا",
-    pricingDesc: "سواء كانت مناسبة حميمة أو احتفالًا كبيرًا، لدينا باقة تناسب كل حدث.",
+    pricingTitle: "خيارات العقارات",
+    pricingDesc: "اختر الملاذ الجبلي الذي يناسب أحلامك وميزانيتك.",
     plans: [
-      { name: "حدث أساسي", price: "$199", period: "/فعالية", features: ["حتى 20 ضيفًا", "خيارات قائمة قياسية", "توصيل مجاني حتى 10 أميال"], highlighted: false },
-      { name: "حدث مميز", price: "$499", period: "/فعالية", features: ["حتى 50 ضيفًا", "قائمة مخصصة", "مدير فعالية خاص"], highlighted: true },
-      { name: "حدث كبير", price: "$999", period: "/فعالية", features: ["أكثر من 100 ضيف", "قائمة مخصصة بالكامل", "فريق طهاة وخدمة كاملة في الموقع"], highlighted: false },
+      { name: "كوخ جبلي", price: "450 ألف $", period: "", features: ["كوخ ريفي غرفتين", "مدفأة وشرفة", "الوصول لممرات المشي"], highlighted: false },
+      { name: "نزل جبلي", price: "750 ألف $", period: "", features: ["نزل فاخر 3 غرف", "إطلالات جبلية", "تشطيبات فاخرة"], highlighted: true },
+      { name: "ملكية ريفية", price: "1.2 مليون $", period: "", features: ["منزل 5 غرف", "أرض خاصة", "خصوصية مطلقة"], highlighted: false },
     ],
     testimonials: [
-      { name: "جينيفر كلارك", role: "منظمة فعاليات", text: "كان التموين رائعًا — كل طبق كان طازجًا وجميل التقديم وفي الوقت المحدد!" },
-      { name: "روبرت كينج", role: "مدير شركة", text: "استعنّا بهم لمؤتمرنا السنوي. الخدمة كانت احترافية وسلسة." },
-      { name: "ليندا بيريز", role: "عروس", text: "كان بوفيه الزفاف مثاليًا! الضيوف أحبوا كل شيء والفريق اهتم بكل التفاصيل." },
-      { name: "كريس ألين", role: "مالك مطعم", text: "أداروا فعالية كبيرة دون أي مشاكل. خدمة يمكن الاعتماد عليها حقًا." },
-      { name: "صوفيا براون", role: "مضيفة عيد ميلاد", text: "طعام لذيذ، فريق رائع، وتنظيم خالٍ من التوتر — أنصح بهم بشدة!" },
+      { name: "أوليفيا كارتر", role: "محبة الطبيعة", text: "كوخنا الجبلي فاق التوقعات — صباحات هادئة وغروب شمس مذهل كل يوم!" },
+      { name: "جيمس ألين", role: "هارب من المدينة", text: "الملاذ المثالي من ضغوط المدينة. هواء نقي وممرات مشي وهدوء تام." },
+      { name: "صوفيا إيفانز", role: "مسافرة عائلية", text: "ملاذات الجبال تخلق ذكريات عائلية دائمة. طبيعة ومغامرة وفخامة مجتمعة بشكل مثالي." },
+      { name: "إيثان لويس", role: "محارب نهاية الأسبوع", text: "ملاذ جبلي بأسعار معقولة! استثمار رائع وملاذ مثالي لنهايات الأسبوع من الحياة الحضرية." },
+      { name: "أميليا سكوت", role: "مالكة عقار", text: "إدارة عقارات جبلية موثوقة وجمال طبيعي خلاب في كل فصل!" },
     ],
-    testimonialsTitle: "ماذا يقول العملاء",
+    testimonialsTitle: "ماذا يقول ملاك العقارات",
     amenitiesTitle: "المرافق والفوائد",
     amenitiesDesc: "اكتشف المرافق والفوائد الاستثنائية التي تجعل عقاراتنا مثالية للحياة العائلية العصرية.",
     amenities: [
@@ -83,36 +79,34 @@ const translations = {
       { title: "فوائد الموقع المتميز", description: "قرب من المدارس المصنفة عالياً ومراكز التسوق ومحاور النقل الرئيسية." },
       { title: "كفاءة الطاقة", description: "ميزات صديقة للبيئة تشمل الألواح الشمسية والأجهزة الفعالة والمواد المستدامة." },
     ],
-    ctaTitle: "جاهز لحجز مناسبتك؟",
-    ctaDesc: "دعنا نهتم بالطعام بينما تركز على خلق لحظات لا تُنسى. احجز خدمة التموين الآن!",
-    ctaBtn: "احجز الآن",
+    ctaTitle: "مستعد للحياة الجبلية؟",
+    ctaDesc: "احجز ملاذك الجبلي الآن واهرب إلى الطبيعة عندما يكون مثاليًا لك.",
+    ctaBtn: "اعرض العقارات",
   },
   he: {
-    heroTitle: "דירות יוקרה עירוניות",
-    heroDesc: "חוו חיים עירוניים מתוחכמים עם שירותים מעולים, נופים עוצרי נשימה ונוחות שאין שני לה — בלב הנוף העירוני!",
-    aboutTitle: "על הדירות היוקרה שלנו",
+    heroTitle: "מפלטי הרים וכפרים",
+    heroDesc: "מפלטים שלווים, טבע עוצר נשימה — גלו את המפלט ההררי המושלם שלכם היום.",
+    aboutTitle: "למה לבחור בנכסי ההרים והכפרים שלנו?",
     about: [
-      "אנו מתמחים ביצירת חוויות קולינריות בלתי נשכחות לחתונות, אירועים עסקיים, מסיבות פרטיות וחגיגות בכל גודל.",
-      "מארוחות ערב אלגנטיות ועד בופה עשיר, השפים שלנו בונים תפריטים מותאמים לטעם, לנושא ולתקציב שלכם.",
-      "באמצעות מרכיבים טריים ואיכותיים בלבד, אנו מבטיחים שכל מנה תהיה עשירה בטעם ומוגשת בצורה מרהיבה.",
-      "הצוות המקצועי שלנו דואג להכל — תכנון תפריט, משלוח, סידור ושירות — כדי שתוכלו ליהנות מהאירוע.",
-      "בחרו מתוך חבילות קייטרינג גמישות או בקשו תפריט מותאם אישית לאירוע שלכם."
+      "ברחו למפלטי הרים שלווים ומקלטי כפרים שבהם הטבע פוגש יוקרה. חוו שלווה ורגיעה הרחק מחיי העיר.",
+      "מושלם לחופשות סוף שבוע, מגורים קבועים או נכסי השקעה. תיהנו מנופים בתוליים ואוויר הררי צח בזמנכם.",
+      "עם מיקומים בלעדיים ושירותים מובחרים, תמיד תמצאו את המפלט המושלם להתחבר מחדש עם הטבע."
     ],
-    pricingTitle: "החבילות שלנו",
-    pricingDesc: "בין אם זו התכנסות אינטימית או חגיגה גדולה, יש לנו חבילה לכל אירוע.",
+    pricingTitle: "אפשרויות נכסים",
+    pricingDesc: "בחרו את המפלט ההררי שמתאים לחלומות ולתקציב שלכם.",
     plans: [
-      { name: "אירוע בסיסי", price: "$199", period: "/אירוע", features: ["עד 20 אורחים", "אפשרויות תפריט סטנדרטיות", "משלוח חינם עד 10 מייל"], highlighted: false },
-      { name: "אירוע פרימיום", price: "$499", period: "/אירוע", features: ["עד 50 אורחים", "תפריט מותאם אישית", "מנהל אירוע ייעודי"], highlighted: true },
-      { name: "אירוע גדול", price: "$999", period: "/אירוע", features: ["100+ אורחים", "תפריט מותאם במלואו", "צוות שפים ושירות מלא במקום"], highlighted: false },
+      { name: "בקתת הרים", price: "$450K", period: "", features: ["בקתה כפרית 2 חדרים", "אח ומרפסת", "גישה לשבילי הליכה"], highlighted: false },
+      { name: "אכסנייה אלפינית", price: "$750K", period: "", features: ["אכסנייה יוקרתית 3 חדרים", "נוף הרים", "גימורים פרימיום"], highlighted: true },
+      { name: "מפלט אחוזה", price: "$1.2M", period: "", features: ["בית אחוזה 5 חדרים", "שטח פרטי", "פרטיות מוחלטת"], highlighted: false },
     ],
     testimonials: [
-      { name: "ג'ניפר קלארק", role: "מתכננת אירועים", text: "הקייטרינג היה מושלם — כל מנה הייתה טרייה, יפהפיה ובזמן!" },
-      { name: "רוברט קינג", role: "מנהל חברה", text: "הזמנו אותם לכנס השנתי שלנו. השירות היה מקצועי וזורם." },
-      { name: "לינדה פרז", role: "כלה", text: "הבופה בחתונה היה מושלם! האורחים אהבו כל ביס והצוות דאג להכל." },
-      { name: "כריס אלן", role: "בעל מסעדה", text: "הם ניהלו אירוע גדול בלי שום בעיה. שירות אמין באמת." },
-      { name: "סופיה בראון", role: "מארחת יום הולדת", text: "אוכל טעים, צוות נהדר וארגון ללא דאגות — ממליצה בחום!" },
+      { name: "אוליביה קרטר", role: "חובבת טבע", text: "הבקתה ההררית שלנו עברה את הציפיות — בקרים שלווים ושקיעות מדהימות כל יום!" },
+      { name: "ג'יימס אלן", role: "בורח מהעיר", text: "המפלט המושלם מלחצי העיר. אוויר צח, שבילי הליכה ושלווה מוחלטת." },
+      { name: "סופיה אוונס", role: "נופשת משפחתית", text: "מפלטי הרים יוצרים זיכרונות משפחתיים לכל החיים. טבע, הרפתקה ויוקרה משולבים בצורה מושלמת." },
+      { name: "אית'ן לואיס", role: "לוחם סופי שבוע", text: "מפלט הררי במחיר סביר! השקעה נהדרת ומפלט מושלם לסופי שבוע מהחיים העירוניים." },
+      { name: "אמיליה סקוט", role: "בעלת נכסים", text: "ניהול נכסי הרים אמין ויופי טבעי עוצר נשימה בכל עונה!" },
     ],
-    testimonialsTitle: "מה הלקוחות אומרים",
+    testimonialsTitle: "מה בעלי הנכסים אומרים",
     amenitiesTitle: "שירותים ויתרונות",
     amenitiesDesc: "גלו את השירותים והיתרונות יוצאי הדופן שהופכים את הנכסים שלנו למושלמים לחיי משפחה מודרניים.",
     amenities: [
@@ -121,13 +115,13 @@ const translations = {
       { title: "יתרונות מיקום מעולה", description: "קרבה לבתי ספר מובילים, מרכזי קניות וצמתי תחבורה מרכזיים." },
       { title: "יעילות אנרגטית", description: "תכונות ידידותיות לסביבה כולל פאנלים סולאריים, מכשירים יעילים וחומרים בני קיימא." },
     ],
-    ctaTitle: "מוכנים להזמין לאירוע?",
-    ctaDesc: "תנו לנו לדאוג לאוכל בזמן שאתם יוצרים רגעים בלתי נשכחים. הזמינו שירותי קייטרינג עוד היום!",
-    ctaBtn: "הזמן עכשיו",
+    ctaTitle: "מוכנים לחיים הרריים?",
+    ctaDesc: "הבטיחו את המפלט ההררי שלכם עכשיו וברחו אל הטבע כשזה מושלם עבורכם.",
+    ctaBtn: "צפו בנכסים",
   },
 };
 
-const CateringServicesHero = () => {
+const MountainEscapes = () => {
   // Language and theme state synced with Header
   const [language, setLanguage] = useState('en');
   const [theme, setTheme] = useState('light');
@@ -206,6 +200,7 @@ const CateringServicesHero = () => {
 
   return (
     <div dir={dir} className={sectionBg}>
+  {/* ...removed registration form overlay... */}
       {/* Theme Toggle Button */}
       <div className="flex justify-end p-4">
         <button
@@ -219,7 +214,7 @@ const CateringServicesHero = () => {
   <section className="relative w-full h-[85vh] overflow-hidden">
         <video
           className="absolute top-0 left-0 w-full h-full object-cover"
-          src={cateringVideo}
+          src={takeVideo}
           autoPlay
           loop
           muted
@@ -249,23 +244,20 @@ const CateringServicesHero = () => {
   {/* About Section */}
   <section className={`py-20 px-6 md:px-20 ${sectionAltBg}`}> 
         <div className="grid md:grid-cols-2 gap-12 items-center">
-          {/* Left Image - balanced height */}
           <div 
             className="w-full md:w-1/2 flex justify-center items-center min-h-[340px] h-full"
             data-aos="slide-right"
             data-aos-duration="1000"
           >
             <img
-              src={catering1}
-              alt="Our Catering Service"
+              src={take1}
+              alt="Mountain retreat"
               className="w-full md:max-w-full md:h-[340px] max-w-md h-full object-cover rounded-2xl shadow-lg"
             />
           </div>
-
-          {/* Right Content - balanced height */}
           <div 
             className="w-full md:w-1/2 flex flex-col items-start justify-center min-h-[340px] h-full md:pl-8 text-justify"
-            data-aos="slide-left"
+            data-aos="slide-right"
             data-aos-duration="1000"
           >
             <h2 
@@ -285,7 +277,7 @@ const CateringServicesHero = () => {
                 key={i} 
                 style={dir === 'rtl' ? {textAlign:'right'} : {}}
                 data-aos="fade-up"
-                data-aos-delay={`${400 + i * 200}`}
+                data-aos-delay={400 + i * 200}
               >
                 {p}
               </p>
@@ -293,9 +285,7 @@ const CateringServicesHero = () => {
           </div>
         </div>
       </section>
-
-      {/* Pricing Section */}
-  <section className={`py-20 px-6 ${pricingBg} text-center`} id="pricing">
+            <section className={`py-20 px-6 ${pricingBg} text-center`} id="pricing">
         <h2 
           className="text-4xl font-bold mb-4" 
           style={{
@@ -307,7 +297,7 @@ const CateringServicesHero = () => {
         >
           {translations[language].pricingTitle}
         </h2>
-  <p 
+        <p 
           className="max-w-2xl mx-auto mb-12" 
           style={dir === 'rtl' ? {textAlign:'right'} : {}}
           data-aos="fade-up"
@@ -317,9 +307,9 @@ const CateringServicesHero = () => {
         </p>
 
         <div className="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
-          {translations[language].plans.map((plan, index) => (
+          {translations[language].plans.map((plan, idx) => (
             <div
-              key={index}
+              key={idx}
               className={`flex flex-col items-center rounded-2xl p-8 shadow-lg border 
                 ${plan.highlighted ? 'text-white scale-105' : (theme === 'dark' ? 'bg-gray-800 text-white' : 'bg-white text-gray-800')}`}
               style={{
@@ -327,7 +317,7 @@ const CateringServicesHero = () => {
                 ...(dir === 'rtl' ? {textAlign:'right'} : {})
               }}
               data-aos="fade-up"
-              data-aos-delay={`${(index + 1) * 200}`}
+              data-aos-delay={400 + idx * 200}
             >
               <h3 className="text-2xl font-bold mb-4">{plan.name}</h3>
               <div className="text-4xl font-extrabold mb-2">
@@ -348,17 +338,17 @@ const CateringServicesHero = () => {
                   : {backgroundColor: 'rgba(72, 111, 136, 0.8)'}
                 }
               >
-                {language === 'ar' ? 'استفسر الآن' : language === 'he' ? 'בקש מידע' : 'Inquire Now'}
+                {translations[language].ctaBtn}
               </button>
             </div>
           ))}
         </div>
       </section>
 
+
       {/* Testimonials Section */}
-  <section className={`py-10 px-4 ${sectionAltBg}`}>
+      <section className={`py-10 px-4 ${sectionAltBg}`}>
         <div className="max-w-6xl mx-auto grid md:grid-cols-2 gap-8 items-center">
-          {/* Left Side - Text Card */}
           <div 
             className="text-center md:text-left"
             data-aos="slide-right"
@@ -383,8 +373,6 @@ const CateringServicesHero = () => {
               <h3 className="text-xl font-semibold">{testimonial.name}</h3>
               <p className="text-sm" style={{color: 'rgba(72, 111, 136, 0.8)'}}>{testimonial.role}</p>
             </div>
-
-            {/* Arrows */}
             <div 
               className="flex justify-center md:justify-start gap-4 mt-6"
               data-aos="fade-up"
@@ -406,16 +394,14 @@ const CateringServicesHero = () => {
               </button>
             </div>
           </div>
-
-          {/* Right Side - Image */}
           <div 
             className="flex justify-center"
-            data-aos="slide-left"
+            data-aos="slide-right"
             data-aos-duration="1000"
           >
             <img
-              src={catering2}
-              alt="Catering dishes"
+              src={take2}
+              alt="Mountain property"
               className="rounded-2xl shadow-lg w-full max-w-md h-[350px] w-[500px] object-cover"
             />
           </div>
@@ -462,8 +448,8 @@ const CateringServicesHero = () => {
       {/* Call to Action Section */}
       <section className="relative py-24 px-6 md:px-20 text-white">
         <img
-          src={catering3}
-          alt="Catering service"
+          src={take3}
+          alt="Mountain escape"
           className="absolute inset-0 w-full h-full object-cover z-0"
         />
         <div className="absolute inset-0 z-0" style={{backgroundColor: 'rgba(72, 111, 136, 0.8)'}}></div>
@@ -486,9 +472,7 @@ const CateringServicesHero = () => {
             {translations[language].ctaDesc}
           </p>
           <button
-            onClick={() => {
-              document.getElementById("pricing").scrollIntoView({ behavior: "smooth" });
-            }}
+            onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
             className="bg-white text-black py-4 px-10 text-lg font-semibold rounded-full shadow-lg hover:bg-gray-100 transition duration-300"
             data-aos="zoom-in"
             data-aos-delay="400"
@@ -501,4 +485,4 @@ const CateringServicesHero = () => {
   );
 };
 
-export default CateringServicesHero;
+export default MountainEscapes;

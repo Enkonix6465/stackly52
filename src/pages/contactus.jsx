@@ -454,7 +454,7 @@ export default function ContactHero() {
               key={index}
               className={`${theme === 'dark' ? 'bg-[#222] border-gray-700' : 'bg-gray-50 border-gray-100'} rounded-xl shadow-sm border`}
               style={dir === 'rtl' ? { direction: 'rtl' } : {}}
-              data-aos="slide-left"
+              data-aos="slide-right"
               data-aos-delay={200 + index * 100}
             >
               <button

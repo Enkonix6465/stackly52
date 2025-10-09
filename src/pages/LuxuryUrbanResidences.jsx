@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from "react";
-import AOS from 'aos';
-import 'aos/dist/aos.css';
-import dineVideo from "../assets/s3.mp4";
-import dine1 from "../assets/h4.jpg";
-import dine2 from "../assets/s3.jpg";
-import dine3 from "../assets/deals.png";
+import cateringVideo from "../assets/s2.mp4";
+import catering1 from "../assets/f3.jpg";
+import catering2 from "../assets/s2.jpg";
+import catering3 from "../assets/deals.png";
+import AOS from "aos";
+import "aos/dist/aos.css";
 
 import { FaArrowLeft, FaArrowRight } from "react-icons/fa";
 
@@ -12,31 +12,31 @@ import { FaArrowLeft, FaArrowRight } from "react-icons/fa";
 // Translation object for all text
 const translations = {
   en: {
-    heroTitle: "Exclusive Estates & Mansions",
-    heroDesc: "Experience unparalleled luxury in prestigious estates and grand mansions with world-class amenities designed for distinguished living.",
-    aboutTitle: "About Our Exclusive Estates",
+    heroTitle: "Luxury Urban Residences",
+    heroDesc: "Experience sophisticated city living with premium amenities, breathtaking views, and unparalleled convenience — right in the heart of the urban landscape!",
+    aboutTitle: "About Our Luxury Residences",
     about: [
-      "Experience an immersive luxury living environment where every detail is designed to impress — from architectural grandeur and landscaping to exceptional craftsmanship.",
-      "Our estates feature meticulously curated designs that highlight premium materials, custom finishes, and cutting-edge technology crafted with sophistication and precision.",
-      "Whether it's an intimate family retreat, grand entertaining space, or private business sanctuary, our properties ensure an atmosphere of elegance and prestige.",
-      "Choose from secluded private estates, expansive mansion compounds, or exclusive gated communities with world-class amenities.",
-      "We provide personalized concierge services, property management, and lifestyle customization to make every aspect of estate living extraordinary."
+      "We specialize in creating exceptional urban living experiences with luxury high-rise apartments, penthouses, and exclusive condominiums in prime city locations.",
+      "From elegant studio apartments to expansive multi-bedroom penthouses, our properties are designed to match your lifestyle, preferences, and sophisticated taste.",
+      "Using only premium materials, cutting-edge technology, and world-class amenities, we ensure that every residence offers unparalleled comfort and prestige.",
+      "Our dedicated concierge team handles everything — property management, maintenance, exclusive services, and resident relations — so you can focus on enjoying urban luxury.",
+      "Choose from our curated selection of luxury residences or work with our team to find a completely customized living solution designed exclusively for your needs."
     ],
-    pricingTitle: "Estate Collections",
-    pricingDesc: "Select the perfect luxury estate tailored to your distinguished lifestyle.",
+    pricingTitle: "Residence Tiers",
+    pricingDesc: "Whether you seek urban convenience or ultimate luxury, we have a residence tier to match your sophisticated lifestyle.",
     plans: [
-      { name: "Premium Estates", price: "$2.5M", period: "starting", features: ["5-7 bedrooms", "Gated community", "Premium landscaping"], highlighted: false },
-      { name: "Grand Mansions", price: "$5.8M", period: "starting", features: ["8-12 bedrooms", "Private grounds", "Luxury amenities & staff quarters"], highlighted: true },
-      { name: "Exclusive Compounds", price: "$15M", period: "starting", features: ["Multiple buildings", "Private estate grounds", "Full concierge & estate management"], highlighted: false },
+      { name: "Urban Elite", price: "$899K", period: "starting", features: ["1-2 bedrooms", "City view apartments", "Premium building amenities"], highlighted: false },
+      { name: "Metropolitan Luxury", price: "$1.5M", period: "starting", features: ["2-3 bedrooms", "Panoramic views", "Concierge & valet services"], highlighted: true },
+      { name: "Penthouse Collection", price: "$3.2M", period: "starting", features: ["3+ bedrooms", "Private terraces", "Exclusive penthouse amenities & services"], highlighted: false },
     ],
     testimonials: [
-      { name: "Alexander Sterling", role: "Real Estate Investor", text: "Exceptional properties with unmatched luxury! The attention to detail and service is world-class." },
-      { name: "Victoria Hamilton", role: "Estate Owner", text: "Living in our estate feels like a dream — the privacy and amenities are absolutely incredible." },
-      { name: "Marcus Blackwell", role: "Business Executive", text: "Perfect for entertaining clients. The grand spaces and exquisite finishes never fail to impress." },
-      { name: "Eleanor Whitman", role: "Family Resident", text: "Our family compound is our sanctuary — elegant, spacious, and perfectly maintained." },
-      { name: "Theodore Ashford", role: "Property Collector", text: "Each estate in my portfolio reflects true luxury. The investment value continues to appreciate beautifully." },
+      { name: "Jennifer Clark", role: "Investment Banker", text: "Living here is exceptional — stunning views, impeccable service, and unmatched luxury in the heart of the city!" },
+      { name: "Robert King", role: "Tech Executive", text: "The penthouse exceeded all expectations. World-class amenities and professional concierge services." },
+      { name: "Linda Perez", role: "Art Director", text: "The urban lifestyle here is perfect! Premium finishes, smart home technology, and incredible city access." },
+      { name: "Chris Allen", role: "Real Estate Developer", text: "Outstanding property management and attention to detail. The building sets the standard for luxury urban living." },
+      { name: "Sophia Brown", role: "Fashion Designer", text: "Elegant design, exceptional amenities, and a vibrant community — this is sophisticated city living at its finest!" },
     ],
-    testimonialsTitle: "Property Owner Reviews",
+    testimonialsTitle: "What Residents Say",
     amenitiesTitle: "Amenities & Benefits",
     amenitiesDesc: "Discover the exceptional amenities and benefits that make our properties perfect for modern family living.",
     amenities: [
@@ -45,36 +45,36 @@ const translations = {
       { title: "Prime Location Benefits", description: "Close proximity to top-rated schools, shopping centers, and major transportation hubs." },
       { title: "Energy Efficiency", description: "Eco-friendly features including solar panels, efficient appliances, and sustainable materials." },
     ],
-    ctaTitle: "Ready for Luxury Living?",
-    ctaDesc: "Schedule your private estate viewing now and experience the epitome of elegant living in prestigious properties.",
-    ctaBtn: "View Estates",
+    ctaTitle: "Ready to Experience Luxury?",
+    ctaDesc: "Discover sophisticated urban living where every detail is designed for your comfort and prestige. Inquire about our luxury residences today!",
+    ctaBtn: "Inquire Now",
   },
   ar: {
-    heroTitle: "العقارات والقصور الحصرية",
-    heroDesc: "استمتع برفاهية لا مثيل لها في عقارات مرموقة وقصور فخمة مع مرافق عالمية المستوى مصممة للمعيشة المميزة.",
-    aboutTitle: "عن عقاراتنا الحصرية",
+    heroTitle: "المساكن الحضرية الفاخرة",
+    heroDesc: "اختبر الحياة الحضرية المتطورة مع وسائل الراحة المتميزة، الإطلالات الخلابة، والراحة المنقطعة النظير — في قلب المشهد الحضري!",
+    aboutTitle: "عن مساكننا الفاخرة",
     about: [
-      "استمتع ببيئة معيشة فاخرة غامرة حيث تم تصميم كل التفاصيل لإبهارك — من العمارة الفخمة والمناظر الطبيعية إلى الحرفية الاستثنائية.",
-      "تتميز عقاراتنا بتصاميم منسقة بعناية تبرز المواد الممتازة واللمسات المخصصة والتكنولوجيا المتطورة المصنوعة بأناقة ودقة.",
-      "سواء كان ملاذًا عائليًا حميمًا أو مساحة ترفيه كبيرة أو ملاذًا خاصًا للأعمال، تضمن عقاراتنا أجواء من الأناقة والهيبة.",
-      "اختر من بين العقارات الخاصة المنعزلة أو مجمعات القصور الواسعة أو المجتمعات المسورة الحصرية مع المرافق عالمية المستوى.",
-      "نقدم خدمات الكونسيرج الشخصية وإدارة الممتلكات وتخصيص نمط الحياة لجعل كل جانب من جوانب المعيشة في العقار استثنائيًا."
+      "نحن متخصصون في خلق تجارب طعام لا تُنسى لحفلات الزفاف، الفعاليات، الحفلات الخاصة، والاحتفالات من جميع الأحجام.",
+      "من عشاء فاخر إلى بوفيهات متنوعة، يصمم طهاتنا قوائم تناسب ذوقك وموضوعك وميزانيتك.",
+      "باستخدام مكونات طازجة وفاخرة فقط، نضمن أن كل طبق مليء بالنكهة ومقدم بشكل جميل.",
+      "فريقنا المحترف يتولى كل شيء — من التخطيط للقائمة، التوصيل، التجهيز، والخدمة — حتى تركز على الاستمتاع بمناسبتك.",
+      "اختر من باقات التموين المرنة أو اطلب قائمة مخصصة بالكامل لمناسبتك الخاصة."
     ],
-    pricingTitle: "مجموعات العقارات",
-    pricingDesc: "اختر العقار الفاخر المثالي المناسب لأسلوب حياتك المتميز.",
+    pricingTitle: "باقاتنا",
+    pricingDesc: "سواء كانت مناسبة حميمة أو احتفالًا كبيرًا، لدينا باقة تناسب كل حدث.",
     plans: [
-      { name: "العقارات الممتازة", price: "$2.5M", period: "ابتداءً من", features: ["5-7 غرف نوم", "مجتمع مسور", "تنسيق حدائق ممتاز"], highlighted: false },
-      { name: "القصور الكبرى", price: "$5.8M", period: "ابتداءً من", features: ["8-12 غرفة نوم", "أراضي خاصة", "مرافق فاخرة وأرباع الموظفين"], highlighted: true },
-      { name: "المجمعات الحصرية", price: "$15M", period: "ابتداءً من", features: ["مباني متعددة", "أراضي عقارية خاصة", "إدارة عقارية وكونسيرج كاملة"], highlighted: false },
+      { name: "حدث أساسي", price: "$199", period: "/فعالية", features: ["حتى 20 ضيفًا", "خيارات قائمة قياسية", "توصيل مجاني حتى 10 أميال"], highlighted: false },
+      { name: "حدث مميز", price: "$499", period: "/فعالية", features: ["حتى 50 ضيفًا", "قائمة مخصصة", "مدير فعالية خاص"], highlighted: true },
+      { name: "حدث كبير", price: "$999", period: "/فعالية", features: ["أكثر من 100 ضيف", "قائمة مخصصة بالكامل", "فريق طهاة وخدمة كاملة في الموقع"], highlighted: false },
     ],
     testimonials: [
-      { name: "ألكسندر ستيرلنغ", role: "مستثمر عقاري", text: "عقارات استثنائية برفاهية لا تضاهى! الاهتمام بالتفاصيل والخدمة على مستوى عالمي." },
-      { name: "فيكتوريا هاميلتون", role: "مالكة عقار", text: "العيش في عقارنا يبدو وكأنه حلم — الخصوصية والمرافق مذهلة تمامًا." },
-      { name: "ماركوس بلاكويل", role: "تنفيذي أعمال", text: "مثالي لاستضافة العملاء. المساحات الكبيرة واللمسات الرائعة لا تفشل أبدًا في الإعجاب." },
-      { name: "إليانور ويتمان", role: "ساكنة عائلية", text: "مجمع عائلتنا هو ملاذنا — أنيق وواسع ومُحافظ عليه بشكل مثالي." },
-      { name: "ثيودور أشفورد", role: "جامع عقارات", text: "كل عقار في محفظتي يعكس الرفاهية الحقيقية. القيمة الاستثمارية تستمر في الارتفاع بشكل جميل." },
+      { name: "جينيفر كلارك", role: "منظمة فعاليات", text: "كان التموين رائعًا — كل طبق كان طازجًا وجميل التقديم وفي الوقت المحدد!" },
+      { name: "روبرت كينج", role: "مدير شركة", text: "استعنّا بهم لمؤتمرنا السنوي. الخدمة كانت احترافية وسلسة." },
+      { name: "ليندا بيريز", role: "عروس", text: "كان بوفيه الزفاف مثاليًا! الضيوف أحبوا كل شيء والفريق اهتم بكل التفاصيل." },
+      { name: "كريس ألين", role: "مالك مطعم", text: "أداروا فعالية كبيرة دون أي مشاكل. خدمة يمكن الاعتماد عليها حقًا." },
+      { name: "صوفيا براون", role: "مضيفة عيد ميلاد", text: "طعام لذيذ، فريق رائع، وتنظيم خالٍ من التوتر — أنصح بهم بشدة!" },
     ],
-    testimonialsTitle: "آراء مالكي العقارات",
+    testimonialsTitle: "ماذا يقول العملاء",
     amenitiesTitle: "المرافق والفوائد",
     amenitiesDesc: "اكتشف المرافق والفوائد الاستثنائية التي تجعل عقاراتنا مثالية للحياة العائلية العصرية.",
     amenities: [
@@ -83,36 +83,36 @@ const translations = {
       { title: "فوائد الموقع المتميز", description: "قرب من المدارس المصنفة عالياً ومراكز التسوق ومحاور النقل الرئيسية." },
       { title: "كفاءة الطاقة", description: "ميزات صديقة للبيئة تشمل الألواح الشمسية والأجهزة الفعالة والمواد المستدامة." },
     ],
-    ctaTitle: "جاهز للمعيشة الفاخرة؟",
-    ctaDesc: "جدول مشاهدة عقارك الخاص الآن واستمتع بقمة المعيشة الأنيقة في العقارات المرموقة.",
-    ctaBtn: "عرض العقارات",
+    ctaTitle: "جاهز لحجز مناسبتك؟",
+    ctaDesc: "دعنا نهتم بالطعام بينما تركز على خلق لحظات لا تُنسى. احجز خدمة التموين الآن!",
+    ctaBtn: "احجز الآن",
   },
   he: {
-    heroTitle: "נכסים ואחוזות יוקרתיות",
-    heroDesc: "חוו יוקרה ללא תחרות באחוזות יוקרתיות ובאחוזות מפוארות עם שירותים ברמה עולמית המיועדים למגורים מכובדים.",
-    aboutTitle: "על הנכסים הבלעדיים שלנו",
+    heroTitle: "דירות יוקרה עירוניות",
+    heroDesc: "חוו חיים עירוניים מתוחכמים עם שירותים מעולים, נופים עוצרי נשימה ונוחות שאין שני לה — בלב הנוף העירוני!",
+    aboutTitle: "על הדירות היוקרה שלנו",
     about: [
-      "חוו סביבת מגורים יוקרתית סוחפת שבה כל פרט נועד להרשים — מפאר אדריכלי ונוף ועד לאומנות יוצאת דופן.",
-      "הנכסים שלנו כוללים עיצובים מאוצרים בקפידה המדגישים חומרים משובחים, גימורים מותאמים אישית וטכנולוגיה מתקדמת הנוצרת בתחכום ודיוק.",
-      "בין אם זה מקלט משפחתי אינטימי, מרחב בידור גדול או מקדש עסקי פרטי, הנכסים שלנו מבטיחים אווירה של אלגנטיות ויוקרה.",
-      "בחרו מבין נכסים פרטיים מבודדים, מתחמי אחוזות נרחבים או קהילות סגורות בלעדיות עם שירותים ברמה עולמית.",
-      "אנו מספקים שירותי קונסיירז' מותאמים אישית, ניהול נכסים והתאמת אורח חיים כדי להפוך כל היבט של חיי האחוזה ליוצאי דופן."
+      "אנו מתמחים ביצירת חוויות קולינריות בלתי נשכחות לחתונות, אירועים עסקיים, מסיבות פרטיות וחגיגות בכל גודל.",
+      "מארוחות ערב אלגנטיות ועד בופה עשיר, השפים שלנו בונים תפריטים מותאמים לטעם, לנושא ולתקציב שלכם.",
+      "באמצעות מרכיבים טריים ואיכותיים בלבד, אנו מבטיחים שכל מנה תהיה עשירה בטעם ומוגשת בצורה מרהיבה.",
+      "הצוות המקצועי שלנו דואג להכל — תכנון תפריט, משלוח, סידור ושירות — כדי שתוכלו ליהנות מהאירוע.",
+      "בחרו מתוך חבילות קייטרינג גמישות או בקשו תפריט מותאם אישית לאירוע שלכם."
     ],
-    pricingTitle: "אוספי נכסים",
-    pricingDesc: "בחרו את האחוזה היוקרתית המושלמת המותאמת לאורח החיים המכובד שלכם.",
+    pricingTitle: "החבילות שלנו",
+    pricingDesc: "בין אם זו התכנסות אינטימית או חגיגה גדולה, יש לנו חבילה לכל אירוע.",
     plans: [
-      { name: "נכסים מובחרים", price: "$2.5M", period: "החל מ", features: ["5-7 חדרי שינה", "קהילה סגורה", "גינון מובחר"], highlighted: false },
-      { name: "אחוזות מפוארות", price: "$5.8M", period: "החל מ", features: ["8-12 חדרי שינה", "שטחים פרטיים", "שירותים יוקרתיים ומגורי צוות"], highlighted: true },
-      { name: "מתחמים בלעדיים", price: "$15M", period: "החל מ", features: ["מספר בניינים", "שטחי אחוזה פרטיים", "קונסיירז' מלא וניהול אחוזה"], highlighted: false },
+      { name: "אירוע בסיסי", price: "$199", period: "/אירוע", features: ["עד 20 אורחים", "אפשרויות תפריט סטנדרטיות", "משלוח חינם עד 10 מייל"], highlighted: false },
+      { name: "אירוע פרימיום", price: "$499", period: "/אירוע", features: ["עד 50 אורחים", "תפריט מותאם אישית", "מנהל אירוע ייעודי"], highlighted: true },
+      { name: "אירוע גדול", price: "$999", period: "/אירוע", features: ["100+ אורחים", "תפריט מותאם במלואו", "צוות שפים ושירות מלא במקום"], highlighted: false },
     ],
     testimonials: [
-      { name: "אלכסנדר סטרלינג", role: "משקיע נדל\"ן", text: "נכסים יוצאי דופן ביוקרה ללא תחרות! תשומת הלב לפרטים והשירות ברמה עולמית." },
-      { name: "ויקטוריה המילטון", role: "בעלת נכס", text: "לגור באחוזה שלנו מרגיש כמו חלום — הפרטיות והשירותים מדהימים לחלוטין." },
-      { name: "מרקוס בלקוול", role: "מנהל עסקי", text: "מושלם לאירוח לקוחות. החללים הגדולים והגימורים המעולים אף פעם לא נכשלים להרשים." },
-      { name: "אלינור ויטמן", role: "דיירת משפחתית", text: "המתחם המשפחתי שלנו הוא המקלט שלנו — אלגנטי, מרווח ומתוחזק בצורה מושלמת." },
-      { name: "תיאודור אשפורד", role: "אספן נכסים", text: "כל נכס בתיק שלי משקף יוקרה אמיתית. הערך ההשקעתי ממשיך לעלות בצורה יפה." },
+      { name: "ג'ניפר קלארק", role: "מתכננת אירועים", text: "הקייטרינג היה מושלם — כל מנה הייתה טרייה, יפהפיה ובזמן!" },
+      { name: "רוברט קינג", role: "מנהל חברה", text: "הזמנו אותם לכנס השנתי שלנו. השירות היה מקצועי וזורם." },
+      { name: "לינדה פרז", role: "כלה", text: "הבופה בחתונה היה מושלם! האורחים אהבו כל ביס והצוות דאג להכל." },
+      { name: "כריס אלן", role: "בעל מסעדה", text: "הם ניהלו אירוע גדול בלי שום בעיה. שירות אמין באמת." },
+      { name: "סופיה בראון", role: "מארחת יום הולדת", text: "אוכל טעים, צוות נהדר וארגון ללא דאגות — ממליצה בחום!" },
     ],
-    testimonialsTitle: "ביקורות בעלי נכסים",
+    testimonialsTitle: "מה הלקוחות אומרים",
     amenitiesTitle: "שירותים ויתרונות",
     amenitiesDesc: "גלו את השירותים והיתרונות יוצאי הדופן שהופכים את הנכסים שלנו למושלמים לחיי משפחה מודרניים.",
     amenities: [
@@ -121,13 +121,13 @@ const translations = {
       { title: "יתרונות מיקום מעולה", description: "קרבה לבתי ספר מובילים, מרכזי קניות וצמתי תחבורה מרכזיים." },
       { title: "יעילות אנרגטית", description: "תכונות ידידותיות לסביבה כולל פאנלים סולאריים, מכשירים יעילים וחומרים בני קיימא." },
     ],
-    ctaTitle: "מוכנים לחיים יוקרתיים?",
-    ctaDesc: "תזמנו את צפיית האחוזה הפרטית שלכם עכשיו וחוו את שיא החיים האלגנטיים בנכסים יוקרתיים.",
-    ctaBtn: "צפו באחוזות",
+    ctaTitle: "מוכנים להזמין לאירוע?",
+    ctaDesc: "תנו לנו לדאוג לאוכל בזמן שאתם יוצרים רגעים בלתי נשכחים. הזמינו שירותי קייטרינג עוד היום!",
+    ctaBtn: "הזמן עכשיו",
   },
 };
 
-const DineInExperienceHero = () => {
+const LuxuryUrbanResidences = () => {
   // Language and theme state synced with Header
   const [language, setLanguage] = useState('en');
   const [theme, setTheme] = useState('light');
@@ -219,7 +219,7 @@ const DineInExperienceHero = () => {
   <section className="relative w-full h-[85vh] overflow-hidden">
         <video
           className="absolute top-0 left-0 w-full h-full object-cover"
-          src={dineVideo}
+          src={cateringVideo}
           autoPlay
           loop
           muted
@@ -256,8 +256,8 @@ const DineInExperienceHero = () => {
             data-aos-duration="1000"
           >
             <img
-              src={dine1}
-              alt="Our Exclusive Estates"
+              src={catering1}
+              alt="Our Catering Service"
               className="w-full md:max-w-full md:h-[340px] max-w-md h-full object-cover rounded-2xl shadow-lg"
             />
           </div>
@@ -265,7 +265,7 @@ const DineInExperienceHero = () => {
           {/* Right Content - balanced height */}
           <div 
             className="w-full md:w-1/2 flex flex-col items-start justify-center min-h-[340px] h-full md:pl-8 text-justify"
-            data-aos="slide-left"
+            data-aos="slide-right"
             data-aos-duration="1000"
           >
             <h2 
@@ -285,7 +285,7 @@ const DineInExperienceHero = () => {
                 key={i} 
                 style={dir === 'rtl' ? {textAlign:'right'} : {}}
                 data-aos="fade-up"
-                data-aos-delay={400 + i * 200}
+                data-aos-delay={`${400 + i * 200}`}
               >
                 {p}
               </p>
@@ -307,7 +307,7 @@ const DineInExperienceHero = () => {
         >
           {translations[language].pricingTitle}
         </h2>
-        <p 
+  <p 
           className="max-w-2xl mx-auto mb-12" 
           style={dir === 'rtl' ? {textAlign:'right'} : {}}
           data-aos="fade-up"
@@ -327,7 +327,7 @@ const DineInExperienceHero = () => {
                 ...(dir === 'rtl' ? {textAlign:'right'} : {})
               }}
               data-aos="fade-up"
-              data-aos-delay={400 + index * 200}
+              data-aos-delay={`${(index + 1) * 200}`}
             >
               <h3 className="text-2xl font-bold mb-4">{plan.name}</h3>
               <div className="text-4xl font-extrabold mb-2">
@@ -348,7 +348,7 @@ const DineInExperienceHero = () => {
                   : {backgroundColor: 'rgba(72, 111, 136, 0.8)'}
                 }
               >
-                {language === 'ar' ? 'عرض العقارات' : language === 'he' ? 'צפו באחוזות' : 'View Estates'}
+                {language === 'ar' ? 'استفسر الآن' : language === 'he' ? 'בקש מידע' : 'Inquire Now'}
               </button>
             </div>
           ))}
@@ -410,12 +410,12 @@ const DineInExperienceHero = () => {
           {/* Right Side - Image */}
           <div 
             className="flex justify-center"
-            data-aos="slide-left"
+            data-aos="slide-right"
             data-aos-duration="1000"
           >
             <img
-              src={dine2}
-              alt="Estate interior"
+              src={catering2}
+              alt="Catering dishes"
               className="rounded-2xl shadow-lg w-full max-w-md h-[350px] w-[500px] object-cover"
             />
           </div>
@@ -462,8 +462,8 @@ const DineInExperienceHero = () => {
       {/* Call to Action Section */}
       <section className="relative py-24 px-6 md:px-20 text-white">
         <img
-          src={dine3}
-          alt="Luxury estate exterior"
+          src={catering3}
+          alt="Catering service"
           className="absolute inset-0 w-full h-full object-cover z-0"
         />
         <div className="absolute inset-0 z-0" style={{backgroundColor: 'rgba(72, 111, 136, 0.8)'}}></div>
@@ -501,4 +501,4 @@ const DineInExperienceHero = () => {
   );
 };
 
-export default DineInExperienceHero;
+export default LuxuryUrbanResidences;

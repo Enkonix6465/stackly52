@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from "react";
 import AOS from 'aos';
 import 'aos/dist/aos.css';
-import takeVideo from "../assets/s6.mp4";
-import take1 from "../assets/s6.jpg";
-import take2 from "../assets/f4.jpg";
-import take3 from "../assets/deals.png";
+import mealVideo from "../assets/s5.mp4";
+import meal1 from "../assets/s5.jpg";
+import meal2 from "../assets/f3.jpg";
+import meal3 from "../assets/deals.png";
 
 import { FaArrowLeft, FaArrowRight } from "react-icons/fa";
 
@@ -12,29 +12,30 @@ import { FaArrowLeft, FaArrowRight } from "react-icons/fa";
 // Translation object for all text
 const translations = {
   en: {
-    heroTitle: "Mountain & Countryside Escapes",
-    heroDesc: "Serene retreats, breathtaking nature — discover your perfect mountain getaway today.",
-    aboutTitle: "Why Choose Our Mountain & Countryside Properties?",
+    heroTitle: "Skyline Penthouse Collection",
+    heroDesc: "Luxury penthouses with breathtaking city views — where elegance meets modern living.",
+    aboutTitle: "Why Choose Our Penthouse Collection?",
     about: [
-      "Escape to tranquil mountain retreats and countryside havens where nature meets luxury. Experience peace and serenity away from city life.",
-      "Perfect for weekend getaways, permanent residences, or investment properties. Enjoy pristine landscapes and fresh mountain air on your own schedule.",
-      "With exclusive locations and premium amenities, you'll always find the perfect retreat to reconnect with nature."
+      "Experience unparalleled luxury in our exclusive penthouse collection featuring panoramic city views.",
+      "Each penthouse is meticulously designed with premium finishes, state-of-the-art amenities, and spacious layouts.",
+      "Whether you're seeking a primary residence, investment property, or luxury retreat, our penthouses offer the ultimate in sophisticated living.",
+      "Flexible viewing schedules, customizable interior options, and dedicated concierge services."
     ],
-    pricingTitle: "Property Options",
-    pricingDesc: "Choose the mountain retreat that fits your dreams and budget.",
+    pricingTitle: "Penthouse Plans",
+    pricingDesc: "Choose the penthouse that matches your luxury lifestyle.",
     plans: [
-      { name: "Mountain Cabin", price: "$450K", period: "", features: ["2-bed rustic cabin", "Fireplace & deck", "Hiking trail access"], highlighted: false },
-      { name: "Alpine Lodge", price: "$750K", period: "", features: ["3-bed luxury lodge", "Mountain views", "Premium finishes"], highlighted: true },
-      { name: "Estate Retreat", price: "$1.2M", period: "", features: ["5-bed estate home", "Private acreage", "Ultimate privacy"], highlighted: false },
+      { name: "Urban Vista", price: "$2.5M", period: "", features: ["2-bed penthouse", "Private terrace", "City skyline views"], highlighted: false },
+      { name: "Metropolitan Heights", price: "$4.2M", period: "", features: ["3-bed penthouse", "Rooftop garden", "Premium finishes"], highlighted: true },
+      { name: "Platinum Sky", price: "$6.8M", period: "", features: ["4-bed penthouse", "Private elevator", "360° panoramic views"], highlighted: false },
     ],
     testimonials: [
-      { name: "Olivia Carter", role: "Nature Lover", text: "Our mountain cabin exceeded expectations — peaceful mornings and stunning sunsets every day!" },
-      { name: "James Allen", role: "City Escapist", text: "The perfect retreat from city stress. Fresh air, hiking trails, and complete tranquility." },
-      { name: "Sophia Evans", role: "Family Vacationer", text: "Mountain escapes create lasting family memories. Nature, adventure, and luxury combined perfectly." },
-      { name: "Ethan Lewis", role: "Weekend Warrior", text: "Affordable mountain getaway! Great investment and perfect weekend retreat from urban life." },
-      { name: "Amelia Scott", role: "Property Owner", text: "Reliable mountain property management and breathtaking natural beauty every season!" },
+      { name: "Ava Mitchell", role: "Real Estate Investor", text: "The penthouse exceeded all expectations — stunning views and impeccable design make it a perfect investment." },
+      { name: "Liam Walker", role: "Tech Executive", text: "Living in this penthouse is like being on top of the world — the perfect blend of luxury and convenience!" },
+      { name: "Isabella Green", role: "Interior Designer", text: "The architectural details and premium finishes in this penthouse are absolutely breathtaking." },
+      { name: "Noah Davis", role: "Investment Banker", text: "Prime location, exceptional quality, and incredible value — this penthouse is a rare find!" },
+      { name: "Mia Johnson", role: "Luxury Property Owner", text: "I've owned multiple properties, but this penthouse collection stands in a class of its own!" },
     ],
-    testimonialsTitle: "What Property Owners Say",
+    testimonialsTitle: "What Residents Say",
     amenitiesTitle: "Amenities & Benefits",
     amenitiesDesc: "Discover the exceptional amenities and benefits that make our properties perfect for modern family living.",
     amenities: [
@@ -43,34 +44,35 @@ const translations = {
       { title: "Prime Location Benefits", description: "Close proximity to top-rated schools, shopping centers, and major transportation hubs." },
       { title: "Energy Efficiency", description: "Eco-friendly features including solar panels, efficient appliances, and sustainable materials." },
     ],
-    ctaTitle: "Ready for Mountain Living?",
-    ctaDesc: "Secure your mountain retreat now and escape to nature when it's perfect for you.",
-    ctaBtn: "View Properties",
+    ctaTitle: "Ready to Live Above the City?",
+    ctaDesc: "Secure your penthouse today and experience luxury living at its finest.",
+    ctaBtn: "View Penthouses",
   },
   ar: {
-    heroTitle: "ملاذات الجبال والريف",
-    heroDesc: "ملاذات هادئة وطبيعة خلابة — اكتشف ملاذك الجبلي المثالي اليوم.",
-    aboutTitle: "لماذا تختار عقارات الجبال والريف لدينا؟",
+    heroTitle: "مجموعة البنتهاوس سكاي لاين",
+    heroDesc: "شقق فاخرة مع إطلالات خلابة على المدينة — حيث تلتقي الأناقة بالحياة العصرية.",
+    aboutTitle: "لماذا تختار مجموعة البنتهاوس لدينا؟",
     about: [
-      "اهرب إلى ملاذات جبلية هادئة وواحات ريفية حيث تلتقي الطبيعة بالفخامة. استمتع بالسلام والهدوء بعيدًا عن حياة المدينة.",
-      "مثالي للإجازات الأسبوعية أو الإقامة الدائمة أو العقارات الاستثمارية. استمتع بالمناظر الطبيعية البكر والهواء الجبلي النقي في وقتك.",
-      "مع مواقع حصرية ووسائل راحة فاخرة، ستجد دائمًا الملاذ المثالي للتواصل مع الطبيعة."
+      "استمتع برفاهية لا مثيل لها في مجموعة البنتهاوس الحصرية مع إطلالات بانورامية على المدينة.",
+      "كل بنتهاوس مصمم بعناية فائقة مع تشطيبات فاخرة ووسائل راحة حديثة وتخطيط واسع.",
+      "سواء كنت تبحث عن مسكن أساسي أو استثمار عقاري أو ملاذ فاخر، توفر شققنا أقصى درجات الحياة الراقية.",
+      "جداول مشاهدة مرنة وخيارات تصميم داخلي قابلة للتخصيص وخدمات كونسيرج مخصصة."
     ],
-    pricingTitle: "خيارات العقارات",
-    pricingDesc: "اختر الملاذ الجبلي الذي يناسب أحلامك وميزانيتك.",
+    pricingTitle: "خطط البنتهاوس",
+    pricingDesc: "اختر البنتهاوس الذي يناسب أسلوب حياتك الفاخر.",
     plans: [
-      { name: "كوخ جبلي", price: "450 ألف $", period: "", features: ["كوخ ريفي غرفتين", "مدفأة وشرفة", "الوصول لممرات المشي"], highlighted: false },
-      { name: "نزل جبلي", price: "750 ألف $", period: "", features: ["نزل فاخر 3 غرف", "إطلالات جبلية", "تشطيبات فاخرة"], highlighted: true },
-      { name: "ملكية ريفية", price: "1.2 مليون $", period: "", features: ["منزل 5 غرف", "أرض خاصة", "خصوصية مطلقة"], highlighted: false },
+      { name: "إطلالة حضرية", price: "2.5 مليون $", period: "", features: ["بنتهاوس غرفتين", "تراس خاص", "إطلالة على أفق المدينة"], highlighted: false },
+      { name: "مرتفعات العاصمة", price: "4.2 مليون $", period: "", features: ["بنتهاوس 3 غرف", "حديقة على السطح", "تشطيبات فاخرة"], highlighted: true },
+      { name: "بلاتينيوم سكاي", price: "6.8 مليون $", period: "", features: ["بنتهاوس 4 غرف", "مصعد خاص", "إطلالة بانورامية 360°"], highlighted: false },
     ],
     testimonials: [
-      { name: "أوليفيا كارتر", role: "محبة الطبيعة", text: "كوخنا الجبلي فاق التوقعات — صباحات هادئة وغروب شمس مذهل كل يوم!" },
-      { name: "جيمس ألين", role: "هارب من المدينة", text: "الملاذ المثالي من ضغوط المدينة. هواء نقي وممرات مشي وهدوء تام." },
-      { name: "صوفيا إيفانز", role: "مسافرة عائلية", text: "ملاذات الجبال تخلق ذكريات عائلية دائمة. طبيعة ومغامرة وفخامة مجتمعة بشكل مثالي." },
-      { name: "إيثان لويس", role: "محارب نهاية الأسبوع", text: "ملاذ جبلي بأسعار معقولة! استثمار رائع وملاذ مثالي لنهايات الأسبوع من الحياة الحضرية." },
-      { name: "أميليا سكوت", role: "مالكة عقار", text: "إدارة عقارات جبلية موثوقة وجمال طبيعي خلاب في كل فصل!" },
+      { name: "آفا ميتشل", role: "مستثمرة عقارية", text: "البنتهاوس فاق كل التوقعات — إطلالات مذهلة وتصميم لا تشوبه شائبة يجعله استثمارًا مثاليًا." },
+      { name: "ليام ووكر", role: "مدير تنفيذي تقني", text: "العيش في هذا البنتهاوس كأنك في قمة العالم — مزيج مثالي من الفخامة والراحة!" },
+      { name: "إيزابيلا جرين", role: "مصممة داخلية", text: "التفاصيل المعمارية والتشطيبات الفاخرة في هذا البنتهاوس مذهلة حقًا." },
+      { name: "نواه ديفيس", role: "مصرفي استثماري", text: "موقع ممتاز وجودة استثنائية وقيمة لا تصدق — هذا البنتهاوس اكتشاف نادر!" },
+      { name: "ميا جونسون", role: "مالكة عقارات فاخرة", text: "لقد امتلكت عدة عقارات، لكن مجموعة البنتهاوس هذه تقف في فئة خاصة بها!" },
     ],
-    testimonialsTitle: "ماذا يقول ملاك العقارات",
+    testimonialsTitle: "ماذا يقول السكان",
     amenitiesTitle: "المرافق والفوائد",
     amenitiesDesc: "اكتشف المرافق والفوائد الاستثنائية التي تجعل عقاراتنا مثالية للحياة العائلية العصرية.",
     amenities: [
@@ -79,34 +81,35 @@ const translations = {
       { title: "فوائد الموقع المتميز", description: "قرب من المدارس المصنفة عالياً ومراكز التسوق ومحاور النقل الرئيسية." },
       { title: "كفاءة الطاقة", description: "ميزات صديقة للبيئة تشمل الألواح الشمسية والأجهزة الفعالة والمواد المستدامة." },
     ],
-    ctaTitle: "مستعد للحياة الجبلية؟",
-    ctaDesc: "احجز ملاذك الجبلي الآن واهرب إلى الطبيعة عندما يكون مثاليًا لك.",
-    ctaBtn: "اعرض العقارات",
+    ctaTitle: "جاهز للعيش فوق المدينة؟",
+    ctaDesc: "احجز البنتهاوس الخاص بك اليوم واستمتع بالحياة الفاخرة في أبهى صورها.",
+    ctaBtn: "اعرض البنتهاوس",
   },
   he: {
-    heroTitle: "מפלטי הרים וכפרים",
-    heroDesc: "מפלטים שלווים, טבע עוצר נשימה — גלו את המפלט ההררי המושלם שלכם היום.",
-    aboutTitle: "למה לבחור בנכסי ההרים והכפרים שלנו?",
+    heroTitle: "קולקציית פנטהאוס סקיילין",
+    heroDesc: "פנטהאוסים יוקרתיים עם נוף עוצר נשימה של העיר — שבו אלגנטיות פוגשת חיים מודרניים.",
+    aboutTitle: "למה לבחור בקולקציית הפנטהאוס שלנו?",
     about: [
-      "ברחו למפלטי הרים שלווים ומקלטי כפרים שבהם הטבע פוגש יוקרה. חוו שלווה ורגיעה הרחק מחיי העיר.",
-      "מושלם לחופשות סוף שבוע, מגורים קבועים או נכסי השקעה. תיהנו מנופים בתוליים ואוויר הררי צח בזמנכם.",
-      "עם מיקומים בלעדיים ושירותים מובחרים, תמיד תמצאו את המפלט המושלם להתחבר מחדש עם הטבע."
+      "חוו יוקרה ללא תחרות בקולקציית הפנטהאוס הבלעדית שלנו עם נופים פנורמיים של העיר.",
+      "כל פנטהאוס מעוצב בקפידה עם גימורים איכותיים, שירותים חדישים ופריסות מרווחות.",
+      "בין אם אתם מחפשים מקום מגורים ראשי, נכס השקעה או מקום מפלט יוקרתי, הפנטהאוסים שלנו מציעים את המקסימום בחיים מתוחכמים.",
+      "לוחות צפיה גמישים, אפשרויות עיצוב פנים מותאמות אישית ושירותי קונסיירז' מסורים."
     ],
-    pricingTitle: "אפשרויות נכסים",
-    pricingDesc: "בחרו את המפלט ההררי שמתאים לחלומות ולתקציב שלכם.",
+    pricingTitle: "תוכניות פנטהאוס",
+    pricingDesc: "בחרו את הפנטהאוס שמתאים לאורח החיים היוקרתי שלכם.",
     plans: [
-      { name: "בקתת הרים", price: "$450K", period: "", features: ["בקתה כפרית 2 חדרים", "אח ומרפסת", "גישה לשבילי הליכה"], highlighted: false },
-      { name: "אכסנייה אלפינית", price: "$750K", period: "", features: ["אכסנייה יוקרתית 3 חדרים", "נוף הרים", "גימורים פרימיום"], highlighted: true },
-      { name: "מפלט אחוזה", price: "$1.2M", period: "", features: ["בית אחוזה 5 חדרים", "שטח פרטי", "פרטיות מוחלטת"], highlighted: false },
+      { name: "נוף עירוני", price: "$2.5M", period: "", features: ["פנטהאוס 2 חדרים", "מרפסת פרטית", "נוף קו הרקיע של העיר"], highlighted: false },
+      { name: "גבהים מטרופוליטניים", price: "$4.2M", period: "", features: ["פנטהאוס 3 חדרים", "גן גג", "גימורים פרימיום"], highlighted: true },
+      { name: "פלטינום סקיי", price: "$6.8M", period: "", features: ["פנטהאוס 4 חדרים", "מעלית פרטית", "נוף פנורמי 360°"], highlighted: false },
     ],
     testimonials: [
-      { name: "אוליביה קרטר", role: "חובבת טבע", text: "הבקתה ההררית שלנו עברה את הציפיות — בקרים שלווים ושקיעות מדהימות כל יום!" },
-      { name: "ג'יימס אלן", role: "בורח מהעיר", text: "המפלט המושלם מלחצי העיר. אוויר צח, שבילי הליכה ושלווה מוחלטת." },
-      { name: "סופיה אוונס", role: "נופשת משפחתית", text: "מפלטי הרים יוצרים זיכרונות משפחתיים לכל החיים. טבע, הרפתקה ויוקרה משולבים בצורה מושלמת." },
-      { name: "אית'ן לואיס", role: "לוחם סופי שבוע", text: "מפלט הררי במחיר סביר! השקעה נהדרת ומפלט מושלם לסופי שבוע מהחיים העירוניים." },
-      { name: "אמיליה סקוט", role: "בעלת נכסים", text: "ניהול נכסי הרים אמין ויופי טבעי עוצר נשימה בכל עונה!" },
+      { name: "אווה מיטשל", role: "משקיעת נדל\"ן", text: "הפנטהאוס עבר את כל הציפיות — נופים מדהימים ועיצוב ללא דופי הופכים אותו להשקעה מושלמת." },
+      { name: "ליאם ווקר", role: "מנהל טכנולוגיה", text: "לחיות בפנטהאוס הזה זה כמו להיות בראש העולם — שילוב מושלם של יוקרה ונוחות!" },
+      { name: "איזבלה גרין", role: "מעצבת פנים", text: "הפרטים האדריכליים והגימורים הפרימיום בפנטהאוס הזה פשוט עוצרי נשימה." },
+      { name: "נואה דייוויס", role: "בנקאי השקעות", text: "מיקום מעולה, איכות יוצאת דופן וערך מדהים — הפנטהאוס הזה הוא ממצא נדיר!" },
+      { name: "מיה ג'ונסון", role: "בעלת נכסי יוקרה", text: "הייתי בעלת נכסים מרובים, אבל קולקציית הפנטהאוס הזו עומדת בקטגוריה משלה!" },
     ],
-    testimonialsTitle: "מה בעלי הנכסים אומרים",
+    testimonialsTitle: "מה התושבים אומרים",
     amenitiesTitle: "שירותים ויתרונות",
     amenitiesDesc: "גלו את השירותים והיתרונות יוצאי הדופן שהופכים את הנכסים שלנו למושלמים לחיי משפחה מודרניים.",
     amenities: [
@@ -115,13 +118,13 @@ const translations = {
       { title: "יתרונות מיקום מעולה", description: "קרבה לבתי ספר מובילים, מרכזי קניות וצמתי תחבורה מרכזיים." },
       { title: "יעילות אנרגטית", description: "תכונות ידידותיות לסביבה כולל פאנלים סולאריים, מכשירים יעילים וחומרים בני קיימא." },
     ],
-    ctaTitle: "מוכנים לחיים הרריים?",
-    ctaDesc: "הבטיחו את המפלט ההררי שלכם עכשיו וברחו אל הטבע כשזה מושלם עבורכם.",
-    ctaBtn: "צפו בנכסים",
+    ctaTitle: "מוכנים לחיות מעל העיר?",
+    ctaDesc: "הבטיחו את הפנטהאוס שלכם היום וחוו חיים יוקרתיים בשיאם.",
+    ctaBtn: "צפו בפנטהאוסים",
   },
 };
 
-const TakeawayPickupHero = () => {
+const SkylinePenthouseCollection = () => {
   // Language and theme state synced with Header
   const [language, setLanguage] = useState('en');
   const [theme, setTheme] = useState('light');
@@ -200,7 +203,6 @@ const TakeawayPickupHero = () => {
 
   return (
     <div dir={dir} className={sectionBg}>
-  {/* ...removed registration form overlay... */}
       {/* Theme Toggle Button */}
       <div className="flex justify-end p-4">
         <button
@@ -214,7 +216,7 @@ const TakeawayPickupHero = () => {
   <section className="relative w-full h-[85vh] overflow-hidden">
         <video
           className="absolute top-0 left-0 w-full h-full object-cover"
-          src={takeVideo}
+          src={mealVideo}
           autoPlay
           loop
           muted
@@ -250,14 +252,14 @@ const TakeawayPickupHero = () => {
             data-aos-duration="1000"
           >
             <img
-              src={take1}
-              alt="Mountain retreat"
+              src={meal1}
+              alt="Subscription meal"
               className="w-full md:max-w-full md:h-[340px] max-w-md h-full object-cover rounded-2xl shadow-lg"
             />
           </div>
           <div 
             className="w-full md:w-1/2 flex flex-col items-start justify-center min-h-[340px] h-full md:pl-8 text-justify"
-            data-aos="slide-left"
+            data-aos="slide-right"
             data-aos-duration="1000"
           >
             <h2 
@@ -285,7 +287,9 @@ const TakeawayPickupHero = () => {
           </div>
         </div>
       </section>
-            <section className={`py-20 px-6 ${pricingBg} text-center`} id="pricing">
+
+      {/* Pricing Section */}
+  <section className={`py-20 px-6 ${pricingBg} text-center`} id="pricing">
         <h2 
           className="text-4xl font-bold mb-4" 
           style={{
@@ -345,9 +349,8 @@ const TakeawayPickupHero = () => {
         </div>
       </section>
 
-
       {/* Testimonials Section */}
-      <section className={`py-10 px-4 ${sectionAltBg}`}>
+  <section className={`py-10 px-4 ${sectionAltBg}`}>
         <div className="max-w-6xl mx-auto grid md:grid-cols-2 gap-8 items-center">
           <div 
             className="text-center md:text-left"
@@ -396,12 +399,12 @@ const TakeawayPickupHero = () => {
           </div>
           <div 
             className="flex justify-center"
-            data-aos="slide-left"
+            data-aos="slide-right"
             data-aos-duration="1000"
           >
             <img
-              src={take2}
-              alt="Mountain property"
+              src={meal2}
+              alt="Healthy meal plan"
               className="rounded-2xl shadow-lg w-full max-w-md h-[350px] w-[500px] object-cover"
             />
           </div>
@@ -448,8 +451,8 @@ const TakeawayPickupHero = () => {
       {/* Call to Action Section */}
       <section className="relative py-24 px-6 md:px-20 text-white">
         <img
-          src={take3}
-          alt="Mountain escape"
+          src={meal3}
+          alt="Meal delivery setup"
           className="absolute inset-0 w-full h-full object-cover z-0"
         />
         <div className="absolute inset-0 z-0" style={{backgroundColor: 'rgba(72, 111, 136, 0.8)'}}></div>
@@ -472,7 +475,9 @@ const TakeawayPickupHero = () => {
             {translations[language].ctaDesc}
           </p>
           <button
-            onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
+            onClick={() => {
+              document.getElementById("pricing").scrollIntoView({ behavior: "smooth" });
+            }}
             className="bg-white text-black py-4 px-10 text-lg font-semibold rounded-full shadow-lg hover:bg-gray-100 transition duration-300"
             data-aos="zoom-in"
             data-aos-delay="400"
@@ -485,4 +490,4 @@ const TakeawayPickupHero = () => {
   );
 };
 
-export default TakeawayPickupHero;
+export default SkylinePenthouseCollection;

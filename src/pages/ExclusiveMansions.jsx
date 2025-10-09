@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from "react";
 import AOS from 'aos';
 import 'aos/dist/aos.css';
-import partyVideo from "../assets/s4.mp4";
-import party1 from "../assets/s4.jpg";
-import party2 from "../assets/coast.jpg";
-import party3 from "../assets/deals.png";
+import dineVideo from "../assets/s3.mp4";
+import dine1 from "../assets/h4.jpg";
+import dine2 from "../assets/s3.jpg";
+import dine3 from "../assets/deals.png";
 
 import { FaArrowLeft, FaArrowRight } from "react-icons/fa";
 
@@ -12,30 +12,31 @@ import { FaArrowLeft, FaArrowRight } from "react-icons/fa";
 // Translation object for all text
 const translations = {
   en: {
-    heroTitle: "Coastal & Beachfront Retreats",
-    heroDesc: "Escape to pristine coastal havens — stunning oceanfront properties with panoramic views, private beaches, and world-class amenities.",
-    aboutTitle: "Why Choose Our Coastal Properties?",
+    heroTitle: "Exclusive Estates & Mansions",
+    heroDesc: "Experience unparalleled luxury in prestigious estates and grand mansions with world-class amenities designed for distinguished living.",
+    aboutTitle: "About Our Exclusive Estates",
     about: [
-      "Experience the tranquility of oceanfront living where every sunrise and sunset creates unforgettable memories from your private retreat.",
-      "Our beachfront properties feature direct beach access, panoramic ocean views, and luxury amenities designed for the ultimate coastal lifestyle.",
-      "From intimate beach cottages to grand oceanfront estates, each property offers unique charm with modern comforts and breathtaking natural beauty.",
-      "Whether seeking a peaceful getaway, investment opportunity, or permanent residence, our coastal properties provide an unparalleled seaside living experience."
+      "Experience an immersive luxury living environment where every detail is designed to impress — from architectural grandeur and landscaping to exceptional craftsmanship.",
+      "Our estates feature meticulously curated designs that highlight premium materials, custom finishes, and cutting-edge technology crafted with sophistication and precision.",
+      "Whether it's an intimate family retreat, grand entertaining space, or private business sanctuary, our properties ensure an atmosphere of elegance and prestige.",
+      "Choose from secluded private estates, expansive mansion compounds, or exclusive gated communities with world-class amenities.",
+      "We provide personalized concierge services, property management, and lifestyle customization to make every aspect of estate living extraordinary."
     ],
-    pricingTitle: "Coastal Collections",
-    pricingDesc: "Exclusive beachfront properties to suit every coastal living dream.",
+    pricingTitle: "Estate Collections",
+    pricingDesc: "Select the perfect luxury estate tailored to your distinguished lifestyle.",
     plans: [
-      { name: "Beach Cottages", price: "$850K", period: "starting", features: ["Direct beach access", "Ocean view deck", "Private parking"], highlighted: false },
-      { name: "Oceanfront Villas", price: "$2.2M", period: "starting", features: ["Panoramic ocean views", "Private beach area", "Luxury amenities"], highlighted: true },
-      { name: "Seaside Estates", price: "$4.8M", period: "starting", features: ["Expansive beachfront", "Multiple ocean-facing suites", "Private dock & concierge"], highlighted: false },
+      { name: "Premium Estates", price: "$2.5M", period: "starting", features: ["5-7 bedrooms", "Gated community", "Premium landscaping"], highlighted: false },
+      { name: "Grand Mansions", price: "$5.8M", period: "starting", features: ["8-12 bedrooms", "Private grounds", "Luxury amenities & staff quarters"], highlighted: true },
+      { name: "Exclusive Compounds", price: "$15M", period: "starting", features: ["Multiple buildings", "Private estate grounds", "Full concierge & estate management"], highlighted: false },
     ],
     testimonials: [
-      { name: "Charlotte Morrison", role: "Beach House Owner", text: "Waking up to ocean views every morning is pure magic — our coastal retreat is everything we dreamed of!" },
-      { name: "Benjamin Wells", role: "Vacation Home Investor", text: "The beachfront location and luxury amenities make this property a perfect investment and personal escape." },
-      { name: "Isabella Chen", role: "Coastal Resident", text: "Living steps from the beach with panoramic ocean views has transformed our lifestyle completely." },
-      { name: "Harrison Blake", role: "Resort Developer", text: "The quality and location of these coastal properties are exceptional — perfect for luxury hospitality ventures." },
-      { name: "Savannah Rivers", role: "Retreat Owner", text: "Our seaside estate has become the perfect sanctuary for family gatherings and peaceful getaways." },
+      { name: "Alexander Sterling", role: "Real Estate Investor", text: "Exceptional properties with unmatched luxury! The attention to detail and service is world-class." },
+      { name: "Victoria Hamilton", role: "Estate Owner", text: "Living in our estate feels like a dream — the privacy and amenities are absolutely incredible." },
+      { name: "Marcus Blackwell", role: "Business Executive", text: "Perfect for entertaining clients. The grand spaces and exquisite finishes never fail to impress." },
+      { name: "Eleanor Whitman", role: "Family Resident", text: "Our family compound is our sanctuary — elegant, spacious, and perfectly maintained." },
+      { name: "Theodore Ashford", role: "Property Collector", text: "Each estate in my portfolio reflects true luxury. The investment value continues to appreciate beautifully." },
     ],
-    testimonialsTitle: "What Property Owners Say",
+    testimonialsTitle: "Property Owner Reviews",
     amenitiesTitle: "Amenities & Benefits",
     amenitiesDesc: "Discover the exceptional amenities and benefits that make our properties perfect for modern family living.",
     amenities: [
@@ -44,35 +45,36 @@ const translations = {
       { title: "Prime Location Benefits", description: "Close proximity to top-rated schools, shopping centers, and major transportation hubs." },
       { title: "Energy Efficiency", description: "Eco-friendly features including solar panels, efficient appliances, and sustainable materials." },
     ],
-    ctaTitle: "Ready for Coastal Living?",
-    ctaDesc: "Discover your perfect beachfront retreat now and embrace the serenity of oceanfront living with luxury amenities.",
-    ctaBtn: "View Properties",
+    ctaTitle: "Ready for Luxury Living?",
+    ctaDesc: "Schedule your private estate viewing now and experience the epitome of elegant living in prestigious properties.",
+    ctaBtn: "View Estates",
   },
   ar: {
-    heroTitle: "ملاذات ساحلية وشاطئية",
-    heroDesc: "اهرب إلى ملاذات ساحلية بكر — عقارات مذهلة على الواجهة البحرية مع إطلالات بانورامية وشواطئ خاصة ومرافق عالمية المستوى.",
-    aboutTitle: "لماذا تختار عقاراتنا الساحلية؟",
+    heroTitle: "العقارات والقصور الحصرية",
+    heroDesc: "استمتع برفاهية لا مثيل لها في عقارات مرموقة وقصور فخمة مع مرافق عالمية المستوى مصممة للمعيشة المميزة.",
+    aboutTitle: "عن عقاراتنا الحصرية",
     about: [
-      "استمتع بهدوء المعيشة على الواجهة البحرية حيث كل شروق وغروب شمس يخلق ذكريات لا تُنسى من ملاذك الخاص.",
-      "تتميز عقاراتنا على الشاطئ بوصول مباشر للشاطئ وإطلالات بانورامية على المحيط ووسائل راحة فاخرة مصممة لأسلوب الحياة الساحلية المثالي.",
-      "من أكواخ الشاطئ الحميمة إلى العقارات الكبيرة على الواجهة البحرية، يوفر كل عقار سحراً فريداً مع وسائل الراحة الحديثة والجمال الطبيعي الخلاب.",
-      "سواء كنت تبحث عن هروب هادئ أو فرصة استثمارية أو إقامة دائمة، توفر عقاراتنا الساحلية تجربة معيشة بحرية لا مثيل لها."
+      "استمتع ببيئة معيشة فاخرة غامرة حيث تم تصميم كل التفاصيل لإبهارك — من العمارة الفخمة والمناظر الطبيعية إلى الحرفية الاستثنائية.",
+      "تتميز عقاراتنا بتصاميم منسقة بعناية تبرز المواد الممتازة واللمسات المخصصة والتكنولوجيا المتطورة المصنوعة بأناقة ودقة.",
+      "سواء كان ملاذًا عائليًا حميمًا أو مساحة ترفيه كبيرة أو ملاذًا خاصًا للأعمال، تضمن عقاراتنا أجواء من الأناقة والهيبة.",
+      "اختر من بين العقارات الخاصة المنعزلة أو مجمعات القصور الواسعة أو المجتمعات المسورة الحصرية مع المرافق عالمية المستوى.",
+      "نقدم خدمات الكونسيرج الشخصية وإدارة الممتلكات وتخصيص نمط الحياة لجعل كل جانب من جوانب المعيشة في العقار استثنائيًا."
     ],
-    pricingTitle: "المجموعات الساحلية",
-    pricingDesc: "عقارات حصرية على الشاطئ لتناسب كل حلم معيشة ساحلية.",
+    pricingTitle: "مجموعات العقارات",
+    pricingDesc: "اختر العقار الفاخر المثالي المناسب لأسلوب حياتك المتميز.",
     plans: [
-      { name: "أكواخ الشاطئ", price: "$850K", period: "ابتداءً من", features: ["وصول مباشر للشاطئ", "سطح بإطلالة على المحيط", "موقف خاص"], highlighted: false },
-      { name: "فيلات على الواجهة البحرية", price: "$2.2M", period: "ابتداءً من", features: ["إطلالات بانورامية على المحيط", "منطقة شاطئ خاصة", "مرافق فاخرة"], highlighted: true },
-      { name: "عقارات ساحلية", price: "$4.8M", period: "ابتداءً من", features: ["واجهة بحرية واسعة", "أجنحة متعددة مطلة على المحيط", "رصيف خاص وخدمة كونسيرج"], highlighted: false },
+      { name: "العقارات الممتازة", price: "$2.5M", period: "ابتداءً من", features: ["5-7 غرف نوم", "مجتمع مسور", "تنسيق حدائق ممتاز"], highlighted: false },
+      { name: "القصور الكبرى", price: "$5.8M", period: "ابتداءً من", features: ["8-12 غرفة نوم", "أراضي خاصة", "مرافق فاخرة وأرباع الموظفين"], highlighted: true },
+      { name: "المجمعات الحصرية", price: "$15M", period: "ابتداءً من", features: ["مباني متعددة", "أراضي عقارية خاصة", "إدارة عقارية وكونسيرج كاملة"], highlighted: false },
     ],
     testimonials: [
-      { name: "شارلوت موريسون", role: "مالكة منزل شاطئي", text: "الاستيقاظ على إطلالات المحيط كل صباح هو سحر خالص — ملاذنا الساحلي هو كل ما حلمنا به!" },
-      { name: "بنجامين ويلز", role: "مستثمر منزل إجازات", text: "الموقع على الشاطئ والمرافق الفاخرة تجعل من هذا العقار استثماراً مثالياً وهروباً شخصياً." },
-      { name: "إيزابيلا تشين", role: "ساكنة ساحلية", text: "العيش على بُعد خطوات من الشاطئ مع إطلالات بانورامية على المحيط غيّر أسلوب حياتنا تماماً." },
-      { name: "هاريسون بليك", role: "مطور منتجعات", text: "جودة وموقع هذه العقارات الساحلية استثنائية — مثالية لمشاريع الضيافة الفاخرة." },
-      { name: "سافانا ريفرز", role: "مالكة ملاذ", text: "عقارنا الساحلي أصبح الملاذ المثالي للتجمعات العائلية والهروب الهادئ." },
+      { name: "ألكسندر ستيرلنغ", role: "مستثمر عقاري", text: "عقارات استثنائية برفاهية لا تضاهى! الاهتمام بالتفاصيل والخدمة على مستوى عالمي." },
+      { name: "فيكتوريا هاميلتون", role: "مالكة عقار", text: "العيش في عقارنا يبدو وكأنه حلم — الخصوصية والمرافق مذهلة تمامًا." },
+      { name: "ماركوس بلاكويل", role: "تنفيذي أعمال", text: "مثالي لاستضافة العملاء. المساحات الكبيرة واللمسات الرائعة لا تفشل أبدًا في الإعجاب." },
+      { name: "إليانور ويتمان", role: "ساكنة عائلية", text: "مجمع عائلتنا هو ملاذنا — أنيق وواسع ومُحافظ عليه بشكل مثالي." },
+      { name: "ثيودور أشفورد", role: "جامع عقارات", text: "كل عقار في محفظتي يعكس الرفاهية الحقيقية. القيمة الاستثمارية تستمر في الارتفاع بشكل جميل." },
     ],
-    testimonialsTitle: "ماذا يقول مالكو العقارات",
+    testimonialsTitle: "آراء مالكي العقارات",
     amenitiesTitle: "المرافق والفوائد",
     amenitiesDesc: "اكتشف المرافق والفوائد الاستثنائية التي تجعل عقاراتنا مثالية للحياة العائلية العصرية.",
     amenities: [
@@ -81,35 +83,36 @@ const translations = {
       { title: "فوائد الموقع المتميز", description: "قرب من المدارس المصنفة عالياً ومراكز التسوق ومحاور النقل الرئيسية." },
       { title: "كفاءة الطاقة", description: "ميزات صديقة للبيئة تشمل الألواح الشمسية والأجهزة الفعالة والمواد المستدامة." },
     ],
-    ctaTitle: "جاهز للمعيشة الساحلية؟",
-    ctaDesc: "اكتشف ملاذك المثالي على الشاطئ الآن واحتضن هدوء المعيشة على الواجهة البحرية مع المرافق الفاخرة.",
+    ctaTitle: "جاهز للمعيشة الفاخرة؟",
+    ctaDesc: "جدول مشاهدة عقارك الخاص الآن واستمتع بقمة المعيشة الأنيقة في العقارات المرموقة.",
     ctaBtn: "عرض العقارات",
   },
   he: {
-    heroTitle: "נופש חופי ואתרי נופש על חוף הים",
-    heroDesc: "ברחו למקלטים חופיים בתוליים — נכסים מדהימים על קו החוף עם נוף פנורמי, חופים פרטיים ושירותים ברמה עולמית.",
-    aboutTitle: "למה לבחור בנכסים החופיים שלנו?",
+    heroTitle: "נכסים ואחוזות יוקרתיות",
+    heroDesc: "חוו יוקרה ללא תחרות באחוזות יוקרתיות ובאחוזות מפוארות עם שירותים ברמה עולמית המיועדים למגורים מכובדים.",
+    aboutTitle: "על הנכסים הבלעדיים שלנו",
     about: [
-      "חוו את השלווה של חיים על קו החוף שבהם כל זריחה ושקיעה יוצרות זיכרונות בלתי נשכחים מהמקלט הפרטי שלכם.",
-      "הנכסים שלנו על חוף הים כוללים גישה ישירה לחוף, נוף פנורמי של האוקיינוס ושירותי יוקרה המיועדים לאורח החיים החופי האולטימטיבי.",
-      "מבקתות חוף אינטימיות ועד אחוזות גדולות על קו החוף, כל נכס מציע קסם ייחודי עם נוחות מודרנית ויופי טבעי עוצר נשימה.",
-      "בין אם אתם מחפשים מקום מנוחה שקט, הזדמנות השקעה או מקום מגורים קבוע, הנכסים החופיים שלנו מספקים חוויית חיים חופית ללא תחרות."
+      "חוו סביבת מגורים יוקרתית סוחפת שבה כל פרט נועד להרשים — מפאר אדריכלי ונוף ועד לאומנות יוצאת דופן.",
+      "הנכסים שלנו כוללים עיצובים מאוצרים בקפידה המדגישים חומרים משובחים, גימורים מותאמים אישית וטכנולוגיה מתקדמת הנוצרת בתחכום ודיוק.",
+      "בין אם זה מקלט משפחתי אינטימי, מרחב בידור גדול או מקדש עסקי פרטי, הנכסים שלנו מבטיחים אווירה של אלגנטיות ויוקרה.",
+      "בחרו מבין נכסים פרטיים מבודדים, מתחמי אחוזות נרחבים או קהילות סגורות בלעדיות עם שירותים ברמה עולמית.",
+      "אנו מספקים שירותי קונסיירז' מותאמים אישית, ניהול נכסים והתאמת אורח חיים כדי להפוך כל היבט של חיי האחוזה ליוצאי דופן."
     ],
-    pricingTitle: "אוספים חופיים",
-    pricingDesc: "נכסים בלעדיים על חוף הים שמתאימים לכל חלום חיים חופיים.",
+    pricingTitle: "אוספי נכסים",
+    pricingDesc: "בחרו את האחוזה היוקרתית המושלמת המותאמת לאורח החיים המכובד שלכם.",
     plans: [
-      { name: "בקתות חוף", price: "$850K", period: "החל מ", features: ["גישה ישירה לחוף", "מרפסת עם נוף אוקיינוס", "חניה פרטית"], highlighted: false },
-      { name: "וילות על קו החוף", price: "$2.2M", period: "החל מ", features: ["נוף פנורמי של האוקיינוס", "אזור חוף פרטי", "שירותי יוקרה"], highlighted: true },
-      { name: "אחוזות חופיות", price: "$4.8M", period: "החל מ", features: ["קו חוף נרחב", "מספר חדרים מול האוקיינוס", "רציף פרטי וקונסיירז'"], highlighted: false },
+      { name: "נכסים מובחרים", price: "$2.5M", period: "החל מ", features: ["5-7 חדרי שינה", "קהילה סגורה", "גינון מובחר"], highlighted: false },
+      { name: "אחוזות מפוארות", price: "$5.8M", period: "החל מ", features: ["8-12 חדרי שינה", "שטחים פרטיים", "שירותים יוקרתיים ומגורי צוות"], highlighted: true },
+      { name: "מתחמים בלעדיים", price: "$15M", period: "החל מ", features: ["מספר בניינים", "שטחי אחוזה פרטיים", "קונסיירז' מלא וניהול אחוזה"], highlighted: false },
     ],
     testimonials: [
-      { name: "שרלוט מוריסון", role: "בעלת בית חוף", text: "להתעורר לנוף של האוקיינוס כל בוקר זה קסם טהור — המקלט החופי שלנו הוא כל מה שחלמנו עליו!" },
-      { name: "בנג'מין ולס", role: "משקיע בית נופש", text: "המיקום על חוף הים והשירותים היוקרתיים הופכים את הנכס הזה להשקעה מושלמת ומקום מפלט אישי." },
-      { name: "איזבלה צ'ן", role: "תושבת חופית", text: "לחיות במרחק צעדים מהחוף עם נוף פנורמי של האוקיינוס שינה לחלוטין את אורח החיים שלנו." },
-      { name: "האריסון בלייק", role: "מפתח אתרי נופש", text: "האיכות והמיקום של הנכסים החופיים האלה יוצאי דופן — מושלמים למיזמי אירוח יוקרתיים." },
-      { name: "סוואנה ריברס", role: "בעלת מקלט", text: "האחוזה החופית שלנו הפכה למקלט המושלם למפגשים משפחתיים ולמקומות מנוחה שקטים." },
+      { name: "אלכסנדר סטרלינג", role: "משקיע נדל\"ן", text: "נכסים יוצאי דופן ביוקרה ללא תחרות! תשומת הלב לפרטים והשירות ברמה עולמית." },
+      { name: "ויקטוריה המילטון", role: "בעלת נכס", text: "לגור באחוזה שלנו מרגיש כמו חלום — הפרטיות והשירותים מדהימים לחלוטין." },
+      { name: "מרקוס בלקוול", role: "מנהל עסקי", text: "מושלם לאירוח לקוחות. החללים הגדולים והגימורים המעולים אף פעם לא נכשלים להרשים." },
+      { name: "אלינור ויטמן", role: "דיירת משפחתית", text: "המתחם המשפחתי שלנו הוא המקלט שלנו — אלגנטי, מרווח ומתוחזק בצורה מושלמת." },
+      { name: "תיאודור אשפורד", role: "אספן נכסים", text: "כל נכס בתיק שלי משקף יוקרה אמיתית. הערך ההשקעתי ממשיך לעלות בצורה יפה." },
     ],
-    testimonialsTitle: "מה אומרים בעלי הנכסים",
+    testimonialsTitle: "ביקורות בעלי נכסים",
     amenitiesTitle: "שירותים ויתרונות",
     amenitiesDesc: "גלו את השירותים והיתרונות יוצאי הדופן שהופכים את הנכסים שלנו למושלמים לחיי משפחה מודרניים.",
     amenities: [
@@ -118,13 +121,13 @@ const translations = {
       { title: "יתרונות מיקום מעולה", description: "קרבה לבתי ספר מובילים, מרכזי קניות וצמתי תחבורה מרכזיים." },
       { title: "יעילות אנרגטית", description: "תכונות ידידותיות לסביבה כולל פאנלים סולאריים, מכשירים יעילים וחומרים בני קיימא." },
     ],
-    ctaTitle: "מוכנים לחיים חופיים?",
-    ctaDesc: "גלו את המקלט המושלם שלכם על חוף הים עכשיו וחבקו את השלווה של חיים על קו החוף עם שירותי יוקרה.",
-    ctaBtn: "צפו בנכסים",
+    ctaTitle: "מוכנים לחיים יוקרתיים?",
+    ctaDesc: "תזמנו את צפיית האחוזה הפרטית שלכם עכשיו וחוו את שיא החיים האלגנטיים בנכסים יוקרתיים.",
+    ctaBtn: "צפו באחוזות",
   },
 };
 
-const PartyOrdersHero = () => {
+const ExclusiveMansions = () => {
   // Language and theme state synced with Header
   const [language, setLanguage] = useState('en');
   const [theme, setTheme] = useState('light');
@@ -216,7 +219,7 @@ const PartyOrdersHero = () => {
   <section className="relative w-full h-[85vh] overflow-hidden">
         <video
           className="absolute top-0 left-0 w-full h-full object-cover"
-          src={partyVideo}
+          src={dineVideo}
           autoPlay
           loop
           muted
@@ -246,20 +249,23 @@ const PartyOrdersHero = () => {
   {/* About Section */}
   <section className={`py-20 px-6 md:px-20 ${sectionAltBg}`}> 
         <div className="grid md:grid-cols-2 gap-12 items-center">
+          {/* Left Image - balanced height */}
           <div 
             className="w-full md:w-1/2 flex justify-center items-center min-h-[340px] h-full"
             data-aos="slide-right"
             data-aos-duration="1000"
           >
             <img
-              src={party1}
-              alt="Coastal property"
+              src={dine1}
+              alt="Our Exclusive Estates"
               className="w-full md:max-w-full md:h-[340px] max-w-md h-full object-cover rounded-2xl shadow-lg"
             />
           </div>
+
+          {/* Right Content - balanced height */}
           <div 
             className="w-full md:w-1/2 flex flex-col items-start justify-center min-h-[340px] h-full md:pl-8 text-justify"
-            data-aos="slide-left"
+            data-aos="slide-right"
             data-aos-duration="1000"
           >
             <h2 
@@ -311,9 +317,9 @@ const PartyOrdersHero = () => {
         </p>
 
         <div className="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
-          {translations[language].plans.map((plan, idx) => (
+          {translations[language].plans.map((plan, index) => (
             <div
-              key={idx}
+              key={index}
               className={`flex flex-col items-center rounded-2xl p-8 shadow-lg border 
                 ${plan.highlighted ? 'text-white scale-105' : (theme === 'dark' ? 'bg-gray-800 text-white' : 'bg-white text-gray-800')}`}
               style={{
@@ -321,7 +327,7 @@ const PartyOrdersHero = () => {
                 ...(dir === 'rtl' ? {textAlign:'right'} : {})
               }}
               data-aos="fade-up"
-              data-aos-delay={400 + idx * 200}
+              data-aos-delay={400 + index * 200}
             >
               <h3 className="text-2xl font-bold mb-4">{plan.name}</h3>
               <div className="text-4xl font-extrabold mb-2">
@@ -342,7 +348,7 @@ const PartyOrdersHero = () => {
                   : {backgroundColor: 'rgba(72, 111, 136, 0.8)'}
                 }
               >
-                {language === 'ar' ? 'عرض العقارات' : language === 'he' ? 'צפו בנכסים' : 'View Properties'}
+                {language === 'ar' ? 'عرض العقارات' : language === 'he' ? 'צפו באחוזות' : 'View Estates'}
               </button>
             </div>
           ))}
@@ -352,6 +358,7 @@ const PartyOrdersHero = () => {
       {/* Testimonials Section */}
   <section className={`py-10 px-4 ${sectionAltBg}`}>
         <div className="max-w-6xl mx-auto grid md:grid-cols-2 gap-8 items-center">
+          {/* Left Side - Text Card */}
           <div 
             className="text-center md:text-left"
             data-aos="slide-right"
@@ -376,6 +383,8 @@ const PartyOrdersHero = () => {
               <h3 className="text-xl font-semibold">{testimonial.name}</h3>
               <p className="text-sm" style={{color: 'rgba(72, 111, 136, 0.8)'}}>{testimonial.role}</p>
             </div>
+
+            {/* Arrows */}
             <div 
               className="flex justify-center md:justify-start gap-4 mt-6"
               data-aos="fade-up"
@@ -397,14 +406,16 @@ const PartyOrdersHero = () => {
               </button>
             </div>
           </div>
+
+          {/* Right Side - Image */}
           <div 
             className="flex justify-center"
-            data-aos="slide-left"
+            data-aos="slide-right"
             data-aos-duration="1000"
           >
             <img
-              src={party2}
-              alt="Beachfront property"
+              src={dine2}
+              alt="Estate interior"
               className="rounded-2xl shadow-lg w-full max-w-md h-[350px] w-[500px] object-cover"
             />
           </div>
@@ -451,8 +462,8 @@ const PartyOrdersHero = () => {
       {/* Call to Action Section */}
       <section className="relative py-24 px-6 md:px-20 text-white">
         <img
-          src={party3}
-          alt="Coastal retreat view"
+          src={dine3}
+          alt="Luxury estate exterior"
           className="absolute inset-0 w-full h-full object-cover z-0"
         />
         <div className="absolute inset-0 z-0" style={{backgroundColor: 'rgba(72, 111, 136, 0.8)'}}></div>
@@ -490,4 +501,4 @@ const PartyOrdersHero = () => {
   );
 };
 
-export default PartyOrdersHero;
+export default ExclusiveMansions;
