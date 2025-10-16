@@ -40,6 +40,6 @@
     "imagemin-pngquant": "^10.0.0",
     "postcss": "^8.5.6",
     "tailwindcss": "^4.1.11",
-    "vite": "^7.1.7"
+    "vite": "^7.1.9"
   }
 }

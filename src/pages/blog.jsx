@@ -530,7 +530,7 @@ export default function BlogHero() {
                   className={`rounded-2xl shadow hover:shadow-lg transition duration-300 overflow-hidden ${theme === 'dark' ? 'bg-[#222] text-white' : 'bg-gray-50 text-black'}`}
                   data-aos="fade-up"
                   data-aos-delay={200 + index * 200}
-                >
+                  style={{height: '100%', display: 'flex', flexDirection: 'column'}}>
                   {/* Image */}
                   <img
                     src={feature.image}
@@ -539,25 +539,29 @@ export default function BlogHero() {
                   />
 
                   {/* Content */}
-                  <div className="p-6">
-                    <h3 className={`text-xl font-semibold mb-3 ${theme === 'dark' ? 'text-white' : 'text-gray-900'}`}
-                      style={dir === 'rtl' ? { textAlign: 'right' } : {}}>
-                      {t.title}
-                    </h3>
-                    <p className={`text-sm leading-relaxed mb-4 ${theme === 'dark' ? 'text-gray-200' : 'text-gray-600'}`}
-                      style={dir === 'rtl' ? { textAlign: 'right' } : {}}>
-                      {t.description}
-                    </p>
-                    <Link
-                      to={feature.link}
-                      className="font-semibold hover:underline"
-                      style={{
-                        color: 'rgba(72, 111, 136, 0.4)',
-                        ...(dir === 'rtl' ? { direction: 'rtl', textAlign: 'right', display: 'block' } : {})
-                      }}
-                    >
-                      {featureTranslations[language].readMore}
-                    </Link>
+                  <div className="p-6 flex flex-col flex-1 justify-between">
+                    <div>
+                      <h3 className={`text-xl font-semibold mb-3 ${theme === 'dark' ? 'text-white' : 'text-gray-900'}`}
+                        style={dir === 'rtl' ? { textAlign: 'right' } : {}}>
+                        {t.title}
+                      </h3>
+                      <p className={`text-sm leading-relaxed mb-4 ${theme === 'dark' ? 'text-gray-200' : 'text-gray-600'}`}
+                        style={dir === 'rtl' ? { textAlign: 'right' } : {}}>
+                        {t.description}
+                      </p>
+                    </div>
+                    <div className="flex items-end">
+                      <Link
+                        to={feature.link}
+                        className="font-semibold hover:underline"
+                        style={{
+                          color: 'rgba(72, 111, 136, 0.4)',
+                          ...(dir === 'rtl' ? { direction: 'rtl', textAlign: 'right', display: 'block' } : {})
+                        }}
+                      >
+                        {featureTranslations[language].readMore}
+                      </Link>
+                    </div>
                   </div>
                 </article>
               );
@@ -575,7 +579,7 @@ export default function BlogHero() {
             data-aos-duration="1000"
           >
             <h2 
-              className="text-4xl md:text-5xl font-bold mb-6"
+              className="text-4xl md:text-5xl font-bold mb-6 font-sans"
               style={{color: 'rgba(72, 111, 136, 0.8)'}}
               data-aos="fade-up"
               data-aos-delay="200"
@@ -583,7 +587,7 @@ export default function BlogHero() {
               {translations[language].categories}
             </h2>
             <p 
-              className={`text-lg mb-6 ${theme === 'dark' ? 'text-gray-200' : 'text-gray-700'}`}
+              className={`text-lg mb-6 font-sans ${theme === 'dark' ? 'text-gray-200' : 'text-gray-700'}`}
               style={dir === 'rtl' ? { textAlign: 'right' } : {}}
               data-aos="fade-up"
               data-aos-delay="400"
@@ -591,7 +595,7 @@ export default function BlogHero() {
               {translations[language].categoriesDesc1}
             </p>
             <p 
-              className={theme === 'dark' ? 'text-gray-400' : 'text-gray-600'}
+              className={`font-sans ${theme === 'dark' ? 'text-gray-400' : 'text-gray-600'}`}
               style={dir === 'rtl' ? { textAlign: 'right' } : {}}
               data-aos="fade-up"
               data-aos-delay="600"
@@ -616,7 +620,7 @@ export default function BlogHero() {
                   data-aos="fade-up"
                   data-aos-delay={200 + index * 200}
                 >
-                  <h3 className="text-xl font-semibold mb-2" style={{ color: '#ef4444' }}>{t.name}</h3>
+                  <h3 className="text-xl font-semibold mb-2" style={{ color: 'rgb(72, 111, 136)' }}>{t.name}</h3>
                   <p className={theme === 'dark' ? 'text-gray-200' : 'text-gray-600'}>{t.desc}</p>
                 </div>
               );
@@ -696,17 +700,17 @@ export default function BlogHero() {
       <div className="grid md:grid-cols-2 gap-10">
         {translations[language].mythItems.map((item, idx) => (
           <div 
-            className="space-y-4" 
+            className="space-y-4 text-center" 
             key={idx}
             data-aos="fade-up"
             data-aos-delay={200 + idx * 200}
           >
-            <div className="flex gap-2">
-              <h3 className="font-bold" style={{color: 'rgba(72, 111, 136, 0.8)'}}>{language === 'ar' ? 'خرافة:' : language === 'he' ? 'מיתוס:' : 'Myth:'}</h3>
+            <div className="flex flex-col items-center">
+              <span className="font-bold" style={{color: 'rgba(72, 111, 136, 0.8)'}}>{language === 'ar' ? 'خرافة:' : language === 'he' ? 'מיתוס:' : 'Myth:'}</span>
               <p className={theme === 'dark' ? 'text-white' : 'text-black'}>{item.myth}</p>
             </div>
-            <div className="flex gap-2">
-              <h3 className="text-green-600 font-bold">{language === 'ar' ? 'حقيقة:' : language === 'he' ? 'עובדה:' : 'Fact:'}</h3>
+            <div className="flex flex-col items-center">
+              <span className="text-green-600 font-bold">{language === 'ar' ? 'حقيقة:' : language === 'he' ? 'עובדה:' : 'Fact:'}</span>
               <p className={theme === 'dark' ? 'text-white' : 'text-black'}>{item.fact}</p>
             </div>
           </div>

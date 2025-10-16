@@ -59,6 +59,7 @@ const langMap = {
 import clsx from "clsx";
 import Header from "../components/Header";
 import React from "react";
+import logo from '../assets/logo.png';
 import {
   ResponsiveContainer,
   BarChart,
@@ -222,11 +223,13 @@ export default function UserDetailsSection() {
 
   return (
     <div dir={dir} className={clsx(
-      "min-h-screen w-full",
+      "min-h-screen w-full flex flex-col",
       theme === "dark" ? "bg-[#10141c] text-white" : "bg-[#f6fafd] text-[#22223b]"
     )}>
       <Header />
-      <div className="max-w-7xl mx-auto p-6 space-y-12">
+      <div className="flex-1">
+        <div className="max-w-7xl mx-auto p-6 space-y-12 mt-24">
+        <h1 className="text-4xl font-bold text-center mb-8" style={{color: 'rgba(72, 111, 136, 0.9)'}}>Admin Dashboard</h1>
         {/* User Signup Table Section */}
         <div className={clsx(
           "rounded-xl shadow p-6 mt-16 bg-white text-black border"
@@ -237,30 +240,30 @@ export default function UserDetailsSection() {
               <table className="min-w-full border rounded-lg" style={{borderColor: 'rgba(72, 111, 136, 0.8)'}}>
                 <thead className="text-white" style={{backgroundColor: 'rgba(72, 111, 136, 0.8)'}}>
                   <tr>
-                    <th className="px-4 py-2 text-center">{translations[language].sno}</th>
-                    <th className="px-4 py-2 text-center">{translations[language].firstName}</th>
-                    <th className="px-4 py-2 text-center">{translations[language].lastName}</th>
-                    <th className="px-4 py-2 text-center">{translations[language].email}</th>
-                    <th className="px-4 py-2 text-center">{translations[language].signupTime}</th>
-                    <th className="px-4 py-2 text-center">{translations[language].signupDate}</th>
+                    <th className="px-4 py-2 text-center text-base font-bold">{translations[language].sno}</th>
+                    <th className="px-4 py-2 text-center text-base font-bold">{translations[language].firstName}</th>
+                    <th className="px-4 py-2 text-center text-base font-bold">{translations[language].lastName}</th>
+                    <th className="px-4 py-2 text-center text-base font-bold">{translations[language].email}</th>
+                    <th className="px-4 py-2 text-center text-base font-bold">{translations[language].signupTime}</th>
+                    <th className="px-4 py-2 text-center text-base font-bold">{translations[language].signupDate}</th>
                   </tr>
                 </thead>
                 <tbody>
                   {signupDetails.map((user, idx) => (
                     <tr key={user.email || idx} className="border-b" style={{borderColor: 'rgba(72, 111, 136, 0.4)'}}>
-                      <td className="px-4 py-2 text-center">{idx + 1}</td>
-                      <td className="px-4 py-2 text-center">{user.firstName}</td>
-                      <td className="px-4 py-2 text-center">{user.lastName}</td>
-                      <td className="px-4 py-2 text-center">{user.email}</td>
-                      <td className="px-4 py-2 text-center">{user.signupTime}</td>
-                      <td className="px-4 py-2 text-center">{user.signupDate}</td>
+                      <td className="px-4 py-2 text-center text-gray-900 font-semibold text-sm">{idx + 1}</td>
+                      <td className="px-4 py-2 text-center text-gray-900 font-semibold text-sm">{user.firstName}</td>
+                      <td className="px-4 py-2 text-center text-gray-900 font-semibold text-sm">{user.lastName}</td>
+                      <td className="px-4 py-2 text-center text-gray-900 font-semibold text-sm">{user.email}</td>
+                      <td className="px-4 py-2 text-center text-gray-900 font-semibold text-sm">{user.signupTime}</td>
+                      <td className="px-4 py-2 text-center text-gray-900 font-semibold text-sm">{user.signupDate}</td>
                     </tr>
                   ))}
                 </tbody>
               </table>
             </div>
           ) : (
-            <p className="text-gray-500">{translations[language].noUsers}</p>
+            <p className="text-gray-800 font-semibold text-sm">{translations[language].noUsers}</p>
           )}
         </div>
 
@@ -328,15 +331,16 @@ export default function UserDetailsSection() {
           <div className="p-6 rounded-2xl shadow bg-white text-black border" style={{borderColor: 'rgba(72, 111, 136, 0.8)'}}>
             <h2 className="text-xl font-semibold mb-4" style={{color: 'rgba(72, 111, 136, 0.8)'}}>{translations[language].popularProperties}</h2>
             <ResponsiveContainer width="100%" height={300}>
-              <BarChart data={propertyTypesData} barSize={75}>
+              <BarChart data={propertyTypesData} barSize={40}>
                 <CartesianGrid strokeDasharray="3 3" />
-                <XAxis dataKey="type" />
-                <YAxis />
+                <XAxis dataKey="type" tick={{ fill: '#22223b', fontWeight: 700, fontSize: 16 }} />
+                <YAxis tick={{ fill: '#22223b', fontWeight: 700, fontSize: 14 }} />
                 <Tooltip 
+                  contentStyle={{ backgroundColor: '#fff', color: '#22223b', fontWeight: 700, fontSize: 14, border: '1px solid #22223b' }}
                   formatter={(value, name) => [value, translations[language].popularProperties]}
                   labelFormatter={label => label}
                 />
-                <Legend formatter={() => <span style={{ color: 'rgba(72, 111, 136, 0.8)' }}>{translations[language].popularProperties}</span>} />
+                <Legend formatter={() => <span style={{ color: 'rgba(72, 111, 136, 0.8)', fontWeight: 700, fontSize: 15 }}>{translations[language].popularProperties}</span>} />
                 <Bar dataKey="sales" fill="rgba(72, 111, 136, 0.8)" radius={[8, 8, 0, 0]} />
               </BarChart>
             </ResponsiveContainer>
@@ -358,7 +362,35 @@ export default function UserDetailsSection() {
             </ResponsiveContainer>
           </div>
         </div>
-  </div>
-  </div>
-);
+        </div>
+      </div>
+      <footer className="w-full py-8 bg-[#486f88] text-white mt-8">
+        <div className="max-w-7xl mx-auto flex flex-col items-center justify-center gap-4">
+          <img src={logo} alt="Stackly Logo" className="h-8 mb-2 mx-auto" />
+          <div className="grid grid-cols-1 md:grid-cols-4 gap-8 w-full text-center">
+            <div>
+              <h3 className="font-bold text-lg mb-2">Quick Links</h3>
+              <p>Home</p>
+            </div>
+            <div>
+              <h3 className="font-bold text-lg mb-2">Our Services</h3>
+              <p>Modern Family Living</p>
+            </div>
+            <div>
+              <h3 className="font-bold text-lg mb-2">Contact Us</h3>
+              <p>100 Real Estate Ave, Prime City</p>
+              <p>Phone: (555) REALTY-1</p>
+            </div>
+            <div>
+              <h3 className="font-bold text-lg mb-2">Get Started</h3>
+              <p>Ready to find your dream property?</p>
+            </div>
+          </div>
+          <div className="w-full text-center mt-4 text-sm font-semibold">
+            &copy; {new Date().getFullYear()} Stackly Admin Dashboard. All rights reserved.
+          </div>
+        </div>
+      </footer>
+    </div>
+  );
 }

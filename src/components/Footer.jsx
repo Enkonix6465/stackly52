@@ -143,18 +143,18 @@ export default function RestaurantFooter() {
   const dir = language === 'ar' || language === 'he' ? 'rtl' : 'ltr';
   return (
     <footer dir={dir} className={theme === 'dark' ? 'bg-[#18181b] border-t mt-0 text-white' : 'bg-white border-t mt-0 text-black'}>
-      <div className="max-w-7xl mx-auto px-6 py-10 grid  md:grid-cols-5 gap-8">
+  <div className="max-w-7xl mx-auto px-6 py-10 grid grid-cols-5 md:grid-cols-5 gap-8 items-start text-center md:text-left text-base">
         {/* Logo & Brand */}
-        <div className="col-span-1 flex flex-col gap-2">
+  <div className="col-span-1 flex flex-col items-center justify-center md:items-center md:justify-center text-base">
           <div className="flex items-center gap-2">
             <img src={logo} alt="Stackly Logo" className="h-24 w-24 object-contain" />
           </div>
           <span className="font-semibold mt-2" style={{color: 'rgb(72, 111, 136)'}}>{translations[language].brand}</span>
         </div>
         {/* Quick Links */}
-        <div>
-          <h3 className="font-semibold mb-2" style={{color: 'rgb(72, 111, 136)'}}>{translations[language].quickLinks}</h3>
-          <ul className={theme === 'dark' ? 'space-y-1 text-gray-300' : 'space-y-1 text-gray-700'}>
+  <div className="flex flex-col items-center justify-center md:items-start md:justify-center text-base">
+            <h3 className="font-semibold mb-2 text-center" style={{color: 'rgb(72, 111, 136)'}}>{translations[language].quickLinks}</h3>
+            <ul className={theme === 'dark' ? 'space-y-1 text-gray-300' : 'space-y-1 text-gray-700'}>
             <li>
               <Link to="/home1" className="transition-colors" style={{'--hover-color': 'rgb(72, 111, 136)'}} onMouseEnter={(e) => e.target.style.color = 'rgb(72, 111, 136)'} onMouseLeave={(e) => e.target.style.color = ''}>{translations[language].home}</Link>
             </li>
@@ -173,9 +173,9 @@ export default function RestaurantFooter() {
           </ul>
         </div>
         {/* Explore Services */}
-        <div>
-          <h3 className="font-semibold mb-2" style={{color: 'rgb(72, 111, 136)'}}>{translations[language].ourServices}</h3>
-          <ul className={theme === 'dark' ? 'space-y-1 text-gray-300' : 'space-y-1 text-gray-700'}>
+  <div className="flex flex-col items-center justify-center md:items-start md:justify-center text-base">
+            <h3 className="font-semibold mb-2 text-center" style={{color: 'rgb(72, 111, 136)'}}>{translations[language].ourServices}</h3>
+            <ul className={theme === 'dark' ? 'space-y-1 text-gray-300' : 'space-y-1 text-gray-700'}>
             <li>
               <Link to="/Food-Delivery" className="transition-colors" onMouseEnter={(e) => e.target.style.color = 'rgb(72, 111, 136)'} onMouseLeave={(e) => e.target.style.color = ''}>{translations[language].foodDelivery}</Link>
             </li>
@@ -197,9 +197,9 @@ export default function RestaurantFooter() {
           </ul>
         </div>
         {/* Contact Info */}
-        <div>
-          <h3 className="font-semibold mb-2" style={{color: 'rgb(72, 111, 136)'}}>{translations[language].contactTitle}</h3>
-          <div className={theme === 'dark' ? 'text-gray-300 text-sm' : 'text-gray-700 text-sm'}>
+  <div className="flex flex-col items-center justify-center md:items-start md:justify-center text-base">
+            <h3 className="font-semibold mb-2 text-center" style={{color: 'rgb(72, 111, 136)'}}>{translations[language].contactTitle}</h3>
+            <div className={theme === 'dark' ? 'text-gray-300 text-sm text-center' : 'text-gray-700 text-sm text-center'}>
             <div>{translations[language].address}</div>
             <div>{translations[language].phone}</div>
             <div>
@@ -226,13 +226,13 @@ export default function RestaurantFooter() {
           </div>
         </div>
         {/* Order Now */}
-        <div className="flex flex-col items-center md:items-start md:justify-center w-full">
-          <h3 className="font-semibold mb-2 md:text-2xl text-lg text-center md:text-left" style={{color: 'rgb(72, 111, 136)'}}>{translations[language].orderNow}</h3>
-          <p className={theme === 'dark' ? 'text-gray-300 text-sm mb-4 md:text-base' : 'text-gray-700 text-sm mb-4 md:text-base'}>{translations[language].orderDesc}</p>
-          <a href="/contactus" className="text-white px-8 md:px-14 py-2 md:py-3 rounded-lg font-semibold shadow transition w-auto text-center md:text-lg whitespace-nowrap" style={{backgroundColor: 'rgb(72, 111, 136)'}} onMouseEnter={(e) => e.target.style.backgroundColor = 'rgb(62, 101, 126)'} onMouseLeave={(e) => e.target.style.backgroundColor = 'rgb(72, 111, 136)'}>{translations[language].orderNow}</a>
+        <div className="flex flex-col items-center justify-center md:items-start md:justify-center w-full text-base">
+          <h3 className="font-semibold mb-2 text-center md:text-left" style={{color: 'rgb(72, 111, 136)'}}>{translations[language].orderNow}</h3>
+          <p className={theme === 'dark' ? 'text-gray-300 mb-4 text-center md:text-left' : 'text-gray-700 mb-4 text-center md:text-left'}>{translations[language].orderDesc}</p>
+          <a href="/contactus" className="text-white px-8 md:px-14 py-2 md:py-3 rounded-lg font-semibold shadow transition w-auto text-center whitespace-nowrap" style={{backgroundColor: 'rgb(72, 111, 136)'}} onMouseEnter={(e) => e.target.style.backgroundColor = 'rgb(62, 101, 126)'} onMouseLeave={(e) => e.target.style.backgroundColor = 'rgb(72, 111, 136)'}>{translations[language].orderNow}</a>
         </div>
       </div>
-      <div className={theme === 'dark' ? 'border-t text-center text-gray-400 text-xs py-4' : 'border-t text-center text-gray-500 text-xs py-4'}>
+  <div className={theme === 'dark' ? 'border-t text-center text-gray-400 text-base py-4' : 'border-t text-center text-gray-500 text-base py-4'}>
         <div className="flex flex-row md:flex-row justify-center gap-4 mb-2">
           <a href="#" className="transition-colors" onMouseEnter={(e) => e.target.style.color = 'rgb(72, 111, 136)'} onMouseLeave={(e) => e.target.style.color = ''}>{translations[language].privacy}</a>
           <a href="#" className="transition-colors" onMouseEnter={(e) => e.target.style.color = 'rgb(72, 111, 136)'} onMouseLeave={(e) => e.target.style.color = ''}>{translations[language].terms}</a>

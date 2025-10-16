@@ -10,7 +10,7 @@ import faqImage from "../assets/faq.jpg";
 // Translation object for Real Estate Contact page
 const translations = {
   en: {
-    heroTitle: "Find Your Dream <span style='color: rgba(72, 111, 136, 0.8)'>Property</span> Today",
+     heroTitle: "Find Your Dream <span style='color: #fff;'>Property</span> Today",
     heroDesc: "Building <span class='text-white font-semibold'>dreams</span>, creating <span class='text-white font-semibold'>homes</span> — your perfect property awaits.",
     supportHeading: "Meet Our Real Estate Team",
     cards: [
@@ -46,7 +46,7 @@ const translations = {
     ],
   },
   ar: {
-    heroTitle: "اعثر على <span style='color: rgba(72, 111, 136, 0.8)'>عقارك المثالي</span> اليوم",
+     heroTitle: "اعثر على <span style='color: #fff;'>عقارك المثالي</span> اليوم",
     heroDesc: "نبني <span class='text-white font-semibold'>الأحلام</span>، وننشئ <span class='text-white font-semibold'>المنازل</span> — عقارك المثالي في انتظارك.",
     supportHeading: "فريق العقارات لدينا",
     cards: [
@@ -82,7 +82,7 @@ const translations = {
     ],
   },
   he: {
-    heroTitle: "מצא את הנכס <span style='color: rgba(72, 111, 136, 0.8)'>החלומי</span> שלך היום",
+     heroTitle: "מצא את הנכס <span style='color: #fff;'>החלומי</span> שלך היום",
     heroDesc: "בונים <span class='text-white font-semibold'>חלומות</span>, יוצרים <span class='text-white font-semibold'>בתים</span> — מומחי הנדל\"ן שלנו יעזרו לך להשיג הכל.",
     supportHeading: "מכתב הנדל\"ן שלנו",
     cards: [
@@ -285,13 +285,27 @@ export default function ContactHero() {
       <div className="max-w-4xl mx-auto px-6">
          
         {/* Main Heading */}
-  <h2 className={`text-4xl md:text-5xl font-extrabold mb-10`}
-          style={{
-            color: 'rgba(72, 111, 136, 0.8)',
-            ...(dir === 'rtl' ? { direction: 'rtl' } : {})
-          }}
-          dangerouslySetInnerHTML={{ __html: translations[language].needHelp }}
-          data-aos="fade-up" />
+          {/* Main Heading and Subtext */}
+          <h2
+            className="text-4xl md:text-5xl font-extrabold mb-2"
+            style={{
+              color: 'rgba(72, 111, 136, 0.8)',
+              ...(dir === 'rtl' ? { direction: 'rtl' } : {})
+            }}
+            data-aos="fade-up"
+          >
+            {translations[language].needHelp.split("<span")[0].replace(/<[^>]+>/g, "")}
+          </h2>
+          <div
+            className="text-xl md:text-2xl font-light mb-8"
+            style={{
+              color: 'rgba(72, 111, 136, 0.8)',
+              ...(dir === 'rtl' ? { direction: 'rtl' } : {})
+            }}
+            data-aos="fade-up"
+            data-aos-delay="100"
+            dangerouslySetInnerHTML={{ __html: translations[language].needHelp.match(/<span.*?>(.*?)<\/span>/) ? translations[language].needHelp.match(/<span.*?>(.*?)<\/span>/)[1] : '' }}
+          />
 
         {/* Contact Form */}
         <form

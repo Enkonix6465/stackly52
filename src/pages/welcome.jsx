@@ -242,69 +242,77 @@ export default function LoginPage() {
         direction: selectedLanguage === 'Arabic' || selectedLanguage === 'Hebrew' ? 'rtl' : 'ltr',
       }}
     >
-      {/* Language dropdown in top right */}
-      <div className="absolute top-6 right-6 z-20">
-        <select
-          value={selectedLanguage}
-          onChange={handleLanguageChange}
-          className="bg-white bg-opacity-80 rounded-md px-4 py-2 shadow text-black focus:outline-none"
+      {/* Header bar for logo and language dropdown, centered vertically */}
+      <div className="absolute left-0 right-0 top-0 flex flex-col items-center px-6 py-4 z-20" style={{height: '72px'}}>
+        <button
+          type="button"
+          style={{ border: 'none', padding: 0, background: 'none' }}
+          aria-label="Logo"
+          className="mx-auto"
         >
-          {languageOptions.map(opt => (
-            <option key={opt.code} value={opt.code}>{opt.label}</option>
-          ))}
-        </select>
+          <img
+            src={logoImage}
+            alt="Stackly Logo"
+            className="h-14 bg-white bg-opacity-80 rounded-full p-2 shadow-lg mx-auto"
+            style={{ objectFit: "contain" }}
+          />
+        </button>
+        <div className="w-full flex justify-end mt-2">
+          <select
+            value={selectedLanguage}
+            onChange={handleLanguageChange}
+            className="bg-white bg-opacity-80 rounded-md px-4 py-2 shadow text-black focus:outline-none"
+          >
+            {languageOptions.map(opt => (
+              <option key={opt.code} value={opt.code}>{opt.label}</option>
+            ))}
+          </select>
+        </div>
       </div>
-      
-      {/* Logo in top left */}
-      <button
-        type="button"
-        className="absolute top-6 left-6 z-10"
-        style={{ border: 'none', padding: 0, background: 'none' }}
-        aria-label="Logo"
-      >
-        <img
-          src={logoImage}
-          alt="Stackly Logo"
-          className="h-16 bg-white bg-opacity-80 rounded-full p-2 shadow-lg"
-          style={{ objectFit: "contain" }}
-        />
-      </button>
-      
-      <div className="w-full max-w-md mx-4 rounded-2xl shadow-lg flex flex-col items-center" style={{backgroundColor: 'rgba(72, 111, 136, 0.4)'}}>
-        <h2 className="text-4xl font-light text-white mb-8 mt-2 tracking-wide">{currentTranslations.welcome}</h2>
+      {/* Removed overlay for login card contrast */}
+      <div className="w-full max-w-md mx-4 rounded-2xl shadow-2xl flex flex-col items-center relative z-20" style={{background: 'rgba(72, 111, 136, 0.85)', border: '1px solid rgba(255,255,255,0.15)'}}>
+  {/* Removed 'Your Dream Home' text */}
         {message && (
           <div className="text-green-700 text-sm mb-2 text-center">{message}</div>
         )}
         
         {form === "login" && (
           <form onSubmit={handleLogin} className="space-y-6 w-full">
-            <div className="relative mb-4">
-              <input
-                type="text"
-                placeholder={currentTranslations.emailOrUsername}
-                className="w-full border-b border-gray-200 bg-transparent py-3 pl-10 pr-4 text-white placeholder-gray-200 focus:outline-none"
-                style={{'--focus-border': 'rgb(72, 111, 136)'}}
-                onFocus={(e) => e.target.style.borderColor = 'rgb(72, 111, 136)'}
-                onBlur={(e) => e.target.style.borderColor = ''}
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                required
-              />
-              <FaUser className="absolute left-2 top-1/2 transform -translate-y-1/2 text-gray-300" />
+            <div className="flex flex-col mb-4">
+              <label className="block text-white text-sm font-semibold mb-1" htmlFor="login-email">{currentTranslations.emailOrUsername}</label>
+              <div className="relative">
+                <input
+                  id="login-email"
+                  type="text"
+                  placeholder={currentTranslations.emailOrUsername}
+                  className="w-full border-b border-gray-200 bg-transparent py-3 pl-10 pr-4 text-white placeholder-gray-200 focus:outline-none"
+                  style={{'--focus-border': 'rgb(72, 111, 136)'}}
+                  onFocus={(e) => e.target.style.borderColor = 'rgb(72, 111, 136)'}
+                  onBlur={(e) => e.target.style.borderColor = ''}
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  required
+                />
+                <FaUser className="absolute left-2 top-1/2 transform -translate-y-1/2 text-gray-300" />
+              </div>
             </div>
-            <div className="relative mb-6">
-              <input
-                type="password"
-                placeholder={currentTranslations.password}
-                className="w-full border-b border-gray-200 bg-transparent py-3 pl-10 pr-4 text-white placeholder-gray-200 focus:outline-none"
-                style={{'--focus-border': 'rgb(72, 111, 136)'}}
-                onFocus={(e) => e.target.style.borderColor = 'rgb(72, 111, 136)'}
-                onBlur={(e) => e.target.style.borderColor = ''}
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-                required
-              />
-              <FaLock className="absolute left-2 top-1/2 transform -translate-y-1/2 text-gray-300" />
+            <div className="flex flex-col mb-6">
+              <label className="block text-white text-sm font-semibold mb-1" htmlFor="login-password">{currentTranslations.password}</label>
+              <div className="relative">
+                <input
+                  id="login-password"
+                  type="password"
+                  placeholder={currentTranslations.password}
+                  className="w-full border-b border-gray-200 bg-transparent py-3 pl-10 pr-4 text-white placeholder-gray-200 focus:outline-none"
+                  style={{'--focus-border': 'rgb(72, 111, 136)'}}
+                  onFocus={(e) => e.target.style.borderColor = 'rgb(72, 111, 136)'}
+                  onBlur={(e) => e.target.style.borderColor = ''}
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
+                  required
+                />
+                <FaLock className="absolute left-2 top-1/2 transform -translate-y-1/2 text-gray-300" />
+              </div>
             </div>
             {error && <div className="text-red-400 text-sm text-center">{error}</div>}
             <button
@@ -334,33 +342,40 @@ export default function LoginPage() {
           <form onSubmit={handleRegister} className="space-y-5">
             <div className="flex gap-2">
               <div className="flex-1">
-                <label className="block text-white mb-1">{currentTranslations.firstName}</label>
-                <input
-                  type="text"
-                  className="w-full border-b-2 text-white border-gray-300 bg-transparent py-2 pl-2 outline-none"
-                  onFocus={(e) => e.target.style.borderColor = 'rgb(72, 111, 136)'}
-                  onBlur={(e) => e.target.style.borderColor = ''}
-                  value={regFirstName}
-                  onChange={(e) => setRegFirstName(e.target.value)}
-                  required
-                />
+                <div className="flex flex-col">
+                  <label className="block text-white text-sm font-semibold mb-1" htmlFor="register-firstname">{currentTranslations.firstName}</label>
+                  <input
+                    id="register-firstname"
+                    type="text"
+                    className="w-full border-b-2 text-white border-gray-300 bg-transparent py-2 pl-2 outline-none"
+                    onFocus={(e) => e.target.style.borderColor = 'rgb(72, 111, 136)'}
+                    onBlur={(e) => e.target.style.borderColor = ''}
+                    value={regFirstName}
+                    onChange={(e) => setRegFirstName(e.target.value)}
+                    required
+                  />
+                </div>
               </div>
               <div className="flex-1">
-                <label className="block text-white mb-1">{currentTranslations.lastName}</label>
-                <input
-                  type="text"
-                  className="w-full border-b-2 text-white border-gray-300 bg-transparent py-2 pl-2 outline-none"
-                  onFocus={(e) => e.target.style.borderColor = 'rgb(72, 111, 136)'}
-                  onBlur={(e) => e.target.style.borderColor = ''}
-                  value={regLastName}
-                  onChange={(e) => setRegLastName(e.target.value)}
-                  required
-                />
+                <div className="flex flex-col">
+                  <label className="block text-white text-sm font-semibold mb-1" htmlFor="register-lastname">{currentTranslations.lastName}</label>
+                  <input
+                    id="register-lastname"
+                    type="text"
+                    className="w-full border-b-2 text-white border-gray-300 bg-transparent py-2 pl-2 outline-none"
+                    onFocus={(e) => e.target.style.borderColor = 'rgb(72, 111, 136)'}
+                    onBlur={(e) => e.target.style.borderColor = ''}
+                    value={regLastName}
+                    onChange={(e) => setRegLastName(e.target.value)}
+                    required
+                  />
+                </div>
               </div>
             </div>
-            <div>
-              <label className="block text-white mb-1">{currentTranslations.email}</label>
+            <div className="flex flex-col">
+              <label className="block text-white text-sm font-semibold mb-1" htmlFor="register-email">{currentTranslations.email}</label>
               <input
+                id="register-email"
                 type="email"
                 className="w-full border-b-2 text-white border-gray-300 bg-transparent py-2 pl-2 outline-none"
                 onFocus={(e) => e.target.style.borderColor = 'rgb(72, 111, 136)'}
@@ -370,9 +385,10 @@ export default function LoginPage() {
                 required
               />
             </div>
-            <div>
-              <label className="block text-white mb-1">{currentTranslations.password}</label>
+            <div className="flex flex-col">
+              <label className="block text-white text-sm font-semibold mb-1" htmlFor="register-password">{currentTranslations.password}</label>
               <input
+                id="register-password"
                 type="password"
                 className="w-full border-b-2 text-white border-gray-300 bg-transparent py-2 pl-2 outline-none"
                 onFocus={(e) => e.target.style.borderColor = 'rgb(72, 111, 136)'}
@@ -398,9 +414,10 @@ export default function LoginPage() {
           <form onSubmit={handleForgot} className="space-y-5">
             {forgotStep === 1 && (
               <>
-                <div>
-                  <label className="block text-white mb-1">{currentTranslations.email}</label>
+                <div className="flex flex-col">
+                  <label className="block text-white text-sm font-semibold mb-1" htmlFor="forgot-email">{currentTranslations.email}</label>
                   <input
+                    id="forgot-email"
                     type="email"
                     className="w-full text-white border-b-2 border-gray-300 bg-transparent py-2 pl-2 outline-none"
                     onFocus={(e) => e.target.style.borderColor = 'rgb(72, 111, 136)'}
@@ -423,9 +440,10 @@ export default function LoginPage() {
             )}
             {forgotStep === 2 && (
               <>
-                <div>
-                  <label className="block text-white mb-1">{currentTranslations.newPassword}</label>
+                <div className="flex flex-col">
+                  <label className="block text-white text-sm font-semibold mb-1" htmlFor="forgot-new-password">{currentTranslations.newPassword}</label>
                   <input
+                    id="forgot-new-password"
                     type="password"
                     className="w-full text-white border-b-2 border-gray-300 bg-transparent py-2 pl-2 outline-none"
                     onFocus={(e) => e.target.style.borderColor = 'rgb(72, 111, 136)'}
@@ -435,9 +453,10 @@ export default function LoginPage() {
                     required
                   />
                 </div>
-                <div>
-                  <label className="block text-white mb-1">{currentTranslations.confirmPassword}</label>
+                <div className="flex flex-col">
+                  <label className="block text-white text-sm font-semibold mb-1" htmlFor="forgot-confirm-password">{currentTranslations.confirmPassword}</label>
                   <input
+                    id="forgot-confirm-password"
                     type="password"
                     className="w-full text-white border-b-2 border-gray-300 bg-transparent py-2 pl-2 outline-none"
                     onFocus={(e) => e.target.style.borderColor = 'rgb(72, 111, 136)'}

@@ -189,10 +189,10 @@ export default function AboutUs() {
 
       {/* Our Mission Section */}
       <section className={`w-full py-20 px-4 md:px-0 flex flex-col items-center justify-center ${theme === 'dark' ? 'bg-[#181818]' : 'bg-gray-50'}`}>
-        <div className="max-w-6xl w-full mx-auto grid md:grid-cols-2 gap-10 items-center">
+        <div className="max-w-6xl w-full mx-auto flex flex-col md:flex-row gap-10 items-end">
           {/* Left: Image */}
           <div 
-            className="w-full h-full"
+            className="w-full h-full flex items-end"
             data-aos="slide-right"
             data-aos-duration="1000"
           >
@@ -206,7 +206,7 @@ export default function AboutUs() {
           </div>
           {/* Right: Content */}
           <div 
-            className="grid gap-4 content-center"
+            className="grid gap-4 content-end"
             data-aos="slide-right"
             data-aos-duration="1000"
           >

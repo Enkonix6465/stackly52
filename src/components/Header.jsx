@@ -203,13 +203,14 @@ const Header = () => {
       dir={dir}
       className={`fixed top-0 left-0 right-0 z-50 w-full !fixed !top-0 !left-0 !right-0 !z-50 transition-colors duration-300
         ${theme === 'dark' ? 'bg-[#000] border-b border-[#141B25]' : 'bg-white border-b border-gray-200'}`}
+      style={{ minHeight: '48px' }}
     >
-      <div className="w-full px-4  sm:px-6 lg:px-8">
-        <div className="flex justify-between items-center h-20">
+      <div className="w-full px-2 sm:px-4 lg:px-6">
+        <div className="flex justify-between items-center h-12">
           {/* Logo */}
           <div className="flex pl-4 sm:pl-6 lg:pl-14 items-center">
             <button onClick={() => navigate('/home1')} className="focus:outline-none">
-              <img src={logo} alt="STACKLY" className="h-10 sm:h-12 w-auto object-contain mr-2" />
+              <img src={logo} alt="STACKLY" style={{ height: '24px', width: '48px', maxHeight: 'none', maxWidth: 'none' }} className="object-contain mr-2" />
             </button>
           </div>
 

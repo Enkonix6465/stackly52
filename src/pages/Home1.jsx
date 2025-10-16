@@ -286,18 +286,20 @@ export default function Home1() {
             data-aos-duration="1000"
           >
             <h2 
-              className={`text-3xl md:text-4xl font-bold mb-4 font-serif`} 
+              className="text-3xl md:text-4xl font-bold mb-4 font-serif" 
               style={{color: 'rgb(72, 111, 136)'}}
               data-aos="fade-up"
               data-aos-delay="200"
             >{t.aboutTitle}</h2>
             <p 
-              className={`text-lg mb-6 max-w-lg ${theme === 'dark' ? 'text-gray-200' : 'text-gray-700'}`}
+              className="text-base mb-6 max-w-lg text-justify" 
+              style={{color: theme === 'dark' ? '#e5e7eb' : '#374151'}}
               data-aos="fade-up"
               data-aos-delay="400"
             >{t.aboutDesc}</p>
             <ul 
-              className={`mb-6 space-y-2 ${theme === 'dark' ? 'text-gray-200' : 'text-gray-700'}`}
+              className="mb-6 space-y-2 text-base" 
+              style={{color: theme === 'dark' ? '#e5e7eb' : '#374151'}}
               data-aos="fade-up"
               data-aos-delay="600"
             >
@@ -368,13 +370,6 @@ export default function Home1() {
       {/* Why Choose Us Section (White theme, red border, black text) */}
   <section className={`w-full py-20 px-4 md:px-0 flex flex-col items-center justify-center ${theme === 'dark' ? 'bg-[#181818]' : 'bg-white'}`}>
         <div className="max-w-6xl w-full mx-auto">
-          <div 
-            className="text-center mb-2"
-            data-aos="fade-up"
-            data-aos-duration="1000"
-          >
-            <span className="text-lg font-serif italic tracking-wide" style={{color: 'rgb(72, 111, 136)'}}>{t.whyChooseUs}</span>
-          </div>
           <h2 
             className={`text-5xl md:text-6xl font-serif font-bold text-center mb-12`} 
             style={{color: 'rgb(72, 111, 136)'}}

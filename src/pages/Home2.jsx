@@ -512,9 +512,9 @@ export default function Home2() {
       </section>
 
       {/* Meet Our Professionals Section */}
-      <section className={`w-full py-20 px-4 md:px-0 flex flex-col items-center justify-center ${theme === 'dark' ? 'bg-[#222]' : 'bg-gray-50'}`} ref={chefRef}>
+      <section className={`w-full py-12 px-4 md:px-0 flex flex-col items-center justify-center ${theme === 'dark' ? 'bg-[#222]' : 'bg-gray-50'}`} ref={chefRef}>
         <h2 
-          className={`text-5xl md:text-6xl font-serif font-bold text-center mb-16 ${theme === 'dark' ? 'text-white' : 'text-black'}`}
+          className={`text-5xl md:text-6xl font-serif font-bold text-center mb-8 ${theme === 'dark' ? 'text-white' : 'text-black'}`}
           data-aos="fade-up"
           data-aos-duration="1000"
         >
@@ -558,7 +558,7 @@ export default function Home2() {
       </section>
 
       {/* Recent Market Insights Section */}
-      <section className={`w-full py-20 px-4 md:px-0 flex flex-col items-center justify-center ${theme === 'dark' ? 'bg-[#222]' : 'bg-gray-50'}`}>
+  <section className={`w-full pt-8 pb-20 px-4 md:px-0 flex flex-col items-center justify-center ${theme === 'dark' ? 'bg-[#222]' : 'bg-gray-50'}`}>
         <div className="max-w-6xl w-full mx-auto">
           <h2 
             className={`text-3xl md:text-4xl font-bold mb-10 font-serif text-center ${theme === 'dark' ? 'text-white' : 'text-gray-900'}`}
